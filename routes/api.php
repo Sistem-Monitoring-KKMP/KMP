@@ -2,10 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\ManajemenKMP\Http\Controllers\AuthController;
-use App\ManajemenKMP\Http\Controllers\UserController;
-use App\ManajemenKMP\Http\Controllers\AnggotaController;
-use App\ManajemenKMP\Http\Controllers\KoperasiController;
+use App\Http\Controllers\ManajemenKMP\AuthController;
+use App\Http\Controllers\ManajemenKMP\UserController;
+use App\Http\Controllers\ManajemenKMP\AnggotaController;
+use App\Http\Controllers\ManajemenKMP\KoperasiController;
 
 // Public routes
 Route::post('/auth/login', [AuthController::class, 'login']);

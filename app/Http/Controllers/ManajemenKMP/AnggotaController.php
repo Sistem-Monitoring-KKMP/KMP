@@ -1,11 +1,12 @@
 <?php
 
-namespace App\ManajemenKMP\Http\Controllers;
+namespace App\Http\Controllers\ManajemenKMP;
 
-use App\ManajemenKMP\Models\Anggota;
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class AnggotaController extends Controller
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\ManajemenKMP\Http\Controllers;
+namespace App\Http\Controllers\ManajemenKMP;
 
-use App\ManajemenKMP\Models\Koperasi;
+use App\Models\Koperasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 class KoperasiController extends Controller
 {

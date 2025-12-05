@@ -1,12 +1,13 @@
 <?php
 
-namespace App\ManajemenKMP\Http\Controllers;
+namespace App\Http\Controllers\ManajemenKMP;
 
-use App\ManajemenKMP\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
