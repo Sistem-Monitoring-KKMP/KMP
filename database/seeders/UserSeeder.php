@@ -1,0 +1,28 @@
+<?php
+
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\ManajemenKMP\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // Create superadmin account
+        User::create([
+            'id' => Str::uuid(),
+            'email' => 'superadmin@example.com',
+            'username' => 'superadmin',
+            'password' => Hash::make('superadmin123'),
+            'role' => 'superadmin',
+            'anggota_id' => null,
+        ]);
+    }
+}
