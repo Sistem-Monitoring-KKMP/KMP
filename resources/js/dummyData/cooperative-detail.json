@@ -1,0 +1,35 @@
+{
+    "id": 1,
+    "nama": "Kop. Mitra Sejahtera",
+    "kontak": "0812-3456-7890",
+    "no_badan_hukum": "BH-55667788",
+    "tahun": 2018,
+    "status": "Aktif",
+    "lokasi": {
+        "alamat": "Jl. Raya Bogor No. 123",
+        "kecamatan": "Bogor Tengah",
+        "kelurahan": "Tegallega",
+        "latitude": -6.5957,
+        "longitude": 106.8126
+    },
+    "performa": {
+        "periode": "2024-12-01",
+        "cdi": 86.2,
+        "bdi": 88.0,
+        "odi": 84.4,
+        "kuadrant": 1,
+        "organisasi": {
+            "jumlah_anggota": 150,
+            "jumlah_karyawan": 12,
+            "keaktifan_pengurus": 0.92,
+            "efektivitas_pengendalian": 0.88,
+            "kunjungan_eksternal": 8
+        },
+        "bisnis": {
+            "simpanan_bersih": 75000000,
+            "partisipasi_anggota": 0.85,
+            "total_penjualan": 350000000,
+            "pertumbuhan_penjualan": 0.12
+        }
+    }
+}
