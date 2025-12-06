@@ -2,41 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Koperasi extends Model
 {
-    /** @use HasFactory<\Database\Factories\KoperasiFactory> */
-    use HasFactory;
-
     protected $table = 'koperasi';
-
-    protected $fillable = [
-        'nama',
-        'kontak',
-        'no_badan_hukum',
-        'tahun',
-        'status',
-    ];
+    protected $primaryKey = 'id';
+    protected $fillable = ['nama', 'kontak', 'no_badan_hukum', 'tahun', 'responden_id'];
 
     public function pengurus()
     {
-        return $this->hasMany(Pengurus::class);
+        return $this->hasMany(Pengurus::class, 'koperasi_id', 'id');
     }
 
     public function lokasi()
     {
-        return $this->hasMany(Lokasi::class);
+        return $this->hasMany(Lokasi::class, 'koperasi_id', 'id');
     }
 
-    public function pengawas()
+    public function performas()
     {
-        return $this->hasMany(Pengawas::class);
+        return $this->hasMany(Performa::class, 'koperasi_id', 'id');
     }
 
-    public function performa()
+    public function responden()
     {
-        return $this->hasMany(Performa::class);
+        return $this->belongsTo(Responden::class, 'responden_id', 'id');
     }
 }

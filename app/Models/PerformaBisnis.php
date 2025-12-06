@@ -1,34 +1,55 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PerformaBisnis extends Model
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'performa_id',
-        'net_savings',
-        'member_participation',
-        'total_sales',
-        'growth_sales',
-    ];
-
+    protected $table = 'performa_bisnis';
+    protected $primaryKey = 'id';
+    protected $fillable = ['performa_id','proyeksi_rugi_laba','proyeksi_arus_kas','responden_id'];
     protected $casts = [
-        'member_participation' => 'float',
-        'growth_sales' => 'float',
+        'proyeksi_rugi_laba' => 'boolean',
+        'proyeksi_arus_kas' => 'boolean'
     ];
 
     public function performa()
     {
-        return $this->belongsTo(Performa::class);
+        return $this->belongsTo(Performa::class, 'performa_id', 'id');
     }
 
     public function hubunganLembaga()
     {
-        return $this->hasOne(HubunganLembaga::class);
+        return $this->hasMany(HubunganLembaga::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function unitUsaha()
+    {
+        return $this->hasMany(UnitUsaha::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function keuangan()
+    {
+        return $this->hasOne(Keuangan::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function neracaAktiva()
+    {
+        return $this->hasOne(NeracaAktiva::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function neracaPassiva()
+    {
+        return $this->hasOne(NeracaPassiva::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function masalahKeuangan()
+    {
+        return $this->hasOne(MasalahKeuangan::class, 'performa_bisnis_id', 'id');
+    }
+
+    public function responden()
+    {
+        return $this->belongsTo(Responden::class, 'responden_id', 'id');
     }
 }
