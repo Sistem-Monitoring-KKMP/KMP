@@ -1,112 +1,112 @@
 [
-  {
-    "id": 1,
-    "nama": "Kop. Mitra Sejahtera",
-    "status": "Aktif",
-    "tahun": 2018,
-    "cdi": 86.2,
-    "bdi": 88.0,
-    "odi": 84.4,
-    "kuadrant": 1,
-    "alamat": "Jl. Raya Bogor No. 123, Tegallega"
-  },
-  {
-    "id": 2,
-    "nama": "Kop. Cemerlang Abadi",
-    "status": "Aktif",
-    "tahun": 2019,
-    "cdi": 84.1,
-    "bdi": 85.5,
-    "odi": 82.7,
-    "kuadrant": 1,
-    "alamat": "Jl. Pajajaran No. 45, Babakan"
-  },
-  {
-    "id": 3,
-    "nama": "Kop. Amanah Bersama",
-    "status": "Aktif",
-    "tahun": 2020,
-    "cdi": 82.9,
-    "bdi": 83.0,
-    "odi": 82.8,
-    "kuadrant": 2,
-    "alamat": "Jl. Siliwangi No. 88, Bondongan"
-  },
-  {
-    "id": 4,
-    "nama": "Kop. Sumber Makmur",
-    "status": "Aktif",
-    "tahun": 2017,
-    "cdi": 80.3,
-    "bdi": 81.2,
-    "odi": 79.4,
-    "kuadrant": 2,
-    "alamat": "Jl. Surya Kencana No. 10, Gudang"
-  },
-  {
-    "id": 5,
-    "nama": "Kop. Bina Usaha",
-    "status": "Pembentukan",
-    "tahun": 2023,
-    "cdi": 78.4,
-    "bdi": 79.0,
-    "odi": 77.8,
-    "kuadrant": 3,
-    "alamat": "Jl. Pemuda No. 5, Tanah Sareal"
-  },
-  {
-    "id": 6,
-    "nama": "Kop. Harmoni Sejati",
-    "status": "Aktif",
-    "tahun": 2015,
-    "cdi": 77.2,
-    "bdi": 78.5,
-    "odi": 75.9,
-    "kuadrant": 3,
-    "alamat": "Jl. Ahmad Yani No. 22, Tanah Sareal"
-  },
-  {
-    "id": 7,
-    "nama": "Kop. Prima Mandiri",
-    "status": "TidakAktif",
-    "tahun": 2010,
-    "cdi": 75.8,
-    "bdi": 76.0,
-    "odi": 75.6,
-    "kuadrant": 4,
-    "alamat": "Jl. Merdeka No. 99, Ciwaringin"
-  },
-  {
-    "id": 8,
-    "nama": "Kop. Sejahtera Madani",
-    "status": "Aktif",
-    "tahun": 2021,
-    "cdi": 74.5,
-    "bdi": 75.2,
-    "odi": 73.8,
-    "kuadrant": 2,
-    "alamat": "Jl. Dadali No. 3, Tanah Sareal"
-  },
-  {
-    "id": 9,
-    "nama": "Kop. Karya Bersatu",
-    "status": "Aktif",
-    "tahun": 2016,
-    "cdi": 73.1,
-    "bdi": 74.0,
-    "odi": 72.2,
-    "kuadrant": 3,
-    "alamat": "Jl. Tentara Pelajar No. 15, Ciwaringin"
-  },
-  {
-    "id": 10,
-    "nama": "Kop. Sentosa Lestari",
-    "status": "Aktif",
-    "tahun": 2022,
-    "cdi": 71.6,
-    "bdi": 72.5,
-    "odi": 70.7,
-    "kuadrant": 4,
-    "alamat": "Jl. RE Martadinata No. 7, Pabaton"
-  }
+    {
+        "id": 1,
+        "nama": "Kop. Mitra Sejahtera",
+        "status": "Aktif",
+        "tahun": 2018,
+        "cdi": 86.2,
+        "bdi": 88.0,
+        "odi": 84.4,
+        "kuadrant": 1,
+        "alamat": "Jl. Raya Bogor No. 123, Tegallega"
+    },
+    {
+        "id": 2,
+        "nama": "Kop. Cemerlang Abadi",
+        "status": "Aktif",
+        "tahun": 2019,
+        "cdi": 84.1,
+        "bdi": 85.5,
+        "odi": 82.7,
+        "kuadrant": 1,
+        "alamat": "Jl. Pajajaran No. 45, Babakan"
+    },
+    {
+        "id": 3,
+        "nama": "Kop. Amanah Bersama",
+        "status": "Aktif",
+        "tahun": 2020,
+        "cdi": 82.9,
+        "bdi": 83.0,
+        "odi": 82.8,
+        "kuadrant": 2,
+        "alamat": "Jl. Siliwangi No. 88, Bondongan"
+    },
+    {
+        "id": 4,
+        "nama": "Kop. Sumber Makmur",
+        "status": "Aktif",
+        "tahun": 2017,
+        "cdi": 80.3,
+        "bdi": 81.2,
+        "odi": 79.4,
+        "kuadrant": 2,
+        "alamat": "Jl. Surya Kencana No. 10, Gudang"
+    },
+    {
+        "id": 5,
+        "nama": "Kop. Bina Usaha",
+        "status": "Pembentukan",
+        "tahun": 2023,
+        "cdi": 78.4,
+        "bdi": 79.0,
+        "odi": 77.8,
+        "kuadrant": 3,
+        "alamat": "Jl. Pemuda No. 5, Tanah Sareal"
+    },
+    {
+        "id": 6,
+        "nama": "Kop. Harmoni Sejati",
+        "status": "Aktif",
+        "tahun": 2015,
+        "cdi": 77.2,
+        "bdi": 78.5,
+        "odi": 75.9,
+        "kuadrant": 3,
+        "alamat": "Jl. Ahmad Yani No. 22, Tanah Sareal"
+    },
+    {
+        "id": 7,
+        "nama": "Kop. Prima Mandiri",
+        "status": "TidakAktif",
+        "tahun": 2010,
+        "cdi": 75.8,
+        "bdi": 76.0,
+        "odi": 75.6,
+        "kuadrant": 4,
+        "alamat": "Jl. Merdeka No. 99, Ciwaringin"
+    },
+    {
+        "id": 8,
+        "nama": "Kop. Sejahtera Madani",
+        "status": "Aktif",
+        "tahun": 2021,
+        "cdi": 74.5,
+        "bdi": 75.2,
+        "odi": 73.8,
+        "kuadrant": 2,
+        "alamat": "Jl. Dadali No. 3, Tanah Sareal"
+    },
+    {
+        "id": 9,
+        "nama": "Kop. Karya Bersatu",
+        "status": "Aktif",
+        "tahun": 2016,
+        "cdi": 73.1,
+        "bdi": 74.0,
+        "odi": 72.2,
+        "kuadrant": 3,
+        "alamat": "Jl. Tentara Pelajar No. 15, Ciwaringin"
+    },
+    {
+        "id": 10,
+        "nama": "Kop. Sentosa Lestari",
+        "status": "Aktif",
+        "tahun": 2022,
+        "cdi": 71.6,
+        "bdi": 72.5,
+        "odi": 70.7,
+        "kuadrant": 4,
+        "alamat": "Jl. RE Martadinata No. 7, Pabaton"
+    }
 ]
