@@ -10,6 +10,8 @@ class Koperasi extends Model
     /** @use HasFactory<\Database\Factories\KoperasiFactory> */
     use HasFactory;
 
+    protected $table = 'koperasi';
+
     protected $fillable = [
         'nama',
         'kontak',
