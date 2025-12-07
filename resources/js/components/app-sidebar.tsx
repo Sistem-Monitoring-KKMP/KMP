@@ -24,12 +24,12 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Performa Organisasi',
-        href: '/performance',
+        href: '/organization',
         icon: ChartPie,
     },
     {
         title: 'Performa Bisnis',
-        href: '/business-performance',
+        href: '/business',
         icon: ChartColumnIncreasing,
     },
     {
