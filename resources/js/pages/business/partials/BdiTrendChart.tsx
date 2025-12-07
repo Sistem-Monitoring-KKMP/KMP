@@ -25,9 +25,9 @@ const months = [
 
 export default function BdiTrendChart({ data }: Props) {
     // Sort years descending
-    const years = useMemo(() => 
-        [...data].sort((a, b) => Number(b.tahun) - Number(a.tahun)), 
-    [data]);
+    const years = useMemo(() =>
+        [...data].sort((a, b) => Number(b.tahun) - Number(a.tahun)),
+        [data]);
 
     const [selectedYear, setSelectedYear] = useState<string>(years[0]?.tahun || new Date().getFullYear().toString());
 
@@ -40,7 +40,7 @@ export default function BdiTrendChart({ data }: Props) {
             // Using sin wave + some noise based on year and index
             const seed = Number(selectedYear) + index;
             const variation = Math.sin(seed) * 3 + Math.cos(seed * 2) * 2;
-            
+
             return {
                 key: new Date(Number(selectedYear), index, 1),
                 data: Number((baseScore + variation).toFixed(1))
@@ -69,7 +69,7 @@ export default function BdiTrendChart({ data }: Props) {
                     </Select>
                 </div>
             </div>
-            
+
             <div style={{ height: '300px', width: '100%' }}>
                 <LineChart
                     data={chartData}

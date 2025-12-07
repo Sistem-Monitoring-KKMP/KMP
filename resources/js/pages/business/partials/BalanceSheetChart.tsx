@@ -39,7 +39,7 @@ interface Props {
     data: Neraca;
 }
 
-interface CustomBarProps extends ComponentProps<typeof Bar> { }
+type CustomBarProps = ComponentProps<typeof Bar>;
 
 const CustomBar = (props: CustomBarProps) => {
     const [hovered, setHovered] = useState(false);
