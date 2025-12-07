@@ -34,18 +34,18 @@ Fokus pada aspek manusia, keanggotaan, dan tata kelola organisasi secara agregat
 
 ### Data yang Dibutuhkan
 
-- **Agregat Keanggotaan (BARU):**
+- **Agregat Keanggotaan:**
     - Total Anggota Terdaftar (Semua Koperasi).
     - Total Anggota Aktif.
     - Total Anggota Tidak Aktif.
-- **Kepatuhan Tata Kelola:** Persentase koperasi yang sudah RAT vs Belum RAT tahun ini.
+- **Kepatuhan Tata Kelola:** Persentase koperasi berdasarkan Status Operasional (Aktif vs Tidak Aktif).
 - **Skor Prinsip Koperasi:** Rata-rata skor penerapan 7 Prinsip Koperasi dari seluruh entitas.
 - **Kesehatan Manajemen:** Rata-rata jumlah pengurus dan pengawas aktif per koperasi.
 
 ### Visualisasi
 
 - **Pie/Donut Chart:** Komposisi Anggota (Aktif vs Tidak Aktif).
-- **Bar Chart:** Status Kepatuhan RAT (Sudah vs Belum).
+- **Bar Chart:** Status Operasional (Aktif vs Tidak Aktif).
 - **Radar Chart:** Rata-rata skor 7 Prinsip Koperasi (Keanggotaan Sukarela, Demokratis, dll).
 
 ---
@@ -56,149 +56,122 @@ Fokus pada performa finansial dan perkembangan bisnis secara agregat.
 
 ### Data yang Dibutuhkan
 
-- **Agregat Finansial:**
-    - Total Aset seluruh koperasi.
-    - Total Omset (Volume Usaha) seluruh koperasi.
-    - Total SHU (Sisa Hasil Usaha) seluruh koperasi.
 - **Komposisi Neraca (Agregat):**
-    - **Aset:** Aset Lancar, Aset Tetap.
-    - **Liabilitas (Kewajiban):** Jangka Pendek, Jangka Panjang.
-    - **Ekuitas:** Simpanan Pokok, Simpanan Wajib, Cadangan, SHU Tahun Berjalan.
-- **Performa Bisnis (BDI):** Rata-rata skor BDI.
-- **Pertumbuhan:** Persentase pertumbuhan aset dan omset dari tahun ke tahun.
+    - **Aset:** Kas, Piutang, Persediaan (Lancar) dan Tanah, Bangunan, Kendaraan, Peralatan (Tetap).
+    - **Liabilitas (Kewajiban):** Hutang Lancar, Hutang Jangka Panjang.
+    - **Ekuitas:** Simpanan Anggota, SHU Ditahan.
+- **Historis Performa Bisnis:** Tren rata-rata skor BDI dari tahun ke tahun.
+- **Indikator Pertumbuhan Keuangan (Agregat):**
+    - Total Pinjaman Bank
+    - Total Investasi
+    - Modal Kerja
+    - Total Simpanan Anggota
+    - Total Hibah
+    - Omset (Volume Usaha)
+    - Biaya Operasional
+    - Surplus/Rugi (SHU)
 
 ### Visualisasi
 
-- **Line Chart:** Tren Pertumbuhan Aset & Omset (5 tahun terakhir).
+- **Line Chart:** Tren Rata-rata Skor BDI (5 tahun terakhir).
+- **Stacked Bar Chart (Pertumbuhan):** Tren indikator keuangan (Omset, Modal Kerja, dll) dari tahun ke tahun.
 - **Stacked Bar Chart (Neraca):** Visualisasi keseimbangan neraca.
-    - _Bar 1 (Aktiva):_ Stack dari Aset Lancar + Aset Tetap.
+    - _Bar 1 (Aktiva):_ Stack dari komponen Aset.
     - _Bar 2 (Pasiva):_ Stack dari Liabilitas + Ekuitas.
-    - _Alternatif:_ Tren komposisi Aset/Liabilitas/Ekuitas per tahun.
-- **Bar Chart:** Distribusi SHU per sektor atau wilayah.
 - **Scatter Plot (Opsional):** Korelasi antara Jumlah Anggota vs Volume Usaha.
 
 ---
 
 ## 4. Page Detail Koperasi (Single Entity)
 
-Halaman mendalam yang menampilkan profil lengkap satu koperasi tertentu.
+Halaman mendalam yang menampilkan profil lengkap satu koperasi tertentu, mencakup aspek kelembagaan (organisasi) dan bisnis (usaha & keuangan).
 
 ### A. Profil & Identitas (Header)
 
-- Nama Koperasi
-- Alamat Lengkap & Kelurahan
-- Tahun Berdiri
-- Nomor Badan Hukum
-- Ada General Manager (GM)? (Ya/Tidak)
-- Status Operasional (Skala 1-3, misal: 1=Aktif, 2=Kurang Aktif, 3=Macet)
+- **Identitas:**
+    - Nama Koperasi
+    - Nomor Badan Hukum
+    - Tahun Berdiri
+    - Kontak (Email/Telepon)
+    - Status Operasional (Aktif/Tidak Aktif)
+    - Ketersediaan General Manager (GM)
+- **Lokasi:**
+    - Alamat Lengkap
+    - Kecamatan & Kelurahan
+    - Koordinat (Latitude & Longitude)
 
-### B. Sumber Daya Manusia (Human Capital)
+### B. Performa & Indeks
 
-- Jumlah Pengurus Aktif
-- Jumlah Pengawas Aktif
-- Jumlah Karyawan
-- **Statistik Anggota:**
-    - Total Anggota Terdaftar
-    - Jumlah Anggota Aktif
-    - Jumlah Anggota Tidak Aktif
+- **Skor Indeks:**
+    - CDI (Cooperative Development Index)
+    - BDI (Business Development Index)
+    - ODI (Organization Development Index)
+- **Kuadran:** Posisi kuadran koperasi berdasarkan skor indeks.
 
-### C. Unit Usaha (Business Units)
+### C. Sumber Daya Manusia (Organisasi)
 
-Setiap koperasi bisa memiliki banyak unit usaha. Data ditampilkan dalam bentuk tabel dengan rincian sebagai berikut:
+- **Manajemen:**
+    - Jumlah Pengurus
+    - Jumlah Pengawas
+    - Jumlah Karyawan
+- **Keanggotaan:**
+    - Total Anggota
+    - Anggota Aktif
+    - Anggota Tidak Aktif
 
-- **Kolom Data per Unit Usaha:**
-    1.  **Nama Unit Usaha** (Contoh: Gerai Sembako, Klinik Desa, Gerai Obat, Jasa Logistik, Gudang/Cool Storage, Simpan Pinjam, dll).
-    2.  **Volume Usaha (Rp)**
-    3.  **Investasi (Rp)**
-    4.  **Modal Kerja (Rp)**
-    5.  **Surplus/Rugi (Rp)**
-    6.  **Jumlah SDM (Orang)**
-    7.  **Jumlah Anggota (Orang)**
+### D. Keuangan (Neraca)
 
-### D. Tata Kelola & Prinsip (Governance)
+Visualisasi keseimbangan neraca (Aktiva vs Passiva) dengan rincian mendalam.
 
-- **Riwayat Rapat:** Tanggal RAT terakhir, Jumlah kehadiran anggota saat RAT.
-- **Skor 7 Prinsip Koperasi (Nilai 1-100):**
-    1.  Keanggotaan Sukarela & Terbuka.
-    2.  Pengendalian Demokratis Anggota.
-    3.  Partisipasi Ekonomi Anggota.
-    4.  Otonomi & Kebebasan.
-    5.  Pendidikan, Pelatihan & Informasi.
-    6.  Kerjasama Antar Koperasi.
-    7.  Kepedulian Terhadap Komunitas.
+- **Aktiva (Aset):**
+    - Kas
+    - Piutang
+    - Persediaan
+    - Tanah
+    - Bangunan
+    - Kendaraan
+    - Peralatan
+    - *Total Aktiva*
+- **Passiva (Kewajiban & Ekuitas):**
+    - Hutang Lancar
+    - Hutang Jangka Panjang
+    - Simpanan Anggota
+    - SHU Ditahan
+    - *Total Passiva*
 
-### E. Riwayat Performa (History)
+### E. Pertumbuhan Keuangan (Tren)
 
-- Nilai CDI, BDI, ODI koperasi ini selama 3-5 tahun terakhir.
+Data historis pertumbuhan keuangan dari tahun ke tahun.
 
-### Visualisasi Detail Page
+- **Indikator Pertumbuhan:**
+    - Total Pinjaman Bank
+    - Total Investasi
+    - Modal Kerja
+    - Total Simpanan Anggota
+    - Total Hibah
+    - Omset (Volume Usaha)
+    - Biaya Operasional
+    - Surplus/Rugi (SHU)
 
-- **Card List/Table:** Daftar Unit Usaha dan performanya.
-- **Radar Chart:** Visualisasi kekuatan/kelemahan penerapan 7 prinsip.
-- **Line Chart:** Tren perkembangan skor indeks koperasi ini.
+### F. Prinsip Koperasi
 
----
+Penilaian penerapan 7 Prinsip Koperasi.
 
-## Contoh Struktur JSON (Dummy Data)
+- **Visualisasi:** Radar Chart (Skor Aktual vs Skor Maksimal).
+- **Data:** Skor untuk setiap prinsip (misal: Keanggotaan Sukarela, Pengelolaan Demokratis, dll).
 
-```json
-{
-    "id": 1,
-    "profil": {
-        "nama": "Koperasi Maju Bersama",
-        "alamat": "Jl. Merdeka No. 10",
-        "kelurahan": "Sukamaju",
-        "tahun_berdiri": 2015,
-        "no_badan_hukum": "BH-123456789",
-        "ada_gm": true,
-        "status_operasional": 1
-    },
-    "sdm": {
-        "pengurus_aktif": 5,
-        "pengawas_aktif": 3,
-        "karyawan": 12,
-        "anggota": {
-            "total": 250,
-            "aktif": 200,
-            "tidak_aktif": 50
-        }
-    },
-    "unit_usaha": [
-        {
-            "nama": "Gerai Sembako",
-            "volume_usaha": 500000000,
-            "investasi": 150000000,
-            "modal_kerja": 50000000,
-            "surplus_rugi": 25000000,
-            "jumlah_sdm": 3,
-            "jumlah_anggota": 150
-        },
-        {
-            "nama": "Klinik Desa",
-            "volume_usaha": 200000000,
-            "investasi": 300000000,
-            "modal_kerja": 100000000,
-            "surplus_rugi": -10000000,
-            "jumlah_sdm": 5,
-            "jumlah_anggota": 50
-        }
-    ],
-    "tata_kelola": {
-        "rat_terakhir": "2024-03-15",
-        "skor_prinsip": {
-            "sukarela": 85,
-            "demokratis": 90,
-            "ekonomi": 75,
-            "otonomi": 80,
-            "pendidikan": 60,
-            "kerjasama": 70,
-            "komunitas": 88
-        }
-    },
-    "history_indeks": [
-        { "tahun": 2022, "cdi": 75, "bdi": 70, "odi": 80 },
-        { "tahun": 2023, "cdi": 78, "bdi": 72, "odi": 82 },
-        { "tahun": 2024, "cdi": 82, "bdi": 78, "odi": 85 }
-    ]
-}
-```
+### G. Unit Usaha
+
+Daftar unit usaha yang dimiliki koperasi beserta performanya.
+
+- **Data per Unit:**
+    - Nama Unit
+    - Volume Usaha
+    - Investasi
+    - Modal Kerja
+    - Surplus/Rugi
+    - Jumlah SDM
+    - Jumlah Anggota yang terlibat
+- **Visualisasi:** Tabel detail unit usaha.
+
+

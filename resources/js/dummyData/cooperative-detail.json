@@ -28,16 +28,98 @@
                     "total": 150,
                     "aktif": 120,
                     "tidak_aktif": 30
-                },
-                "keaktifan_pengurus": 0.92,
-                "efektivitas_pengendalian": 0.88,
-                "kunjungan_eksternal": 8
+                }
             },
             "bisnis": {
-                "simpanan_bersih": 75000000,
-                "partisipasi_anggota": 0.85,
-                "total_penjualan": 350000000,
-                "pertumbuhan_penjualan": 0.12
+                "neraca": {
+                    "aktiva": {
+                        "kas": 12500000,
+                        "piutang": 5800000,
+                        "persediaan": 3200000,
+                        "tanah": 210000000,
+                        "bangunan": 165000000,
+                        "kendaraan": 55000000,
+                        "peralatan": 28500000,
+                        "total_aktiva": 480000000
+                    },
+                    "passiva": {
+                        "hutang_lancar": 35000000,
+                        "hutang_jangka_panjang": 115000000,
+                        "simpanan_anggota": 250000000,
+                        "shu_ditahan": 80000000,
+                        "total_passiva": 480000000
+                    }
+                },
+                "pertumbuhan": {
+                    "akumulasi": [
+                        {
+                            "tanggal": "2023-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1500000000,
+                            "total_investasi": 500000000,
+                            "modal_kerja": 2000000000,
+                            "total_simpanan_anggota": 3500000000,
+                            "total_hibah": 250000000,
+                            "omset": 450000000,
+                            "biaya_operasional": 320000000,
+                            "surplus_rugi": 130000000
+                        },
+                        {
+                            "tanggal": "2024-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1650000000,
+                            "total_investasi": 550000000,
+                            "modal_kerja": 2200000000,
+                            "total_simpanan_anggota": 3850000000,
+                            "total_hibah": 275000000,
+                            "omset": 495000000,
+                            "biaya_operasional": 352000000,
+                            "surplus_rugi": 143000000
+                        },
+                        {
+                            "tanggal": "2025-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1800000000,
+                            "total_investasi": 600000000,
+                            "modal_kerja": 2400000000,
+                            "total_simpanan_anggota": 4200000000,
+                            "total_hibah": 300000000,
+                            "omset": 540000000,
+                            "biaya_operasional": 384000000,
+                            "surplus_rugi": 156000000
+                        },
+                        {
+                            "tanggal": "2026-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1980000000,
+                            "total_investasi": 660000000,
+                            "modal_kerja": 2640000000,
+                            "total_simpanan_anggota": 4620000000,
+                            "total_hibah": 330000000,
+                            "omset": 594000000,
+                            "biaya_operasional": 422400000,
+                            "surplus_rugi": 171600000
+                        },
+                        {
+                            "tanggal": "2027-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 2178000000,
+                            "total_investasi": 726000000,
+                            "modal_kerja": 2904000000,
+                            "total_simpanan_anggota": 5082000000,
+                            "total_hibah": 363000000,
+                            "omset": 653400000,
+                            "biaya_operasional": 464640000,
+                            "surplus_rugi": 188760000
+                        },
+                        {
+                            "tanggal": "2028-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 2395800000,
+                            "total_investasi": 798600000,
+                            "modal_kerja": 3194400000,
+                            "total_simpanan_anggota": 5590200000,
+                            "total_hibah": 399300000,
+                            "omset": 718740000,
+                            "biaya_operasional": 511104000,
+                            "surplus_rugi": 207636000
+                        }
+                    ]
+                }
             }
         },
         "unit_usaha": [
@@ -120,16 +202,98 @@
                     "total": 120,
                     "aktif": 100,
                     "tidak_aktif": 20
-                },
-                "keaktifan_pengurus": 0.9,
-                "efektivitas_pengendalian": 0.85,
-                "kunjungan_eksternal": 6
+                }
             },
             "bisnis": {
-                "simpanan_bersih": 60000000,
-                "partisipasi_anggota": 0.8,
-                "total_penjualan": 300000000,
-                "pertumbuhan_penjualan": 0.1
+                "neraca": {
+                    "aktiva": {
+                        "kas": 12500000,
+                        "piutang": 5800000,
+                        "persediaan": 3200000,
+                        "tanah": 210000000,
+                        "bangunan": 165000000,
+                        "kendaraan": 55000000,
+                        "peralatan": 28500000,
+                        "total_aktiva": 480000000
+                    },
+                    "passiva": {
+                        "hutang_lancar": 35000000,
+                        "hutang_jangka_panjang": 115000000,
+                        "simpanan_anggota": 250000000,
+                        "shu_ditahan": 80000000,
+                        "total_passiva": 480000000
+                    }
+                },
+                "pertumbuhan": {
+                    "akumulasi": [
+                        {
+                            "tanggal": "2023-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1275000000,
+                            "total_investasi": 425000000,
+                            "modal_kerja": 1700000000,
+                            "total_simpanan_anggota": 2975000000,
+                            "total_hibah": 212500000,
+                            "omset": 382500000,
+                            "biaya_operasional": 272000000,
+                            "surplus_rugi": 110500000
+                        },
+                        {
+                            "tanggal": "2024-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1402500000,
+                            "total_investasi": 467500000,
+                            "modal_kerja": 1870000000,
+                            "total_simpanan_anggota": 3272500000,
+                            "total_hibah": 233750000,
+                            "omset": 420750000,
+                            "biaya_operasional": 299200000,
+                            "surplus_rugi": 121550000
+                        },
+                        {
+                            "tanggal": "2025-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1542750000,
+                            "total_investasi": 514250000,
+                            "modal_kerja": 2057000000,
+                            "total_simpanan_anggota": 3599750000,
+                            "total_hibah": 257125000,
+                            "omset": 462825000,
+                            "biaya_operasional": 329120000,
+                            "surplus_rugi": 133705000
+                        },
+                        {
+                            "tanggal": "2026-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1697025000,
+                            "total_investasi": 565675000,
+                            "modal_kerja": 2262700000,
+                            "total_simpanan_anggota": 3959725000,
+                            "total_hibah": 282837500,
+                            "omset": 509107500,
+                            "biaya_operasional": 362032000,
+                            "surplus_rugi": 147075500
+                        },
+                        {
+                            "tanggal": "2027-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1866727500,
+                            "total_investasi": 622242500,
+                            "modal_kerja": 2488970000,
+                            "total_simpanan_anggota": 4355697500,
+                            "total_hibah": 311121250,
+                            "omset": 560018250,
+                            "biaya_operasional": 398235200,
+                            "surplus_rugi": 161783050
+                        },
+                        {
+                            "tanggal": "2028-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 2053400250,
+                            "total_investasi": 684466750,
+                            "modal_kerja": 2737867000,
+                            "total_simpanan_anggota": 4791267250,
+                            "total_hibah": 342233375,
+                            "omset": 616020075,
+                            "biaya_operasional": 438058720,
+                            "surplus_rugi": 177961355
+                        }
+                    ]
+                }
             }
         },
         "unit_usaha": [
@@ -212,16 +376,98 @@
                     "total": 100,
                     "aktif": 85,
                     "tidak_aktif": 15
-                },
-                "keaktifan_pengurus": 0.88,
-                "efektivitas_pengendalian": 0.82,
-                "kunjungan_eksternal": 5
+                }
             },
             "bisnis": {
-                "simpanan_bersih": 50000000,
-                "partisipasi_anggota": 0.78,
-                "total_penjualan": 250000000,
-                "pertumbuhan_penjualan": 0.08
+                "neraca": {
+                    "aktiva": {
+                        "kas": 12500000,
+                        "piutang": 5800000,
+                        "persediaan": 3200000,
+                        "tanah": 210000000,
+                        "bangunan": 165000000,
+                        "kendaraan": 55000000,
+                        "peralatan": 28500000,
+                        "total_aktiva": 480000000
+                    },
+                    "passiva": {
+                        "hutang_lancar": 35000000,
+                        "hutang_jangka_panjang": 115000000,
+                        "simpanan_anggota": 250000000,
+                        "shu_ditahan": 80000000,
+                        "total_passiva": 480000000
+                    }
+                },
+                "pertumbuhan": {
+                    "akumulasi": [
+                        {
+                            "tanggal": "2023-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1050000000,
+                            "total_investasi": 350000000,
+                            "modal_kerja": 1400000000,
+                            "total_simpanan_anggota": 2450000000,
+                            "total_hibah": 175000000,
+                            "omset": 315000000,
+                            "biaya_operasional": 224000000,
+                            "surplus_rugi": 91000000
+                        },
+                        {
+                            "tanggal": "2024-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1155000000,
+                            "total_investasi": 385000000,
+                            "modal_kerja": 1540000000,
+                            "total_simpanan_anggota": 2695000000,
+                            "total_hibah": 192500000,
+                            "omset": 346500000,
+                            "biaya_operasional": 246400000,
+                            "surplus_rugi": 100100000
+                        },
+                        {
+                            "tanggal": "2025-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1270500000,
+                            "total_investasi": 423500000,
+                            "modal_kerja": 1694000000,
+                            "total_simpanan_anggota": 2964500000,
+                            "total_hibah": 211750000,
+                            "omset": 381150000,
+                            "biaya_operasional": 271040000,
+                            "surplus_rugi": 110110000
+                        },
+                        {
+                            "tanggal": "2026-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1397550000,
+                            "total_investasi": 465850000,
+                            "modal_kerja": 1863400000,
+                            "total_simpanan_anggota": 3260950000,
+                            "total_hibah": 232925000,
+                            "omset": 419265000,
+                            "biaya_operasional": 298144000,
+                            "surplus_rugi": 121121000
+                        },
+                        {
+                            "tanggal": "2027-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1537305000,
+                            "total_investasi": 512435000,
+                            "modal_kerja": 2049740000,
+                            "total_simpanan_anggota": 3587045000,
+                            "total_hibah": 256217500,
+                            "omset": 461191500,
+                            "biaya_operasional": 327958400,
+                            "surplus_rugi": 133233100
+                        },
+                        {
+                            "tanggal": "2028-12-01T00:00:00.000Z",
+                            "total_pinjaman_bank": 1691035500,
+                            "total_investasi": 563678500,
+                            "modal_kerja": 2254714000,
+                            "total_simpanan_anggota": 3945749500,
+                            "total_hibah": 281839250,
+                            "omset": 507310650,
+                            "biaya_operasional": 360754240,
+                            "surplus_rugi": 146556410
+                        }
+                    ]
+                }
             }
         },
         "unit_usaha": [
@@ -263,632 +509,6 @@
             {
                 "key": "Kepedulian Komunitas",
                 "data": 4.0
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "nama": "Kop. Sumber Makmur",
-        "kontak": "0811-2345-6789",
-        "no_badan_hukum": "BH-44556677",
-        "tahun": 2017,
-        "status": "Aktif",
-        "has_gm": false,
-        "lokasi": {
-            "alamat": "Jl. Surya Kencana No. 10",
-            "kecamatan": "Bogor Tengah",
-            "kelurahan": "Gudang",
-            "latitude": -6.6045,
-            "longitude": 106.815
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 80.3,
-            "bdi": 81.2,
-            "odi": 79.4,
-            "kuadrant": 2,
-            "organisasi": {
-                "jumlah_pengurus": 6,
-                "jumlah_pengawas": 3,
-                "jumlah_karyawan": 15,
-                "anggota": {
-                    "total": 180,
-                    "aktif": 150,
-                    "tidak_aktif": 30
-                },
-                "keaktifan_pengurus": 0.85,
-                "efektivitas_pengendalian": 0.8,
-                "kunjungan_eksternal": 7
-            },
-            "bisnis": {
-                "simpanan_bersih": 80000000,
-                "partisipasi_anggota": 0.82,
-                "total_penjualan": 400000000,
-                "pertumbuhan_penjualan": 0.11
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Produksi",
-                "volume_usaha": 250000000,
-                "investasi": 100000000,
-                "modal_kerja": 100000000,
-                "surplus_rugi": 49455597,
-                "jumlah_sdm": 2,
-                "jumlah_anggota": 50
-            },
-            {
-                "nama": "Unit Pemasaran",
-                "volume_usaha": 150000000,
-                "investasi": 50000000,
-                "modal_kerja": 50000000,
-                "surplus_rugi": 22659473,
-                "jumlah_sdm": 9,
-                "jumlah_anggota": 85
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.8
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 4.0
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.8
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.9
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.5
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.2
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.9
-            }
-        ]
-    },
-    {
-        "id": 5,
-        "nama": "Kop. Bina Usaha",
-        "kontak": "0857-1234-5678",
-        "no_badan_hukum": "BH-22334455",
-        "tahun": 2023,
-        "status": "Pembentukan",
-        "has_gm": false,
-        "lokasi": {
-            "alamat": "Jl. Pemuda No. 5",
-            "kecamatan": "Tanah Sareal",
-            "kelurahan": "Tanah Sareal",
-            "latitude": -6.57,
-            "longitude": 106.795
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 78.4,
-            "bdi": 79.0,
-            "odi": 77.8,
-            "kuadrant": 3,
-            "organisasi": {
-                "jumlah_pengurus": 3,
-                "jumlah_pengawas": 1,
-                "jumlah_karyawan": 3,
-                "anggota": {
-                    "total": 50,
-                    "aktif": 40,
-                    "tidak_aktif": 10
-                },
-                "keaktifan_pengurus": 0.8,
-                "efektivitas_pengendalian": 0.75,
-                "kunjungan_eksternal": 2
-            },
-            "bisnis": {
-                "simpanan_bersih": 20000000,
-                "partisipasi_anggota": 0.7,
-                "total_penjualan": 100000000,
-                "pertumbuhan_penjualan": 0.05
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Rintisan",
-                "volume_usaha": 100000000,
-                "investasi": 20000000,
-                "modal_kerja": 30000000,
-                "surplus_rugi": 11386151,
-                "jumlah_sdm": 5,
-                "jumlah_anggota": 82
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.5
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.8
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.5
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.6
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.2
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.0
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.8
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "nama": "Kop. Harmoni Sejati",
-        "kontak": "0812-5555-6666",
-        "no_badan_hukum": "BH-66778899",
-        "tahun": 2015,
-        "status": "Aktif",
-        "has_gm": true,
-        "lokasi": {
-            "alamat": "Jl. Ahmad Yani No. 22",
-            "kecamatan": "Tanah Sareal",
-            "kelurahan": "Tanah Sareal",
-            "latitude": -6.56,
-            "longitude": 106.79
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 77.2,
-            "bdi": 78.5,
-            "odi": 75.9,
-            "kuadrant": 3,
-            "organisasi": {
-                "jumlah_pengurus": 5,
-                "jumlah_pengawas": 3,
-                "jumlah_karyawan": 11,
-                "anggota": {
-                    "total": 130,
-                    "aktif": 110,
-                    "tidak_aktif": 20
-                },
-                "keaktifan_pengurus": 0.82,
-                "efektivitas_pengendalian": 0.78,
-                "kunjungan_eksternal": 4
-            },
-            "bisnis": {
-                "simpanan_bersih": 65000000,
-                "partisipasi_anggota": 0.75,
-                "total_penjualan": 320000000,
-                "pertumbuhan_penjualan": 0.09
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Jasa Keuangan",
-                "volume_usaha": 200000000,
-                "investasi": 60000000,
-                "modal_kerja": 80000000,
-                "surplus_rugi": 22677760,
-                "jumlah_sdm": 8,
-                "jumlah_anggota": 66
-            },
-            {
-                "nama": "Unit Toko",
-                "volume_usaha": 120000000,
-                "investasi": 40000000,
-                "modal_kerja": 40000000,
-                "surplus_rugi": 20267152,
-                "jumlah_sdm": 7,
-                "jumlah_anggota": 74
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.6
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.9
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.6
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.8
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.4
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.1
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.8
-            }
-        ]
-    },
-    {
-        "id": 7,
-        "nama": "Kop. Prima Mandiri",
-        "kontak": "0813-7777-8888",
-        "no_badan_hukum": "BH-00112233",
-        "tahun": 2010,
-        "status": "TidakAktif",
-        "has_gm": false,
-        "lokasi": {
-            "alamat": "Jl. Merdeka No. 99",
-            "kecamatan": "Bogor Tengah",
-            "kelurahan": "Ciwaringin",
-            "latitude": -6.58,
-            "longitude": 106.78
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 75.8,
-            "bdi": 76.0,
-            "odi": 75.6,
-            "kuadrant": 4,
-            "organisasi": {
-                "jumlah_pengurus": 3,
-                "jumlah_pengawas": 1,
-                "jumlah_karyawan": 5,
-                "anggota": {
-                    "total": 80,
-                    "aktif": 40,
-                    "tidak_aktif": 40
-                },
-                "keaktifan_pengurus": 0.7,
-                "efektivitas_pengendalian": 0.65,
-                "kunjungan_eksternal": 1
-            },
-            "bisnis": {
-                "simpanan_bersih": 30000000,
-                "partisipasi_anggota": 0.6,
-                "total_penjualan": 150000000,
-                "pertumbuhan_penjualan": 0.02
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Usaha Lama",
-                "volume_usaha": 150000000,
-                "investasi": 30000000,
-                "modal_kerja": 20000000,
-                "surplus_rugi": 29490958,
-                "jumlah_sdm": 6,
-                "jumlah_anggota": 30
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.2
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.5
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.2
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.4
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.0
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 2.8
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.5
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "nama": "Kop. Sejahtera Madani",
-        "kontak": "0856-9999-0000",
-        "no_badan_hukum": "BH-33445566",
-        "tahun": 2021,
-        "status": "Aktif",
-        "has_gm": false,
-        "lokasi": {
-            "alamat": "Jl. Dadali No. 3",
-            "kecamatan": "Tanah Sareal",
-            "kelurahan": "Tanah Sareal",
-            "latitude": -6.565,
-            "longitude": 106.81
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 74.5,
-            "bdi": 75.2,
-            "odi": 73.8,
-            "kuadrant": 2,
-            "organisasi": {
-                "jumlah_pengurus": 4,
-                "jumlah_pengawas": 2,
-                "jumlah_karyawan": 7,
-                "anggota": {
-                    "total": 90,
-                    "aktif": 75,
-                    "tidak_aktif": 15
-                },
-                "keaktifan_pengurus": 0.78,
-                "efektivitas_pengendalian": 0.72,
-                "kunjungan_eksternal": 3
-            },
-            "bisnis": {
-                "simpanan_bersih": 45000000,
-                "partisipasi_anggota": 0.72,
-                "total_penjualan": 220000000,
-                "pertumbuhan_penjualan": 0.07
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Kuliner",
-                "volume_usaha": 120000000,
-                "investasi": 30000000,
-                "modal_kerja": 40000000,
-                "surplus_rugi": 18346989,
-                "jumlah_sdm": 5,
-                "jumlah_anggota": 60
-            },
-            {
-                "nama": "Unit Kerajinan",
-                "volume_usaha": 100000000,
-                "investasi": 20000000,
-                "modal_kerja": 30000000,
-                "surplus_rugi": 11111730,
-                "jumlah_sdm": 5,
-                "jumlah_anggota": 97
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.5
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.8
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.5
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.6
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.2
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.0
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.8
-            }
-        ]
-    },
-    {
-        "id": 9,
-        "nama": "Kop. Karya Bersatu",
-        "kontak": "0812-1111-2222",
-        "no_badan_hukum": "BH-77889900",
-        "tahun": 2016,
-        "status": "Aktif",
-        "has_gm": true,
-        "lokasi": {
-            "alamat": "Jl. Tentara Pelajar No. 15",
-            "kecamatan": "Bogor Tengah",
-            "kelurahan": "Ciwaringin",
-            "latitude": -6.55,
-            "longitude": 106.76
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 73.1,
-            "bdi": 74.0,
-            "odi": 72.2,
-            "kuadrant": 3,
-            "organisasi": {
-                "jumlah_pengurus": 5,
-                "jumlah_pengawas": 3,
-                "jumlah_karyawan": 9,
-                "anggota": {
-                    "total": 110,
-                    "aktif": 95,
-                    "tidak_aktif": 15
-                },
-                "keaktifan_pengurus": 0.75,
-                "efektivitas_pengendalian": 0.7,
-                "kunjungan_eksternal": 4
-            },
-            "bisnis": {
-                "simpanan_bersih": 55000000,
-                "partisipasi_anggota": 0.74,
-                "total_penjualan": 280000000,
-                "pertumbuhan_penjualan": 0.06
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Transportasi",
-                "volume_usaha": 180000000,
-                "investasi": 60000000,
-                "modal_kerja": 50000000,
-                "surplus_rugi": 22965813,
-                "jumlah_sdm": 6,
-                "jumlah_anggota": 97
-            },
-            {
-                "nama": "Unit Bengkel",
-                "volume_usaha": 100000000,
-                "investasi": 40000000,
-                "modal_kerja": 30000000,
-                "surplus_rugi": 10271378,
-                "jumlah_sdm": 3,
-                "jumlah_anggota": 52
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.4
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.6
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.4
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.5
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.1
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 2.9
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.6
-            }
-        ]
-    },
-    {
-        "id": 10,
-        "nama": "Kop. Sentosa Lestari",
-        "kontak": "0813-3333-4444",
-        "no_badan_hukum": "BH-55443322",
-        "tahun": 2022,
-        "status": "Aktif",
-        "has_gm": false,
-        "lokasi": {
-            "alamat": "Jl. RE Martadinata No. 7",
-            "kecamatan": "Bogor Tengah",
-            "kelurahan": "Pabaton",
-            "latitude": -6.589,
-            "longitude": 106.793
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 71.6,
-            "bdi": 72.5,
-            "odi": 70.7,
-            "kuadrant": 2,
-            "organisasi": {
-                "jumlah_pengurus": 3,
-                "jumlah_pengawas": 1,
-                "jumlah_karyawan": 6,
-                "anggota": {
-                    "total": 70,
-                    "aktif": 60,
-                    "tidak_aktif": 10
-                },
-                "keaktifan_pengurus": 0.72,
-                "efektivitas_pengendalian": 0.68,
-                "kunjungan_eksternal": 2
-            },
-            "bisnis": {
-                "simpanan_bersih": 40000000,
-                "partisipasi_anggota": 0.68,
-                "total_penjualan": 200000000,
-                "pertumbuhan_penjualan": 0.04
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Katering",
-                "volume_usaha": 120000000,
-                "investasi": 30000000,
-                "modal_kerja": 40000000,
-                "surplus_rugi": 23299791,
-                "jumlah_sdm": 9,
-                "jumlah_anggota": 64
-            },
-            {
-                "nama": "Unit Laundry",
-                "volume_usaha": 80000000,
-                "investasi": 20000000,
-                "modal_kerja": 20000000,
-                "surplus_rugi": 11376623,
-                "jumlah_sdm": 8,
-                "jumlah_anggota": 31
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.2
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 3.5
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.2
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.4
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.0
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 2.8
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 3.5
             }
         ]
     }
