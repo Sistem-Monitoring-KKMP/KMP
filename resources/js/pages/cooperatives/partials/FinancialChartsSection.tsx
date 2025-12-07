@@ -2,6 +2,7 @@ import type { ComponentProps } from 'react';
 import { useState } from 'react';
 import type { Cooperative } from '@/types/cooperative';
 import { BarChart, BarSeries, Bar } from 'reaviz';
+import { CHART_COLORS } from '@/lib/chart-colors';
 
 interface Props {
     cooperative: Cooperative;
@@ -15,6 +16,7 @@ interface CustomBarProps extends ComponentProps<typeof Bar> {
 
 const CustomBar = (props: CustomBarProps) => {
     const { onActiveYearChange, chartData, ...rest } = props;
+    const [hovered, setHovered] = useState(false);
 
     const handleInteraction = () => {
         if (rest.groupIndex !== undefined && chartData) {
@@ -28,15 +30,27 @@ const CustomBar = (props: CustomBarProps) => {
     return (
         <Bar
             {...rest}
+            active={hovered}
             onMouseEnter={(event) => {
+                setHovered(true);
                 rest.onMouseEnter?.(event);
                 handleInteraction();
+            }}
+            onMouseLeave={(event) => {
+                setHovered(false);
+                rest.onMouseLeave?.(event);
             }}
             onClick={(event) => {
                 rest.onClick?.(event);
                 handleInteraction();
             }}
-            style={{ ...rest.style, cursor: 'pointer' }}
+            style={{
+                ...rest.style,
+                cursor: 'pointer',
+                stroke: hovered ? 'rgba(255,255,255,0.8)' : 'none',
+                strokeWidth: hovered ? 2 : 0,
+                filter: hovered ? 'brightness(1.1)' : 'none'
+            }}
         />
     );
 };
@@ -90,28 +104,28 @@ export default function FinancialChartsSection({ cooperative }: Props) {
     };
 
     const neracaColors = [
-        '#0ea5e9', // Kas
-        '#3b82f6', // Piutang
-        '#6366f1', // Persediaan
-        '#8b5cf6', // Tanah
-        '#d946ef', // Bangunan
-        '#ec4899', // Kendaraan
-        '#f43f5e', // Peralatan
-        '#f97316', // Hutang Lancar
-        '#ef4444', // Hutang JP
-        '#eab308', // Simpanan
-        '#84cc16', // SHU
+        CHART_COLORS.KAS,
+        CHART_COLORS.PIUTANG,
+        CHART_COLORS.PERSEDIAAN,
+        CHART_COLORS.TANAH,
+        CHART_COLORS.BANGUNAN,
+        CHART_COLORS.KENDARAAN,
+        CHART_COLORS.PERALATAN,
+        CHART_COLORS.HUTANG_LANCAR,
+        CHART_COLORS.HUTANG_JP,
+        CHART_COLORS.SIMPANAN_NERACA,
+        CHART_COLORS.SHU_NERACA
     ];
 
     const pertumbuhanColors = [
-        '#f43f5e', // Pinjaman Bank
-        '#8b5cf6', // Investasi
-        '#0ea5e9', // Modal Kerja
-        '#eab308', // Simpanan Anggota
-        '#10b981', // Hibah
-        '#3b82f6', // Omset
-        '#ef4444', // Biaya Ops
-        '#22c55e', // Surplus
+        CHART_COLORS.PINJAMAN,
+        CHART_COLORS.INVESTASI,
+        CHART_COLORS.MODAL_KERJA,
+        CHART_COLORS.SIMPANAN,
+        CHART_COLORS.HIBAH,
+        CHART_COLORS.OMSET,
+        CHART_COLORS.BIAYA_OPS,
+        CHART_COLORS.SHU
     ];
 
     return (
