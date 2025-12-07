@@ -1,4 +1,4 @@
-import { LineChart, LineSeries, Line } from "reaviz";
+import { Line, LineChart, LineSeries } from 'reaviz';
 
 type TrendItem = {
     date: Date;
@@ -14,28 +14,27 @@ type TrendLineChartProps = {
 export function TrendLineChart({ trend }: TrendLineChartProps) {
     const data = [
         {
-            key: "BDI",
-            data: trend.map(item => ({
+            key: 'BDI',
+            data: trend.map((item) => ({
                 key: new Date(item.date),
                 data: item.bdi,
             })),
         },
         {
-            key: "ODI",
-            data: trend.map(item => ({
+            key: 'ODI',
+            data: trend.map((item) => ({
                 key: new Date(item.date),
                 data: item.odi,
             })),
         },
         {
-            key: "CDI",
-            data: trend.map(item => ({
+            key: 'CDI',
+            data: trend.map((item) => ({
                 key: new Date(item.date),
                 data: item.cdi,
             })),
         },
     ];
-
 
     return (
         <LineChart

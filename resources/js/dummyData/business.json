@@ -1,81 +1,81 @@
 {
-  "ringkasan_finansial": {
-    "total_pinjaman_bank": 1500000000,
-    "total_investasi": 500000000,
-    "total_modal_kerja": 2000000000,
-    "total_simpanan_anggota": 3500000000,
-    "total_hibah": 250000000,
-    "omset_bulan_ini": 450000000,
-    "biaya_operasional_bulan_ini": 320000000,
-    "shu_bulan_ini": 130000000
-  },
-  "performa_bulanan": [
-    {
-      "periode": "Jan",
-      "omset": 410000000,
-      "biaya_operasional": 300000000,
-      "shu": 110000000
+    "ringkasan_finansial": {
+        "total_pinjaman_bank": 1500000000,
+        "total_investasi": 500000000,
+        "total_modal_kerja": 2000000000,
+        "total_simpanan_anggota": 3500000000,
+        "total_hibah": 250000000,
+        "omset_bulan_ini": 450000000,
+        "biaya_operasional_bulan_ini": 320000000,
+        "shu_bulan_ini": 130000000
     },
-    {
-      "periode": "Feb",
-      "omset": 420000000,
-      "biaya_operasional": 310000000,
-      "shu": 110000000
-    },
-    {
-      "periode": "Mar",
-      "omset": 435000000,
-      "biaya_operasional": 315000000,
-      "shu": 120000000
-    },
-    {
-      "periode": "Apr",
-      "omset": 400000000,
-      "biaya_operasional": 305000000,
-      "shu": 95000000
-    },
-    {
-      "periode": "May",
-      "omset": 450000000,
-      "biaya_operasional": 320000000,
-      "shu": 130000000
-    },
-    {
-      "periode": "Jun",
-      "omset": 460000000,
-      "biaya_operasional": 325000000,
-      "shu": 135000000
+    "performa_bulanan": [
+        {
+            "periode": "Jan",
+            "omset": 410000000,
+            "biaya_operasional": 300000000,
+            "shu": 110000000
+        },
+        {
+            "periode": "Feb",
+            "omset": 420000000,
+            "biaya_operasional": 310000000,
+            "shu": 110000000
+        },
+        {
+            "periode": "Mar",
+            "omset": 435000000,
+            "biaya_operasional": 315000000,
+            "shu": 120000000
+        },
+        {
+            "periode": "Apr",
+            "omset": 400000000,
+            "biaya_operasional": 305000000,
+            "shu": 95000000
+        },
+        {
+            "periode": "May",
+            "omset": 450000000,
+            "biaya_operasional": 320000000,
+            "shu": 130000000
+        },
+        {
+            "periode": "Jun",
+            "omset": 460000000,
+            "biaya_operasional": 325000000,
+            "shu": 135000000
+        }
+    ],
+    "neraca": {
+        "aktiva": {
+            "aktiva_lancar": {
+                "kas": 850000000,
+                "piutang": 450000000,
+                "persediaan": 200000000,
+                "total": 1500000000
+            },
+            "aktiva_tetap": {
+                "tanah": 2000000000,
+                "bangunan": 1500000000,
+                "kendaraan": 500000000,
+                "peralatan": 250000000,
+                "total": 4250000000
+            },
+            "total_aktiva": 5750000000
+        },
+        "passiva": {
+            "kewajiban": {
+                "hutang_lancar": 300000000,
+                "hutang_jangka_panjang": 1200000000,
+                "total": 1500000000
+            },
+            "ekuitas": {
+                "simpanan_anggota": 3500000000,
+                "shu_ditahan": 750000000,
+                "total": 4250000000
+            },
+            "total_passiva": 5750000000
+        }
     }
-  ],
-  "neraca": {
-    "aktiva": {
-      "aktiva_lancar": {
-        "kas": 850000000,
-        "piutang": 450000000,
-        "persediaan": 200000000,
-        "total": 1500000000
-      },
-      "aktiva_tetap": {
-        "tanah": 2000000000,
-        "bangunan": 1500000000,
-        "kendaraan": 500000000,
-        "peralatan": 250000000,
-        "total": 4250000000
-      },
-      "total_aktiva": 5750000000
-    },
-    "passiva": {
-      "kewajiban": {
-        "hutang_lancar": 300000000,
-        "hutang_jangka_panjang": 1200000000,
-        "total": 1500000000
-      },
-      "ekuitas": {
-        "simpanan_anggota": 3500000000,
-        "shu_ditahan": 750000000,
-        "total": 4250000000
-      },
-      "total_passiva": 5750000000
-    }
-  }
 }

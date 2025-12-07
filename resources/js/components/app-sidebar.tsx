@@ -13,7 +13,7 @@ import {
 import { dashboard } from '@/routes/index';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, ChartColumnIncreasing, ChartPie } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -23,10 +23,20 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
+        title: 'Performa Organisasi',
+        href: '/performance',
+        icon: ChartPie,
+    },
+    {
+        title: 'Performa Bisnis',
+        href: '/business-performance',
+        icon: ChartColumnIncreasing,
+    },
+    {
         title: 'Koperasi List',
         href: '/cooperatives',
         icon: Folder,
-    }
+    },
 ];
 
 const footerNavItems: NavItem[] = [
