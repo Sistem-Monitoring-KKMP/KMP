@@ -39,5 +39,84 @@
             },
             "total_passiva": 5750000000
         }
-    }
+    },
+    "bdi_trend": [
+        {
+            "tahun": "2020",
+            "score": 72.5
+        },
+        {
+            "tahun": "2021",
+            "score": 74.8
+        },
+        {
+            "tahun": "2022",
+            "score": 76.2
+        },
+        {
+            "tahun": "2023",
+            "score": 79.5
+        },
+        {
+            "tahun": "2024",
+            "score": 82.1
+        }
+    ],
+    "pertumbuhan_finansial": [
+        {
+            "tahun": "2020",
+            "omset": 350000000,
+            "modal_kerja": 1500000000,
+            "investasi": 300000000,
+            "simpanan_anggota": 2500000000,
+            "pinjaman_bank": 1000000000,
+            "hibah": 100000000,
+            "biaya_operasional": 250000000,
+            "shu": 100000000
+        },
+        {
+            "tahun": "2021",
+            "omset": 380000000,
+            "modal_kerja": 1600000000,
+            "investasi": 350000000,
+            "simpanan_anggota": 2700000000,
+            "pinjaman_bank": 1100000000,
+            "hibah": 120000000,
+            "biaya_operasional": 270000000,
+            "shu": 110000000
+        },
+        {
+            "tahun": "2022",
+            "omset": 400000000,
+            "modal_kerja": 1750000000,
+            "investasi": 400000000,
+            "simpanan_anggota": 3000000000,
+            "pinjaman_bank": 1250000000,
+            "hibah": 150000000,
+            "biaya_operasional": 290000000,
+            "shu": 110000000
+        },
+        {
+            "tahun": "2023",
+            "omset": 420000000,
+            "modal_kerja": 1900000000,
+            "investasi": 450000000,
+            "simpanan_anggota": 3200000000,
+            "pinjaman_bank": 1400000000,
+            "hibah": 200000000,
+            "biaya_operasional": 300000000,
+            "shu": 120000000
+        },
+        {
+            "tahun": "2024",
+            "omset": 450000000,
+            "modal_kerja": 2000000000,
+            "investasi": 500000000,
+            "simpanan_anggota": 3500000000,
+            "pinjaman_bank": 1500000000,
+            "hibah": 250000000,
+            "biaya_operasional": 320000000,
+            "shu": 130000000
+        }
+    ]
 }

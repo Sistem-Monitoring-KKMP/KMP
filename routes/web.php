@@ -18,4 +18,16 @@ use Laravel\Fortify\Features;
         ]);
     })->name('cooperatives.show');
 
+    Route::get('/business', function () {
+        return Inertia::render('business/index');
+    })->name('business.index');
+
+    Route::get('/organization', function () {
+        return Inertia::render('organization/index');
+    })->name('organization.index');
+
+    Route::get('/distribution', function () {
+        return Inertia::render('distribution/index');
+    })->name('distribution.index');
+
 // require __DIR__.'/settings.php';

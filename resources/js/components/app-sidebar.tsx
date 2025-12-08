@@ -13,7 +13,7 @@ import {
 import { dashboard } from '@/routes/index';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, ChartColumnIncreasing, ChartPie } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, ChartColumnIncreasing, ChartPie, Map } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -31,6 +31,11 @@ const mainNavItems: NavItem[] = [
         title: 'Performa Bisnis',
         href: '/business',
         icon: ChartColumnIncreasing,
+    },
+    {
+        title: 'Sebaran Koperasi',
+        href: '/distribution',
+        icon: Map,
     },
     {
         title: 'Koperasi List',
