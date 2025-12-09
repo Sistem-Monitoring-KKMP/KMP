@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->integer('jumlah_pengurus')->nullable();
             $table->integer('jumlah_pengawas')->nullable();
             $table->integer('jumlah_karyawan')->nullable();
-            $table->enum('status', ['Aktif','TidakAktif','Pembentukan'])->nullable();
+            $table->enum('status', ['Aktif','TidakAktif','Pembentukan'])->nullable()->default('Aktif');
             $table->integer('total_anggota')->nullable();
             $table->integer('anggota_aktif')->nullable();
             $table->integer('anggota_tidak_aktif')->nullable();

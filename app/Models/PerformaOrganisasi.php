@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PerformaOrganisasi extends Model
 {
+    use HasFactory;
     protected $table = 'performa_organisasi';
     protected $primaryKey = 'id';
     protected $fillable = [

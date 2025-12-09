@@ -2,9 +2,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PerformaBisnis extends Model
 {
+    use HasFactory;
     protected $table = 'performa_bisnis';
     protected $primaryKey = 'id';
     protected $fillable = ['performa_id','proyeksi_rugi_laba','proyeksi_arus_kas','responden_id'];

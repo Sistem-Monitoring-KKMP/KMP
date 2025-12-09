@@ -19,7 +19,7 @@ class Koperasi extends Model
         return $this->hasMany(Lokasi::class, 'koperasi_id', 'id');
     }
 
-    public function performas()
+    public function performa()
     {
         return $this->hasMany(Performa::class, 'koperasi_id', 'id');
     }
