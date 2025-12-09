@@ -15,7 +15,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function OrganizationPage() {
+export default function OrganizationPage({organizationData}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Performa Organisasi" />

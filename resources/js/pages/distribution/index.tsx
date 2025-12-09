@@ -13,7 +13,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function DistributionPage() {
+export default function DistributionPage({cooperativesData}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Sebaran Koperasi" />

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link } from '@inertiajs/react';
 import { type BreadcrumbItem } from '@/types';
@@ -12,13 +12,17 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function KoperasiList() {
+export default function KoperasiList({cooperatives}) {
+        useEffect(() => {
+            console.log(cooperatives);
+        }, [cooperatives]);
+
     const [search, setSearch] = useState('');
 
     const filteredCooperatives = useMemo(() => {
-        if (!search) return cooperativesData;
+        if (!search) return cooperatives;
         const lowerSearch = search.toLowerCase();
-        return cooperativesData.filter(item =>
+        return cooperatives.filter(item =>
             item.nama.toLowerCase().includes(lowerSearch) ||
             item.alamat.toLowerCase().includes(lowerSearch)
         );

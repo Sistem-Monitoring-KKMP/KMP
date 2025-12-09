@@ -23,25 +23,29 @@ type Kpi = {
     cdi: number;
 };
 
-const kpiData = dashboardData.kpi as Kpi;
 
-// Prepare trend data with Date objects
-const allTrendData = dashboardData.tren.map((item) => ({
-    ...item,
-    dateObj: new Date(item.tanggal),
-}));
+export default function Dashboard({dashboardData, mapData}) {
 
-const topCdiData = dashboardData.top_cdi.map((item) => ({
-    key: item.nama,
-    data: item.cdi,
-}));
 
-// Extract unique years
-const years = Array.from(
-    new Set(allTrendData.map((d) => d.dateObj.getFullYear())),
-).sort((a, b) => b - a);
+        const kpiData = dashboardData.kpi as Kpi;
 
-export default function Dashboard() {
+    // Prepare trend data with Date objects
+    const allTrendData = dashboardData.tren.map((item) => ({
+        ...item,
+        dateObj: new Date(item.tanggal),
+    }));
+
+    const topCdiData = dashboardData.top_cdi.map((item) => ({
+        key: item.nama,
+        data: item.cdi,
+    }));
+
+    // Extract unique years
+    const years = Array.from(
+        new Set(allTrendData.map((d) => d.dateObj.getFullYear())),
+    ).sort((a, b) => b - a);
+
+
     const [filterYear, setFilterYear] = useState<number>(
         years[0] || new Date().getFullYear(),
     );

@@ -75,14 +75,14 @@ export default function CooperativeScatterPlot({ data }: Props) {
                     xAxis={
                         <LinearXAxis
                             type="value"
-                            domain={[0, 100]}
+                            domain={[0, 1]}
                             tickSeries={<LinearXAxisTickSeries label={<LinearXAxisTickLabel />} />}
                         />
                     }
                     yAxis={
                         <LinearYAxis
                             type="value"
-                            domain={[0, 100]}
+                            domain={[0, 1]}
                             tickSeries={<LinearYAxisTickSeries label={<LinearYAxisTickLabel />} />}
                         />
                     }
@@ -96,7 +96,7 @@ export default function CooperativeScatterPlot({ data }: Props) {
                                         // Scale CDI (0-100) to pixel size (5-25)
                                         const point = d as ScatterPointData;
                                         const cdi = point.metadata.cdi;
-                                        return Math.max(5, (cdi / 100) * 25);
+                                        return Math.max(5, (cdi / 1) * 25);
                                     }}
                                     tooltip={
                                         <ChartTooltip
