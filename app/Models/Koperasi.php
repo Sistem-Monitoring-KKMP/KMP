@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -7,7 +8,7 @@ class Koperasi extends Model
 {
     protected $table = 'koperasi';
     protected $primaryKey = 'id';
-    protected $fillable = ['nama','kontak','no_badan_hukum','tahun','responden_id'];
+    protected $fillable = ['nama', 'kontak', 'no_badan_hukum', 'tahun', 'responden_id'];
 
     public function pengurus()
     {

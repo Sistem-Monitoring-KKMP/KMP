@@ -24,7 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
-            'jwt.auth' => \App\ManajemenKMP\Http\Middlewares\JwtMiddleware::class,
+            'jwt.auth' => \App\Http\Middlewares\JwtMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
