@@ -1,7 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import cooperativeDetailsData from '@/dummyData/cooperative-detail.json';
 import type { Cooperative } from '@/types/cooperative';
 
 // Partials
@@ -12,14 +11,12 @@ import PrinsipKoperasiSection from './partials/PrinsipKoperasiSection';
 import UnitUsahaSection from './partials/UnitUsahaSection';
 import FinancialChartsSection from './partials/FinancialChartsSection';
 
-const cooperativeDetails = cooperativeDetailsData as unknown as Cooperative[];
-
 interface Props {
-    id: string;
+    data: Cooperative[];
 }
 
-export default function CooperativeShow({ id }: Props) {
-    const cooperative = cooperativeDetails.find((c) => c.id === Number(id));
+export default function CooperativeShow({ data }: Props) {
+    const cooperative = data[0];
 
     const breadcrumbs: BreadcrumbItem[] = [
         {
@@ -28,7 +25,7 @@ export default function CooperativeShow({ id }: Props) {
         },
         {
             title: cooperative ? cooperative.nama : 'Detail Koperasi',
-            href: `/cooperatives/${id}`,
+            href: `/cooperatives/${cooperative?.id}`,
         },
     ];
 

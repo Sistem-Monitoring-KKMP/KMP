@@ -19,6 +19,8 @@ export const CHART_COLORS = {
     PERALATAN: '#6366f1',   // Bright Indigo
     HUTANG_LANCAR: '#ef4444', // Bright Red
     HUTANG_JP: '#be123c',   // Rose
+    HUTANG_JANGKA_PANJANG: '#be123c', // Alias for HUTANG_JP
     SIMPANAN_NERACA: '#eab308', // Bright Yellow
     SHU_NERACA: '#14b8a6',  // Teal
+    MODAL: '#8b5cf6',       // Bright Violet (reusing or new color)
 };

@@ -1,4 +1,4 @@
-import { LineChart, LineSeries, Line, LinearXAxis, LinearXAxisTickSeries, LinearXAxisTickLabel } from 'reaviz';
+import { LineChart, LineSeries, Line, LinearXAxis, LinearXAxisTickSeries, LinearXAxisTickLabel, LinearYAxis, LinearYAxisTickSeries, LinearYAxisTickLabel } from 'reaviz';
 import { useState, useMemo } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
 import {
@@ -9,43 +9,34 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-interface BdiTrend {
-    tahun: string;
-    score: number;
+interface BdiData {
+    periode: string;
+    avg_bdi: number;
 }
 
 interface Props {
-    data: BdiTrend[];
+    data: BdiData[];
 }
-
-const months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-];
 
 export default function BdiTrendChart({ data }: Props) {
     // Sort years descending
-    const years = useMemo(() =>
-        [...data].sort((a, b) => Number(b.tahun) - Number(a.tahun)),
-        [data]);
+    const years = useMemo(() => {
+        if (!data || data.length === 0) return [];
+        const uniqueYears = Array.from(new Set(data.map(d => new Date(d.periode).getFullYear())));
+        return uniqueYears.sort((a, b) => b - a).map(y => ({ tahun: y.toString() }));
+    }, [data]);
 
     const [selectedYear, setSelectedYear] = useState<string>(years[0]?.tahun || new Date().getFullYear().toString());
 
     const chartData = useMemo(() => {
-        const yearData = data.find(d => d.tahun === selectedYear);
-        const baseScore = yearData ? yearData.score : 70;
-
-        return months.map((month, index) => {
-            // Generate a deterministic "random" variation for the demo
-            // Using sin wave + some noise based on year and index
-            const seed = Number(selectedYear) + index;
-            const variation = Math.sin(seed) * 3 + Math.cos(seed * 2) * 2;
-
-            return {
-                key: new Date(Number(selectedYear), index, 1),
-                data: Number((baseScore + variation).toFixed(1))
-            };
-        });
+        if (!data) return [];
+        return data
+            .filter(d => new Date(d.periode).getFullYear().toString() === selectedYear)
+            .map(d => ({
+                key: new Date(d.periode),
+                data: Number(d.avg_bdi.toFixed(1))
+            }))
+            .sort((a, b) => a.key.getTime() - b.key.getTime());
     }, [selectedYear, data]);
 
     return (
@@ -81,6 +72,20 @@ export default function BdiTrendChart({ data }: Props) {
                                     label={
                                         <LinearXAxisTickLabel
                                             format={(d) => new Date(d).toLocaleDateString('id-ID', { month: 'short' })}
+                                        />
+                                    }
+                                />
+                            }
+                        />
+                    }
+                    yAxis={
+                        <LinearYAxis
+                            type="value"
+                            tickSeries={
+                                <LinearYAxisTickSeries
+                                    label={
+                                        <LinearYAxisTickLabel
+                                            format={(d) => d ? Number(d).toFixed(1) : '0'}
                                         />
                                     }
                                 />

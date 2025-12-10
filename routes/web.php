@@ -15,7 +15,7 @@ use Laravel\Fortify\Features;
     Route::get('/cooperatives', [FilterController::class, 'index'])->name('cooperatives.index');
     
 
-    Route::get('/cooperatives/{id}', [DetailController::class,'index'])->name('cooperatives.show');
+    Route::get('/cooperatives/{koperasiId}', [DetailController::class,'index'])->name('cooperatives.show');
 
     Route::get('/distribution', [DistributionController::class, 'index'])->name('distribution.index');
 

@@ -1,7 +1,5 @@
 import { TrendLineChart } from '@/components/charts/line-chart';
 import MyMap from '@/components/common/map';
-import dashboardData from '@/dummyData/dashboard.json';
-import mapData from '@/dummyData/map-distribution.json';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes/index';
 import { type BreadcrumbItem } from '@/types';
@@ -23,17 +21,51 @@ type Kpi = {
     cdi: number;
 };
 
+interface TrendItem {
+    tanggal: string;
+    cdi: number;
+    bdi: number;
+    odi: number;
+}
 
-export default function Dashboard({dashboardData, mapData}) {
+interface TopCdiItem {
+    nama: string;
+    cdi: number;
+}
+
+interface DashboardData {
+    kpi: Kpi;
+    tren: TrendItem[];
+    top_cdi: TopCdiItem[];
+}
+
+interface MapItem {
+    id: number;
+    nama: string;
+    lat: number;
+    lng: number;
+    cdi: number;
+    bdi: number;
+    odi: number;
+    alamat: string;
+    status: string;
+}
+
+interface Props {
+    dashboardData: DashboardData;
+    mapData: MapItem[];
+}
+
+export default function Dashboard({ dashboardData, mapData }: Props) {
 
 
-        const kpiData = dashboardData.kpi as Kpi;
+    const kpiData = dashboardData.kpi;
 
     // Prepare trend data with Date objects
-    const allTrendData = dashboardData.tren.map((item) => ({
+    const allTrendData = useMemo(() => dashboardData.tren.map((item) => ({
         ...item,
         dateObj: new Date(item.tanggal),
-    }));
+    })), [dashboardData]);
 
     const topCdiData = dashboardData.top_cdi.map((item) => ({
         key: item.nama,
@@ -41,9 +73,9 @@ export default function Dashboard({dashboardData, mapData}) {
     }));
 
     // Extract unique years
-    const years = Array.from(
+    const years = useMemo(() => Array.from(
         new Set(allTrendData.map((d) => d.dateObj.getFullYear())),
-    ).sort((a, b) => b - a);
+    ).sort((a: number, b: number) => b - a), [allTrendData]);
 
 
     const [filterYear, setFilterYear] = useState<number>(
@@ -59,7 +91,7 @@ export default function Dashboard({dashboardData, mapData}) {
                 bdi: d.bdi,
                 odi: d.odi,
             }));
-    }, [filterYear]);
+    }, [filterYear, allTrendData]);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

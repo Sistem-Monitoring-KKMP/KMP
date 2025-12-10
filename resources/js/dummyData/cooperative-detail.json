@@ -33,160 +33,57 @@
             "bisnis": {
                 "neraca": {
                     "aktiva": {
-                        "kas": 12500000,
-                        "piutang": 5800000,
-                        "persediaan": 3200000,
-                        "tanah": 210000000,
-                        "bangunan": 165000000,
-                        "kendaraan": 55000000,
-                        "peralatan": 28500000,
-                        "total_aktiva": 480000000
+                        "aktiva_lancar": {
+                            "kas": 12500000,
+                            "piutang": 5800000,
+                            "total": 18300000
+                        },
+                        "aktiva_tetap": {
+                            "tanah": 210000000,
+                            "bangunan": 165000000,
+                            "kendaraan": 55000000,
+                            "total": 430000000
+                        },
+                        "total_aktiva": 448300000
                     },
                     "passiva": {
                         "hutang_lancar": 35000000,
                         "hutang_jangka_panjang": 115000000,
-                        "simpanan_anggota": 250000000,
-                        "shu_ditahan": 80000000,
-                        "total_passiva": 480000000
+                        "modal": 298300000,
+                        "total_passiva": 448300000
                     }
                 },
-                "pertumbuhan": {
-                    "akumulasi": [
-                        {
-                            "tanggal": "2023-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1500000000,
-                            "total_investasi": 500000000,
-                            "modal_kerja": 2000000000,
-                            "total_simpanan_anggota": 3500000000,
-                            "total_hibah": 250000000,
-                            "omset": 450000000,
-                            "biaya_operasional": 320000000,
-                            "surplus_rugi": 130000000
-                        },
-                        {
-                            "tanggal": "2024-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1650000000,
-                            "total_investasi": 550000000,
-                            "modal_kerja": 2200000000,
-                            "total_simpanan_anggota": 3850000000,
-                            "total_hibah": 275000000,
-                            "omset": 495000000,
-                            "biaya_operasional": 352000000,
-                            "surplus_rugi": 143000000
-                        },
-                        {
-                            "tanggal": "2025-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1800000000,
-                            "total_investasi": 600000000,
-                            "modal_kerja": 2400000000,
-                            "total_simpanan_anggota": 4200000000,
-                            "total_hibah": 300000000,
-                            "omset": 540000000,
-                            "biaya_operasional": 384000000,
-                            "surplus_rugi": 156000000
-                        },
-                        {
-                            "tanggal": "2026-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1980000000,
-                            "total_investasi": 660000000,
-                            "modal_kerja": 2640000000,
-                            "total_simpanan_anggota": 4620000000,
-                            "total_hibah": 330000000,
-                            "omset": 594000000,
-                            "biaya_operasional": 422400000,
-                            "surplus_rugi": 171600000
-                        },
-                        {
-                            "tanggal": "2027-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 2178000000,
-                            "total_investasi": 726000000,
-                            "modal_kerja": 2904000000,
-                            "total_simpanan_anggota": 5082000000,
-                            "total_hibah": 363000000,
-                            "omset": 653400000,
-                            "biaya_operasional": 464640000,
-                            "surplus_rugi": 188760000
-                        },
-                        {
-                            "tanggal": "2028-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 2395800000,
-                            "total_investasi": 798600000,
-                            "modal_kerja": 3194400000,
-                            "total_simpanan_anggota": 5590200000,
-                            "total_hibah": 399300000,
-                            "omset": 718740000,
-                            "biaya_operasional": 511104000,
-                            "surplus_rugi": 207636000
-                        }
-                    ]
-                }
+                "keuangan": [
+                    { "tanggal": "2024-01-01", "omset": 35000000, "modal_kerja": 150000000, "investasi": 30000000, "simpanan_anggota": 250000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 25000000, "shu": 10000000 },
+                    { "tanggal": "2024-02-01", "omset": 36000000, "modal_kerja": 152000000, "investasi": 31000000, "simpanan_anggota": 255000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 25500000, "shu": 10500000 },
+                    { "tanggal": "2024-03-01", "omset": 37500000, "modal_kerja": 155000000, "investasi": 32000000, "simpanan_anggota": 260000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 26000000, "shu": 11500000 },
+                    { "tanggal": "2024-04-01", "omset": 38000000, "modal_kerja": 158000000, "investasi": 33000000, "simpanan_anggota": 265000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 26500000, "shu": 11500000 },
+                    { "tanggal": "2024-05-01", "omset": 39000000, "modal_kerja": 160000000, "investasi": 34000000, "simpanan_anggota": 270000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 27000000, "shu": 12000000 },
+                    { "tanggal": "2024-06-01", "omset": 40000000, "modal_kerja": 165000000, "investasi": 35000000, "simpanan_anggota": 275000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 28000000, "shu": 12000000 },
+                    { "tanggal": "2024-07-01", "omset": 41000000, "modal_kerja": 170000000, "investasi": 36000000, "simpanan_anggota": 280000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 28500000, "shu": 12500000 },
+                    { "tanggal": "2024-08-01", "omset": 42000000, "modal_kerja": 175000000, "investasi": 37000000, "simpanan_anggota": 285000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 29000000, "shu": 13000000 },
+                    { "tanggal": "2024-09-01", "omset": 43000000, "modal_kerja": 180000000, "investasi": 38000000, "simpanan_anggota": 290000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 30000000, "shu": 13000000 },
+                    { "tanggal": "2024-10-01", "omset": 44000000, "modal_kerja": 185000000, "investasi": 39000000, "simpanan_anggota": 295000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 31000000, "shu": 13000000 },
+                    { "tanggal": "2024-11-01", "omset": 45000000, "modal_kerja": 190000000, "investasi": 40000000, "simpanan_anggota": 300000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 31500000, "shu": 13500000 },
+                    { "tanggal": "2024-12-01", "omset": 46000000, "modal_kerja": 195000000, "investasi": 41000000, "simpanan_anggota": 305000000, "pinjaman_bank": 100000000, "hibah": 10000000, "biaya_operasional": 32000000, "shu": 14000000 }
+                ]
             }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Simpan Pinjam",
-                "volume_usaha": 150000000,
-                "investasi": 50000000,
-                "modal_kerja": 100000000,
-                "surplus_rugi": 17064422,
-                "jumlah_sdm": 10,
-                "jumlah_anggota": 91
-            },
-            {
-                "nama": "Unit Waserda",
-                "volume_usaha": 200000000,
-                "investasi": 75000000,
-                "modal_kerja": 50000000,
-                "surplus_rugi": 33918614,
-                "jumlah_sdm": 9,
-                "jumlah_anggota": 61
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 4.2
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 4.5
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 4.0
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 4.2
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.8
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.5
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 4.4
-            }
-        ]
+        }
     },
     {
         "id": 2,
         "nama": "Kop. Cemerlang Abadi",
-        "kontak": "0812-9876-5432",
-        "no_badan_hukum": "BH-11223344",
+        "kontak": "0813-5555-6666",
+        "no_badan_hukum": "BH-99887766",
         "tahun": 2019,
         "status": "Aktif",
         "has_gm": false,
         "lokasi": {
             "alamat": "Jl. Pajajaran No. 45",
-            "kecamatan": "Bogor Tengah",
+            "kecamatan": "Bogor Timur",
             "kelurahan": "Babakan",
-            "latitude": -6.5876,
-            "longitude": 106.8066
+            "latitude": -6.5971,
+            "longitude": 106.8056
         },
         "performa": {
             "periode": "2024-12-01",
@@ -197,6 +94,77 @@
             "organisasi": {
                 "jumlah_pengurus": 4,
                 "jumlah_pengawas": 2,
+                "jumlah_karyawan": 8,
+                "anggota": {
+                    "total": 90,
+                    "aktif": 80,
+                    "tidak_aktif": 10
+                }
+            },
+            "bisnis": {
+                "neraca": {
+                    "aktiva": {
+                        "aktiva_lancar": {
+                            "kas": 10000000,
+                            "piutang": 4000000,
+                            "total": 14000000
+                        },
+                        "aktiva_tetap": {
+                            "tanah": 150000000,
+                            "bangunan": 100000000,
+                            "kendaraan": 30000000,
+                            "total": 280000000
+                        },
+                        "total_aktiva": 294000000
+                    },
+                    "passiva": {
+                        "hutang_lancar": 20000000,
+                        "hutang_jangka_panjang": 80000000,
+                        "modal": 194000000,
+                        "total_passiva": 294000000
+                    }
+                },
+                "keuangan": [
+                    { "tanggal": "2024-01-01", "omset": 25000000, "modal_kerja": 100000000, "investasi": 20000000, "simpanan_anggota": 150000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 15000000, "shu": 5000000 },
+                    { "tanggal": "2024-02-01", "omset": 26000000, "modal_kerja": 102000000, "investasi": 21000000, "simpanan_anggota": 155000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 15500000, "shu": 5500000 },
+                    { "tanggal": "2024-03-01", "omset": 27500000, "modal_kerja": 105000000, "investasi": 22000000, "simpanan_anggota": 160000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 16000000, "shu": 6500000 },
+                    { "tanggal": "2024-04-01", "omset": 28000000, "modal_kerja": 108000000, "investasi": 23000000, "simpanan_anggota": 165000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 16500000, "shu": 6500000 },
+                    { "tanggal": "2024-05-01", "omset": 29000000, "modal_kerja": 110000000, "investasi": 24000000, "simpanan_anggota": 170000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 17000000, "shu": 7000000 },
+                    { "tanggal": "2024-06-01", "omset": 30000000, "modal_kerja": 115000000, "investasi": 25000000, "simpanan_anggota": 175000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 18000000, "shu": 7000000 },
+                    { "tanggal": "2024-07-01", "omset": 31000000, "modal_kerja": 120000000, "investasi": 26000000, "simpanan_anggota": 180000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 18500000, "shu": 7500000 },
+                    { "tanggal": "2024-08-01", "omset": 32000000, "modal_kerja": 125000000, "investasi": 27000000, "simpanan_anggota": 185000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 19000000, "shu": 8000000 },
+                    { "tanggal": "2024-09-01", "omset": 33000000, "modal_kerja": 130000000, "investasi": 28000000, "simpanan_anggota": 190000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 20000000, "shu": 8000000 },
+                    { "tanggal": "2024-10-01", "omset": 34000000, "modal_kerja": 135000000, "investasi": 29000000, "simpanan_anggota": 195000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 21000000, "shu": 8000000 },
+                    { "tanggal": "2024-11-01", "omset": 35000000, "modal_kerja": 140000000, "investasi": 30000000, "simpanan_anggota": 200000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 21500000, "shu": 8500000 },
+                    { "tanggal": "2024-12-01", "omset": 36000000, "modal_kerja": 145000000, "investasi": 31000000, "simpanan_anggota": 205000000, "pinjaman_bank": 50000000, "hibah": 5000000, "biaya_operasional": 22000000, "shu": 9000000 }
+                ]
+            }
+        }
+    },
+    {
+        "id": 3,
+        "nama": "Kop. Amanah Bersama",
+        "kontak": "0811-2233-4455",
+        "no_badan_hukum": "BH-11223344",
+        "tahun": 2020,
+        "status": "Aktif",
+        "has_gm": true,
+        "lokasi": {
+            "alamat": "Jl. Siliwangi No. 88",
+            "kecamatan": "Bogor Selatan",
+            "kelurahan": "Bondongan",
+            "latitude": -6.6167,
+            "longitude": 106.8000
+        },
+        "performa": {
+            "periode": "2024-12-01",
+            "cdi": 82.9,
+            "bdi": 83.0,
+            "odi": 82.8,
+            "kuadrant": 1,
+            "organisasi": {
+                "jumlah_pengurus": 5,
+                "jumlah_pengawas": 3,
                 "jumlah_karyawan": 10,
                 "anggota": {
                     "total": 120,
@@ -207,309 +175,41 @@
             "bisnis": {
                 "neraca": {
                     "aktiva": {
-                        "kas": 12500000,
-                        "piutang": 5800000,
-                        "persediaan": 3200000,
-                        "tanah": 210000000,
-                        "bangunan": 165000000,
-                        "kendaraan": 55000000,
-                        "peralatan": 28500000,
-                        "total_aktiva": 480000000
+                        "aktiva_lancar": {
+                            "kas": 11000000,
+                            "piutang": 5000000,
+                            "total": 16000000
+                        },
+                        "aktiva_tetap": {
+                            "tanah": 180000000,
+                            "bangunan": 130000000,
+                            "kendaraan": 40000000,
+                            "total": 350000000
+                        },
+                        "total_aktiva": 366000000
                     },
                     "passiva": {
-                        "hutang_lancar": 35000000,
-                        "hutang_jangka_panjang": 115000000,
-                        "simpanan_anggota": 250000000,
-                        "shu_ditahan": 80000000,
-                        "total_passiva": 480000000
+                        "hutang_lancar": 25000000,
+                        "hutang_jangka_panjang": 90000000,
+                        "modal": 251000000,
+                        "total_passiva": 366000000
                     }
                 },
-                "pertumbuhan": {
-                    "akumulasi": [
-                        {
-                            "tanggal": "2023-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1275000000,
-                            "total_investasi": 425000000,
-                            "modal_kerja": 1700000000,
-                            "total_simpanan_anggota": 2975000000,
-                            "total_hibah": 212500000,
-                            "omset": 382500000,
-                            "biaya_operasional": 272000000,
-                            "surplus_rugi": 110500000
-                        },
-                        {
-                            "tanggal": "2024-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1402500000,
-                            "total_investasi": 467500000,
-                            "modal_kerja": 1870000000,
-                            "total_simpanan_anggota": 3272500000,
-                            "total_hibah": 233750000,
-                            "omset": 420750000,
-                            "biaya_operasional": 299200000,
-                            "surplus_rugi": 121550000
-                        },
-                        {
-                            "tanggal": "2025-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1542750000,
-                            "total_investasi": 514250000,
-                            "modal_kerja": 2057000000,
-                            "total_simpanan_anggota": 3599750000,
-                            "total_hibah": 257125000,
-                            "omset": 462825000,
-                            "biaya_operasional": 329120000,
-                            "surplus_rugi": 133705000
-                        },
-                        {
-                            "tanggal": "2026-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1697025000,
-                            "total_investasi": 565675000,
-                            "modal_kerja": 2262700000,
-                            "total_simpanan_anggota": 3959725000,
-                            "total_hibah": 282837500,
-                            "omset": 509107500,
-                            "biaya_operasional": 362032000,
-                            "surplus_rugi": 147075500
-                        },
-                        {
-                            "tanggal": "2027-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1866727500,
-                            "total_investasi": 622242500,
-                            "modal_kerja": 2488970000,
-                            "total_simpanan_anggota": 4355697500,
-                            "total_hibah": 311121250,
-                            "omset": 560018250,
-                            "biaya_operasional": 398235200,
-                            "surplus_rugi": 161783050
-                        },
-                        {
-                            "tanggal": "2028-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 2053400250,
-                            "total_investasi": 684466750,
-                            "modal_kerja": 2737867000,
-                            "total_simpanan_anggota": 4791267250,
-                            "total_hibah": 342233375,
-                            "omset": 616020075,
-                            "biaya_operasional": 438058720,
-                            "surplus_rugi": 177961355
-                        }
-                    ]
-                }
+                "keuangan": [
+                    { "tanggal": "2024-01-01", "omset": 30000000, "modal_kerja": 120000000, "investasi": 25000000, "simpanan_anggota": 200000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 20000000, "shu": 8000000 },
+                    { "tanggal": "2024-02-01", "omset": 31000000, "modal_kerja": 122000000, "investasi": 26000000, "simpanan_anggota": 205000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 20500000, "shu": 8500000 },
+                    { "tanggal": "2024-03-01", "omset": 32500000, "modal_kerja": 125000000, "investasi": 27000000, "simpanan_anggota": 210000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 21000000, "shu": 9500000 },
+                    { "tanggal": "2024-04-01", "omset": 33000000, "modal_kerja": 128000000, "investasi": 28000000, "simpanan_anggota": 215000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 21500000, "shu": 9500000 },
+                    { "tanggal": "2024-05-01", "omset": 34000000, "modal_kerja": 130000000, "investasi": 29000000, "simpanan_anggota": 220000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 22000000, "shu": 10000000 },
+                    { "tanggal": "2024-06-01", "omset": 35000000, "modal_kerja": 135000000, "investasi": 30000000, "simpanan_anggota": 225000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 23000000, "shu": 10000000 },
+                    { "tanggal": "2024-07-01", "omset": 36000000, "modal_kerja": 140000000, "investasi": 31000000, "simpanan_anggota": 230000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 23500000, "shu": 10500000 },
+                    { "tanggal": "2024-08-01", "omset": 37000000, "modal_kerja": 145000000, "investasi": 32000000, "simpanan_anggota": 235000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 24000000, "shu": 11000000 },
+                    { "tanggal": "2024-09-01", "omset": 38000000, "modal_kerja": 150000000, "investasi": 33000000, "simpanan_anggota": 240000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 25000000, "shu": 11000000 },
+                    { "tanggal": "2024-10-01", "omset": 39000000, "modal_kerja": 155000000, "investasi": 34000000, "simpanan_anggota": 245000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 26000000, "shu": 11000000 },
+                    { "tanggal": "2024-11-01", "omset": 40000000, "modal_kerja": 160000000, "investasi": 35000000, "simpanan_anggota": 250000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 26500000, "shu": 11500000 },
+                    { "tanggal": "2024-12-01", "omset": 41000000, "modal_kerja": 165000000, "investasi": 36000000, "simpanan_anggota": 255000000, "pinjaman_bank": 80000000, "hibah": 8000000, "biaya_operasional": 27000000, "shu": 12000000 }
+                ]
             }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Jasa",
-                "volume_usaha": 180000000,
-                "investasi": 40000000,
-                "modal_kerja": 80000000,
-                "surplus_rugi": 26644349,
-                "jumlah_sdm": 3,
-                "jumlah_anggota": 61
-            },
-            {
-                "nama": "Unit Perdagangan",
-                "volume_usaha": 120000000,
-                "investasi": 30000000,
-                "modal_kerja": 60000000,
-                "surplus_rugi": 22623523,
-                "jumlah_sdm": 2,
-                "jumlah_anggota": 54
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 4.0
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 4.2
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.8
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 4.0
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.5
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.2
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 4.1
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "nama": "Kop. Amanah Bersama",
-        "kontak": "0813-4567-8901",
-        "no_badan_hukum": "BH-99887766",
-        "tahun": 2020,
-        "status": "Aktif",
-        "has_gm": true,
-        "lokasi": {
-            "alamat": "Jl. Siliwangi No. 88",
-            "kecamatan": "Bogor Selatan",
-            "kelurahan": "Bondongan",
-            "latitude": -6.6121,
-            "longitude": 106.8031
-        },
-        "performa": {
-            "periode": "2024-12-01",
-            "cdi": 82.9,
-            "bdi": 83.0,
-            "odi": 82.8,
-            "kuadrant": 2,
-            "organisasi": {
-                "jumlah_pengurus": 5,
-                "jumlah_pengawas": 3,
-                "jumlah_karyawan": 8,
-                "anggota": {
-                    "total": 100,
-                    "aktif": 85,
-                    "tidak_aktif": 15
-                }
-            },
-            "bisnis": {
-                "neraca": {
-                    "aktiva": {
-                        "kas": 12500000,
-                        "piutang": 5800000,
-                        "persediaan": 3200000,
-                        "tanah": 210000000,
-                        "bangunan": 165000000,
-                        "kendaraan": 55000000,
-                        "peralatan": 28500000,
-                        "total_aktiva": 480000000
-                    },
-                    "passiva": {
-                        "hutang_lancar": 35000000,
-                        "hutang_jangka_panjang": 115000000,
-                        "simpanan_anggota": 250000000,
-                        "shu_ditahan": 80000000,
-                        "total_passiva": 480000000
-                    }
-                },
-                "pertumbuhan": {
-                    "akumulasi": [
-                        {
-                            "tanggal": "2023-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1050000000,
-                            "total_investasi": 350000000,
-                            "modal_kerja": 1400000000,
-                            "total_simpanan_anggota": 2450000000,
-                            "total_hibah": 175000000,
-                            "omset": 315000000,
-                            "biaya_operasional": 224000000,
-                            "surplus_rugi": 91000000
-                        },
-                        {
-                            "tanggal": "2024-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1155000000,
-                            "total_investasi": 385000000,
-                            "modal_kerja": 1540000000,
-                            "total_simpanan_anggota": 2695000000,
-                            "total_hibah": 192500000,
-                            "omset": 346500000,
-                            "biaya_operasional": 246400000,
-                            "surplus_rugi": 100100000
-                        },
-                        {
-                            "tanggal": "2025-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1270500000,
-                            "total_investasi": 423500000,
-                            "modal_kerja": 1694000000,
-                            "total_simpanan_anggota": 2964500000,
-                            "total_hibah": 211750000,
-                            "omset": 381150000,
-                            "biaya_operasional": 271040000,
-                            "surplus_rugi": 110110000
-                        },
-                        {
-                            "tanggal": "2026-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1397550000,
-                            "total_investasi": 465850000,
-                            "modal_kerja": 1863400000,
-                            "total_simpanan_anggota": 3260950000,
-                            "total_hibah": 232925000,
-                            "omset": 419265000,
-                            "biaya_operasional": 298144000,
-                            "surplus_rugi": 121121000
-                        },
-                        {
-                            "tanggal": "2027-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1537305000,
-                            "total_investasi": 512435000,
-                            "modal_kerja": 2049740000,
-                            "total_simpanan_anggota": 3587045000,
-                            "total_hibah": 256217500,
-                            "omset": 461191500,
-                            "biaya_operasional": 327958400,
-                            "surplus_rugi": 133233100
-                        },
-                        {
-                            "tanggal": "2028-12-01T00:00:00.000Z",
-                            "total_pinjaman_bank": 1691035500,
-                            "total_investasi": 563678500,
-                            "modal_kerja": 2254714000,
-                            "total_simpanan_anggota": 3945749500,
-                            "total_hibah": 281839250,
-                            "omset": 507310650,
-                            "biaya_operasional": 360754240,
-                            "surplus_rugi": 146556410
-                        }
-                    ]
-                }
-            }
-        },
-        "unit_usaha": [
-            {
-                "nama": "Unit Simpan Pinjam",
-                "volume_usaha": 250000000,
-                "investasi": 80000000,
-                "modal_kerja": 120000000,
-                "surplus_rugi": 40333949,
-                "jumlah_sdm": 7,
-                "jumlah_anggota": 29
-            }
-        ],
-        "prinsip_koperasi": [
-            {
-                "key": "Keanggotaan Sukarela",
-                "data": 3.9
-            },
-            {
-                "key": "Pengelolaan Demokratis",
-                "data": 4.1
-            },
-            {
-                "key": "Partisipasi Ekonomi",
-                "data": 3.9
-            },
-            {
-                "key": "Otonomi & Kemandirian",
-                "data": 3.8
-            },
-            {
-                "key": "Pendidikan & Pelatihan",
-                "data": 3.6
-            },
-            {
-                "key": "Kerjasama Antar Koperasi",
-                "data": 3.4
-            },
-            {
-                "key": "Kepedulian Komunitas",
-                "data": 4.0
-            }
-        ]
+        }
     }
 ]
