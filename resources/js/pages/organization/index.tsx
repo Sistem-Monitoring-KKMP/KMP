@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import organizationData from '@/dummyData/organization.json';
 
 // Partials
 import MeetingFrequencyChart from './partials/MeetingFrequencyChart';
@@ -15,7 +14,35 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function OrganizationPage({organizationData}) {
+interface Principle {
+    prinsip: string;
+    skor: number;
+}
+
+interface Training {
+    sasaran: string;
+    jumlah_terlaksana: number;
+    total_sesi: number;
+}
+
+interface Meeting {
+    jenis_rapat: string;
+    frekuensi: {
+        mingguan: number;
+        dua_mingguan: number;
+        bulanan: number;
+        dua_bulanan: number;
+        tiga_bulanan_lebih: number;
+    };
+}
+
+interface OrganizationData {
+    prinsip_koperasi: Principle[];
+    pelatihan: Training[];
+    rapat: Meeting[];
+}
+
+export default function OrganizationPage({ organizationData }: { organizationData: OrganizationData }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Performa Organisasi" />

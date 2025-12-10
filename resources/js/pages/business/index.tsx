@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import businessData from '@/dummyData/business.json';
 
 // Partials
 import FinancialSummaryCards from './partials/FinancialSummaryCards';
@@ -16,7 +15,65 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function BusinessPage() {
+interface FinancialSummary {
+    pinjaman_bank: number;
+    investasi: number;
+    modal_kerja: number;
+    simpanan_anggota: number;
+    hibah: number;
+    omset: number;
+    biaya_operasional: number;
+    shu: number;
+}
+
+interface Neraca {
+    aktiva: {
+        aktiva_lancar: {
+            kas: number;
+            piutang: number;
+            total: number;
+        };
+        aktiva_tetap: {
+            tanah: number;
+            bangunan: number;
+            kendaraan: number;
+            total: number;
+        };
+        total_aktiva: number;
+    };
+    passiva: {
+        hutang_lancar: number;
+        hutang_jangka_panjang: number;
+        modal: number;
+        total_passiva: number;
+    };
+}
+
+interface BdiData {
+    periode: string;
+    avg_bdi: number;
+}
+
+interface FinancialGrowth {
+    tanggal: string;
+    omset: number;
+    modal_kerja: number;
+    investasi: number;
+    simpanan_anggota: number;
+    pinjaman_bank: number;
+    hibah: number;
+    biaya_operasional: number;
+    shu: number;
+}
+
+interface Props {
+    ringkasan_finansial: FinancialSummary;
+    neraca: Neraca;
+    bdi_trend: BdiData[];
+    pertumbuhan_financial: FinancialGrowth[];
+}
+
+export default function BusinessPage({ ringkasan_finansial, neraca, bdi_trend, pertumbuhan_financial }: Props) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Performa Bisnis" />
@@ -30,19 +87,19 @@ export default function BusinessPage() {
                 </div>
 
                 {/* Summary Cards */}
-                <FinancialSummaryCards data={businessData.ringkasan_finansial} />
+                <FinancialSummaryCards data={ringkasan_finansial} />
 
                 {/* Charts Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* BDI Trend */}
-                    <BdiTrendChart data={businessData.bdi_trend} />
+                    <BdiTrendChart data={bdi_trend} />
 
                     {/* Balance Sheet */}
-                    <BalanceSheetChart data={businessData.neraca} />
+                    <BalanceSheetChart data={neraca} />
                 </div>
 
                 {/* Financial Growth (Full Width) */}
-                <FinancialGrowthChart data={businessData.pertumbuhan_finansial} />
+                <FinancialGrowthChart data={pertumbuhan_financial} />
             </div>
         </AppLayout>
     );

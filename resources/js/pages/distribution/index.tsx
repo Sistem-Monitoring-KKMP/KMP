@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import cooperativesData from '@/dummyData/cooperatives.json';
+import type { CooperativeList } from '@/types/cooperative';
 
 // Partials
 import CooperativeScatterPlot from './partials/CooperativeScatterPlot';
@@ -13,7 +13,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function DistributionPage({cooperativesData}) {
+export default function DistributionPage({ cooperativesData }: { cooperativesData: CooperativeList[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Sebaran Koperasi" />

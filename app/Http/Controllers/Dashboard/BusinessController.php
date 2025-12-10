@@ -17,7 +17,7 @@ class BusinessController extends Controller
     $bdi = $Bdi->getAllBdi();
     $latest = !empty($historyData) ? end($historyData) : null;
 
-    dd($latest);
+    // dd($latest);
     
     return Inertia::render('business/index', [
       'ringkasan_finansial' => $latest,

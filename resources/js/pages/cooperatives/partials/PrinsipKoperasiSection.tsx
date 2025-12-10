@@ -6,14 +6,24 @@ interface Props {
 }
 
 export default function PrinsipKoperasiSection({ cooperative }: Props) {
+    const prinsipList = [
+        { key: 'Keanggotaan Sukarela', data: cooperative.prinsip_koperasi.sukarela_terbuka },
+        { key: 'Pengendalian Demokratis', data: cooperative.prinsip_koperasi.demokratis },
+        { key: 'Partisipasi Ekonomi', data: cooperative.prinsip_koperasi.ekonomi },
+        { key: 'Otonomi', data: cooperative.prinsip_koperasi.kemandirian },
+        { key: 'Pendidikan', data: cooperative.prinsip_koperasi.pendidikan },
+        { key: 'Kerjasama', data: cooperative.prinsip_koperasi.kerja_sama },
+        { key: 'Kepedulian Komunitas', data: cooperative.prinsip_koperasi.kepedulian },
+    ];
+
     const prinsipData = [
         {
             key: 'Maksimal',
-            data: cooperative.prinsip_koperasi.map((p) => ({ key: p.key, data: 5 })),
+            data: prinsipList.map((p) => ({ key: p.key, data: 5 })),
         },
         {
             key: 'Skor',
-            data: cooperative.prinsip_koperasi,
+            data: prinsipList,
         },
     ];
 

@@ -9,8 +9,14 @@ export interface UnitUsaha {
 }
 
 export interface PrinsipKoperasi {
-    key: string;
-    data: number;
+    koperasi_id: number;
+    sukarela_terbuka: number;
+    demokratis: number;
+    ekonomi: number;
+    kemandirian: number;
+    pendidikan: number;
+    kerja_sama: number;
+    kepedulian: number;
 }
 
 export interface Anggota {
@@ -27,21 +33,24 @@ export interface Organisasi {
 }
 
 export interface Aktiva {
-    kas: number;
-    piutang: number;
-    persediaan: number;
-    tanah: number;
-    bangunan: number;
-    kendaraan: number;
-    peralatan: number;
+    aktiva_lancar: {
+        kas: number;
+        piutang: number;
+        total: number;
+    };
+    aktiva_tetap: {
+        tanah: number;
+        bangunan: number;
+        kendaraan: number;
+        total: number;
+    };
     total_aktiva: number;
 }
 
 export interface Passiva {
     hutang_lancar: number;
     hutang_jangka_panjang: number;
-    simpanan_anggota: number;
-    shu_ditahan: number;
+    modal: number;
     total_passiva: number;
 }
 
@@ -50,25 +59,23 @@ export interface Neraca {
     passiva: Passiva;
 }
 
-export interface AkumulasiItem {
+export interface KeuanganItem {
     tanggal: string;
-    total_pinjaman_bank: number;
-    total_investasi: number;
-    modal_kerja: number;
-    total_simpanan_anggota: number;
-    total_hibah: number;
     omset: number;
+    modal_kerja: number;
+    investasi: number;
+    simpanan_anggota: number;
+    pinjaman_bank: number;
+    hibah: number;
     biaya_operasional: number;
-    surplus_rugi: number;
-}
-
-export interface Pertumbuhan {
-    akumulasi: AkumulasiItem[];
+    shu: number;
 }
 
 export interface Bisnis {
     neraca: Neraca;
-    pertumbuhan: Pertumbuhan;
+    pertumbuhan: {
+        akumulasi: KeuanganItem[];
+    };
 }
 
 export interface Performa {
@@ -100,5 +107,17 @@ export interface Cooperative {
     lokasi: Lokasi;
     performa: Performa;
     unit_usaha: UnitUsaha[];
-    prinsip_koperasi: PrinsipKoperasi[];
+    prinsip_koperasi: PrinsipKoperasi;
+}
+
+export interface CooperativeList {
+    id: number;
+    nama: string;
+    tahun: number;
+    status: string;
+    cdi: number;
+    bdi: number;
+    odi: number;
+    kuadrant: number;
+    alamat: string;
 }

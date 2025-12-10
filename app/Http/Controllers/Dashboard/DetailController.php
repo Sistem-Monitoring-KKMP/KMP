@@ -11,7 +11,7 @@ class DetailController extends Controller
   public function index(int $koperasiId, DetailService $detailService)
   {
     $detail = $detailService->getDetail($koperasiId);
-    dd($detail);
+    // dd($detail);
 
     return Inertia::render('cooperatives/show', [
     'data' => [$detail]

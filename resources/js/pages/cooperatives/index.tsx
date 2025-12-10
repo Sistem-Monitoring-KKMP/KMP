@@ -1,8 +1,8 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link } from '@inertiajs/react';
 import { type BreadcrumbItem } from '@/types';
-import cooperativesData from '@/dummyData/cooperatives.json';
+import type { CooperativeList } from '@/types/cooperative';
 import { Input } from '@/components/ui/input';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -12,11 +12,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function KoperasiList({cooperatives}) {
-        useEffect(() => {
-            console.log(cooperatives);
-        }, [cooperatives]);
+interface Props {
+    cooperatives: CooperativeList[];
+}
 
+export default function KoperasiList({ cooperatives }: Props) {
     const [search, setSearch] = useState('');
 
     const filteredCooperatives = useMemo(() => {
@@ -26,7 +26,7 @@ export default function KoperasiList({cooperatives}) {
             item.nama.toLowerCase().includes(lowerSearch) ||
             item.alamat.toLowerCase().includes(lowerSearch)
         );
-    }, [search]);
+    }, [search, cooperatives]);
 
     const getStatusColor = (status: string) => {
         switch (status.toLowerCase()) {

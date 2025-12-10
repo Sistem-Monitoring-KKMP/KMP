@@ -1,6 +1,6 @@
-import { BarChart, BarSeries, Bar } from 'reaviz';
+import { BarChart, BarSeries, Bar, LinearYAxis, LinearYAxisTickSeries, LinearYAxisTickLabel } from 'reaviz';
 import { formatRupiah } from '@/lib/utils';
-import { useState, type ComponentProps } from 'react';
+import { useState, useMemo, type ComponentProps } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
 
 interface Neraca {
@@ -8,29 +8,20 @@ interface Neraca {
         aktiva_lancar: {
             kas: number;
             piutang: number;
-            persediaan: number;
             total: number;
         };
         aktiva_tetap: {
             tanah: number;
             bangunan: number;
             kendaraan: number;
-            peralatan: number;
             total: number;
         };
         total_aktiva: number;
     };
     passiva: {
-        kewajiban: {
-            hutang_lancar: number;
-            hutang_jangka_panjang: number;
-            total: number;
-        };
-        ekuitas: {
-            simpanan_anggota: number;
-            shu_ditahan: number;
-            total: number;
-        };
+        hutang_lancar: number;
+        hutang_jangka_panjang: number;
+        modal: number;
         total_passiva: number;
     };
 }
@@ -69,42 +60,45 @@ const CustomBar = (props: CustomBarProps) => {
 };
 
 export default function BalanceSheetChart({ data }: Props) {
-    const chartData = [
-        {
-            key: 'Aktiva',
-            data: [
-                { key: 'Kas', data: data.aktiva.aktiva_lancar.kas },
-                { key: 'Piutang', data: data.aktiva.aktiva_lancar.piutang },
-                { key: 'Persediaan', data: data.aktiva.aktiva_lancar.persediaan },
-                { key: 'Tanah', data: data.aktiva.aktiva_tetap.tanah },
-                { key: 'Bangunan', data: data.aktiva.aktiva_tetap.bangunan },
-                { key: 'Kendaraan', data: data.aktiva.aktiva_tetap.kendaraan },
-                { key: 'Peralatan', data: data.aktiva.aktiva_tetap.peralatan },
-            ]
-        },
-        {
-            key: 'Passiva',
-            data: [
-                { key: 'Hutang Lancar', data: data.passiva.kewajiban.hutang_lancar },
-                { key: 'Hutang Jangka Panjang', data: data.passiva.kewajiban.hutang_jangka_panjang },
-                { key: 'Simpanan Anggota', data: data.passiva.ekuitas.simpanan_anggota },
-                { key: 'SHU Ditahan', data: data.passiva.ekuitas.shu_ditahan },
-            ]
-        }
-    ];
+    const chartData = useMemo(() => {
+        if (!data) return [];
+        const safeVal = (val: unknown) => typeof val === 'number' ? val : 0;
+        const aktiva = data.aktiva;
+        const passiva = data.passiva;
+
+        return [
+            {
+                key: 'Aktiva',
+                data: [
+                    { key: 'Kas', data: safeVal(aktiva?.aktiva_lancar?.kas) },
+                    { key: 'Piutang', data: safeVal(aktiva?.aktiva_lancar?.piutang) },
+                    { key: 'Tanah', data: safeVal(aktiva?.aktiva_tetap?.tanah) },
+                    { key: 'Bangunan', data: safeVal(aktiva?.aktiva_tetap?.bangunan) },
+                    { key: 'Kendaraan', data: safeVal(aktiva?.aktiva_tetap?.kendaraan) },
+                ]
+            },
+            {
+                key: 'Passiva',
+                data: [
+                    { key: 'Hutang Lancar', data: safeVal(passiva?.hutang_lancar) },
+                    { key: 'Hutang Jangka Panjang', data: safeVal(passiva?.hutang_jangka_panjang) },
+                    { key: 'Modal', data: safeVal(passiva?.modal) },
+                ]
+            }
+        ];
+    }, [data]);
+
+    if (!data) return null;
 
     const colors = [
         CHART_COLORS.KAS,
         CHART_COLORS.PIUTANG,
-        CHART_COLORS.PERSEDIAAN,
         CHART_COLORS.TANAH,
         CHART_COLORS.BANGUNAN,
         CHART_COLORS.KENDARAAN,
-        CHART_COLORS.PERALATAN,
         CHART_COLORS.HUTANG_LANCAR,
         CHART_COLORS.HUTANG_JP,
-        CHART_COLORS.SIMPANAN_NERACA,
-        CHART_COLORS.SHU_NERACA
+        CHART_COLORS.MODAL,
     ];
 
     return (
@@ -115,6 +109,20 @@ export default function BalanceSheetChart({ data }: Props) {
             <div style={{ height: '350px', width: '100%' }}>
                 <BarChart
                     data={chartData}
+                    yAxis={
+                        <LinearYAxis
+                            type="value"
+                            tickSeries={
+                                <LinearYAxisTickSeries
+                                    label={
+                                        <LinearYAxisTickLabel
+                                            format={(d) => formatRupiah(d)}
+                                        />
+                                    }
+                                />
+                            }
+                        />
+                    }
                     series={
                         <BarSeries
                             type="stacked"
@@ -165,7 +173,7 @@ export default function BalanceSheetChart({ data }: Props) {
                                 <div className="flex items-center gap-2">
                                     <div
                                         className="w-3 h-3 rounded-full flex-shrink-0"
-                                        style={{ backgroundColor: colors[index + 7] }}
+                                        style={{ backgroundColor: colors[index + 5] }}
                                     />
                                     <span className="text-xs text-gray-600 dark:text-gray-400">
                                         {item.key}
