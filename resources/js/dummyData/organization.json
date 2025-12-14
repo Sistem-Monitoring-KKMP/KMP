@@ -1,0 +1,116 @@
+{
+    "rapat": [
+        {
+            "jenis_rapat": "Rapat Pengurus",
+            "frekuensi": {
+                "mingguan": 12,
+                "dua_mingguan": 24,
+                "bulanan": 45,
+                "dua_bulanan": 10,
+                "tiga_bulanan_lebih": 5
+            }
+        },
+        {
+            "jenis_rapat": "Rapat Pengawas",
+            "frekuensi": {
+                "mingguan": 2,
+                "dua_mingguan": 5,
+                "bulanan": 50,
+                "dua_bulanan": 25,
+                "tiga_bulanan_lebih": 15
+            }
+        },
+        {
+            "jenis_rapat": "Rapat Gabungan",
+            "frekuensi": {
+                "mingguan": 0,
+                "dua_mingguan": 2,
+                "bulanan": 15,
+                "dua_bulanan": 30,
+                "tiga_bulanan_lebih": 40
+            }
+        },
+        {
+            "jenis_rapat": "Rapat Pengurus-Karyawan",
+            "frekuensi": {
+                "mingguan": 20,
+                "dua_mingguan": 30,
+                "bulanan": 40,
+                "dua_bulanan": 5,
+                "tiga_bulanan_lebih": 2
+            }
+        },
+        {
+            "jenis_rapat": "Rapat Pengurus-Anggota",
+            "frekuensi": {
+                "mingguan": 0,
+                "dua_mingguan": 0,
+                "bulanan": 10,
+                "dua_bulanan": 20,
+                "tiga_bulanan_lebih": 60
+            }
+        }
+    ],
+    "pelatihan": [
+        {
+            "sasaran": "Pengurus",
+            "jumlah_terlaksana": 45,
+            "total_sesi": 120
+        },
+        {
+            "sasaran": "Pengawas",
+            "jumlah_terlaksana": 40,
+            "total_sesi": 85
+        },
+        {
+            "sasaran": "General Manager",
+            "jumlah_terlaksana": 25,
+            "total_sesi": 40
+        },
+        {
+            "sasaran": "Karyawan",
+            "jumlah_terlaksana": 50,
+            "total_sesi": 150
+        },
+        {
+            "sasaran": "Anggota",
+            "jumlah_terlaksana": 35,
+            "total_sesi": 90
+        },
+        {
+            "sasaran": "Non-Anggota",
+            "jumlah_terlaksana": 10,
+            "total_sesi": 20
+        }
+    ],
+    "prinsip_koperasi": [
+        {
+            "prinsip": "Keanggotaan Sukarela",
+            "skor": 4.5
+        },
+        {
+            "prinsip": "Pengendalian Demokratis",
+            "skor": 4.2
+        },
+        {
+            "prinsip": "Partisipasi Ekonomi",
+            "skor": 3.8
+        },
+        {
+            "prinsip": "Otonomi",
+            "skor": 4.0
+        },
+        {
+            "prinsip": "Pendidikan",
+            "skor": 3.5
+        },
+        {
+            "prinsip": "Kerjasama",
+            "skor": 4.1
+        },
+        {
+            "prinsip": "Kepedulian Komunitas",
+            "skor": 4.6
+        }
+    ]
+}

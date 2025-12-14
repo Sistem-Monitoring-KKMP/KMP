@@ -22,6 +22,16 @@ export default [
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
             'react/no-unescaped-entities': 'off',
+
+            // --- Best Practices (Biar Rapi & Minim Bug) ---
+            'eqeqeq': ['error', 'always'], // Wajib pakai === (jangan ==)
+            'no-console': ['warn', { allow: ['warn', 'error'] }], // Warning kalau ada console.log (biar bersih)
+            'prefer-const': 'error', // Wajib pakai const kalau variabel tidak berubah nilainya
+
+            // --- TypeScript Strictness (Biar Type-Safe) ---
+            '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // Error kalau ada variabel nganggur
+            '@typescript-eslint/no-explicit-any': 'warn', // Warning kalau keseringan pakai 'any'
+            '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }], // Pisahkan import type biar jelas
         },
         settings: {
             react: {

@@ -105,7 +105,7 @@ class KoperasiController extends Controller
     public function show($id)
     {
         try {
-            $koperasi = Koperasi::with(['pengurus', 'lokasi', 'pengawas', 'performa'])->find($id);
+            $koperasi = Koperasi::find($id);
 
             if (!$koperasi) {
                 return response()->json([

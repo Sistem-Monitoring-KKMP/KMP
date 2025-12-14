@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Middleware\HandleAppearance;
-use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middlewares\HandleAppearance;
+use App\Http\Middlewares\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -24,7 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
-            'jwt.auth' => \App\ManajemenKMP\Http\Middlewares\JwtMiddleware::class,
+            'jwt.auth' => \App\Http\Middlewares\JwtMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
