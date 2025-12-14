@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 NeracaPassivaSeeder::class,
                 UnitUsahaSeeder::class,
                 KeuanganSeeder::class,
+                UserSeeder::class
                 
 
                 
