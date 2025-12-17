@@ -1,8 +1,7 @@
-import { BarChart, BarSeries, Bar, LinearYAxis, LinearYAxisTickSeries, LinearYAxisTickLabel } from 'reaviz';
+import { PieChart, PieArcSeries, PieArc } from 'reaviz';
 import { formatRupiah } from '@/lib/utils';
 import { useMemo } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
-import { CustomBar } from './CustomBar';
 
 export interface NeracaData {
     aktiva: {
@@ -34,157 +33,161 @@ interface Props {
 }
 
 export default function NeracaChart({ data, className }: Props) {
-    const chartData = useMemo(() => {
-        if (!data) return [];
+    const { aktivaChartData, passivaChartData, aktivaColors, passivaColors } = useMemo(() => {
+        if (!data) return { aktivaChartData: [], passivaChartData: [], aktivaColors: [], passivaColors: [] };
+
         const safeVal = (val: unknown) => typeof val === 'number' ? val : 0;
         const aktiva = data.aktiva;
         const passiva = data.passiva;
 
-        // Check if persediaan exists and has value
-        const hasPersediaan = typeof aktiva?.aktiva_lancar?.persediaan === 'number';
-
-        const aktivaData = [
-            { key: 'Kas', data: safeVal(aktiva?.aktiva_lancar?.kas) },
-            { key: 'Piutang', data: safeVal(aktiva?.aktiva_lancar?.piutang) },
+        // Aktiva Data Construction
+        const aData = [
+            { key: 'Kas', data: safeVal(aktiva?.aktiva_lancar?.kas), color: CHART_COLORS.COLOR_2 },
+            { key: 'Piutang', data: safeVal(aktiva?.aktiva_lancar?.piutang), color: CHART_COLORS.COLOR_6 },
         ];
 
-        if (hasPersediaan) {
-            aktivaData.push({ key: 'Persediaan', data: safeVal(aktiva?.aktiva_lancar?.persediaan) });
+        if (typeof aktiva?.aktiva_lancar?.persediaan === 'number') {
+            aData.push({ key: 'Persediaan', data: safeVal(aktiva?.aktiva_lancar?.persediaan), color: CHART_COLORS.COLOR_1 });
         }
 
-        aktivaData.push(
-            { key: 'Tanah', data: safeVal(aktiva?.aktiva_tetap?.tanah) },
-            { key: 'Bangunan', data: safeVal(aktiva?.aktiva_tetap?.bangunan) },
-            { key: 'Kendaraan', data: safeVal(aktiva?.aktiva_tetap?.kendaraan) }
+        aData.push(
+            { key: 'Tanah', data: safeVal(aktiva?.aktiva_tetap?.tanah), color: CHART_COLORS.COLOR_10 },
+            { key: 'Bangunan', data: safeVal(aktiva?.aktiva_tetap?.bangunan), color: CHART_COLORS.COLOR_5 },
+            { key: 'Kendaraan', data: safeVal(aktiva?.aktiva_tetap?.kendaraan), color: CHART_COLORS.COLOR_7 }
         );
 
-        return [
-            {
-                key: 'Aktiva',
-                data: aktivaData
-            },
-            {
-                key: 'Passiva',
-                data: [
-                    { key: 'Hutang Lancar', data: safeVal(passiva?.hutang_lancar) },
-                    { key: 'Hutang Jangka Panjang', data: safeVal(passiva?.hutang_jangka_panjang) },
-                    { key: 'Modal', data: safeVal(passiva?.modal) },
-                ]
-            }
+        // Passiva Data Construction
+        const pData = [
+            { key: 'Hutang Lancar', data: safeVal(passiva?.hutang_lancar), color: CHART_COLORS.COLOR_9 },
+            { key: 'Hutang Jangka Panjang', data: safeVal(passiva?.hutang_jangka_panjang), color: CHART_COLORS.COLOR_4 },
+            { key: 'Modal', data: safeVal(passiva?.modal), color: CHART_COLORS.COLOR_8 },
         ];
+
+        return {
+            aktivaChartData: aData.filter(d => d.data > 0),
+            passivaChartData: pData.filter(d => d.data > 0),
+            aktivaColors: aData.filter(d => d.data > 0).map(d => d.color),
+            passivaColors: pData.filter(d => d.data > 0).map(d => d.color)
+        };
     }, [data]);
 
     if (!data) return null;
 
-    // Determine colors based on data presence
-    const colors = [
-        CHART_COLORS.COLOR_2, // Kas (Emerald)
-        CHART_COLORS.COLOR_6, // Piutang (Cyan)
-    ];
-
-    // If persediaan is present in data, add its color
-    const hasPersediaan = chartData[0]?.data.some(d => d.key === 'Persediaan');
-    if (hasPersediaan) {
-        colors.push(CHART_COLORS.COLOR_1); // Persediaan (Blue)
-    }
-
-    colors.push(
-        CHART_COLORS.COLOR_10, // Tanah (Indigo)
-        CHART_COLORS.COLOR_5, // Bangunan (Violet)
-        CHART_COLORS.COLOR_7, // Kendaraan (Pink)
-        CHART_COLORS.COLOR_9, // Hutang Lancar (Orange)
-        CHART_COLORS.COLOR_4, // Hutang JP (Red)
-        CHART_COLORS.COLOR_8  // Modal (Lime)
-    );
+    // Calculate size based on total value to visualize balance
+    const maxTotal = Math.max(data.aktiva.total_aktiva, data.passiva.total_passiva);
+    const safeMaxTotal = maxTotal > 0 ? maxTotal : 1;
+    const maxSize = 300; // Max size in px
+    
+    // Scale size by square root of ratio to maintain area proportionality
+    const aktivaSize = maxSize * Math.sqrt(data.aktiva.total_aktiva / safeMaxTotal);
+    const passivaSize = maxSize * Math.sqrt(data.passiva.total_passiva / safeMaxTotal);
 
     return (
         <div className={`bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm ${className}`}>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">
                 Neraca (Aktiva vs Passiva)
             </h3>
-            <div style={{ height: '350px', width: '100%' }}>
-                <BarChart
-                    data={chartData}
-                    margins={20}
-                    yAxis={
-                        <LinearYAxis
-                            type="value"
-                            tickSeries={
-                                <LinearYAxisTickSeries
-                                    label={
-                                        <LinearYAxisTickLabel
-                                            format={(d) => `${(d / 1000000).toLocaleString('id-ID')} Jt`}
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                {/* Aktiva Chart */}
+                <div className="flex flex-col items-center">
+                    <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Komposisi Aktiva</h4>
+                    <div style={{ height: '300px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <PieChart
+                            width={aktivaSize}
+                            height={aktivaSize}
+                            data={aktivaChartData}
+                            series={
+                                <PieArcSeries
+                                    colorScheme={aktivaColors}
+                                    arc={
+                                        <PieArc
+                                            style={{ stroke: CHART_COLORS.WHITE, strokeWidth: 2 }}
                                         />
                                     }
                                 />
                             }
                         />
-                    }
-                    series={
-                        <BarSeries
-                            type="stacked"
-                            colorScheme={colors}
-                            tooltip={null}
-                            bar={<CustomBar />}
+                    </div>
+                </div>
+
+                {/* Passiva Chart */}
+                <div className="flex flex-col items-center">
+                    <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Komposisi Passiva</h4>
+                    <div style={{ height: '300px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <PieChart
+                            width={passivaSize}
+                            height={passivaSize}
+                            data={passivaChartData}
+                            series={
+                                <PieArcSeries
+                                    colorScheme={passivaColors}
+                                    arc={
+                                        <PieArc
+                                            style={{ stroke: CHART_COLORS.WHITE, strokeWidth: 2 }}
+                                        />
+                                    }
+                                />
+                            }
                         />
-                    }
-                />
+                    </div>
+                </div>
             </div>
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                 <div>
-                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Aktiva</div>
+                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Detail Aktiva</div>
                     <div className="space-y-1">
-                        {chartData[0].data.map((item, index) => (
+                        {aktivaChartData.map((item, index) => (
                             <div
                                 key={item.key}
-                                className="flex justify-start items-center gap-8 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
+                                className="flex justify-start items-center gap-4 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
                             >
-                                <div className="flex items-start gap-2 w-24 shrink-0">
+                                <div className="flex items-start gap-2 w-40 shrink-0">
                                     <div
-                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-0.5"
-                                        style={{ backgroundColor: colors[index] }}
+                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
+                                        style={{ backgroundColor: aktivaColors[index] }}
                                     />
-                                    <span className="text-xs text-gray-600 dark:text-gray-400">
+                                    <span className="text-xs text-gray-600 dark:text-gray-400 flex-1 min-w-0 break-words leading-tight">
                                         {item.key}
                                     </span>
                                 </div>
-                                <span className="font-medium text-gray-900 dark:text-gray-100 text-left">
+                                <span className="font-medium text-gray-900 dark:text-gray-100">
                                     {formatRupiah(item.data)}
                                 </span>
                             </div>
                         ))}
-                        <div className="flex justify-start items-center gap-8 font-bold pt-2 border-t mt-2">
-                            <span className="w-24 shrink-0">Total</span>
-                            <span className="text-left">{formatRupiah(data.aktiva.total_aktiva)}</span>
+                        <div className="flex justify-start items-center gap-4 font-bold pt-2 border-t mt-2">
+                            <span className="w-40 shrink-0 pl-5">Total</span>
+                            <span>{formatRupiah(data.aktiva.total_aktiva)}</span>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Passiva</div>
+                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Detail Passiva</div>
                     <div className="space-y-1">
-                        {chartData[1].data.map((item, index) => (
+                        {passivaChartData.map((item, index) => (
                             <div
                                 key={item.key}
-                                className="flex justify-start items-center gap-8 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
+                                className="flex justify-start items-center gap-4 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
                             >
-                                <div className="flex items-start gap-2 w-32 shrink-0">
+                                <div className="flex items-start gap-2 w-40 shrink-0">
                                     <div
-                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-0.5"
-                                        // Offset index by number of items in Aktiva
-                                        style={{ backgroundColor: colors[index + chartData[0].data.length] }}
+                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
+                                        style={{ backgroundColor: passivaColors[index] }}
                                     />
-                                    <span className="text-xs text-gray-600 dark:text-gray-400">
+                                    <span className="text-xs text-gray-600 dark:text-gray-400 flex-1 min-w-0 break-words leading-tight">
                                         {item.key}
                                     </span>
                                 </div>
-                                <span className="font-medium text-gray-900 dark:text-gray-100 text-left">
+                                <span className="font-medium text-gray-900 dark:text-gray-100">
                                     {formatRupiah(item.data)}
                                 </span>
                             </div>
                         ))}
-                        <div className="flex justify-start items-center gap-8 font-bold pt-2 border-t mt-2">
-                            <span className="w-32 shrink-0">Total</span>
-                            <span className="text-left">{formatRupiah(data.passiva.total_passiva)}</span>
+                        <div className="flex justify-start items-center gap-4 font-bold pt-2 border-t mt-2">
+                            <span className="w-40 shrink-0 pl-5">Total</span>
+                            <span>{formatRupiah(data.passiva.total_passiva)}</span>
                         </div>
                     </div>
                 </div>
