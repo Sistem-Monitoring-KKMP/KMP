@@ -1,4 +1,4 @@
-import { BarChart, BarSeries, Bar } from 'reaviz';
+import { BarChart, BarSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
 import { CustomBar } from '@/components/charts/CustomBar';
 
