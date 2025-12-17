@@ -77,7 +77,7 @@ export default function NeracaChart({ data, className }: Props) {
     const maxTotal = Math.max(data.aktiva.total_aktiva, data.passiva.total_passiva);
     const safeMaxTotal = maxTotal > 0 ? maxTotal : 1;
     const maxSize = 300; // Max size in px
-    
+
     // Scale size by square root of ratio to maintain area proportionality
     const aktivaSize = maxSize * Math.sqrt(data.aktiva.total_aktiva / safeMaxTotal);
     const passivaSize = maxSize * Math.sqrt(data.passiva.total_passiva / safeMaxTotal);
