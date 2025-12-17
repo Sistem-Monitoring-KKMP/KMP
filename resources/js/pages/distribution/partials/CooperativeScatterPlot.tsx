@@ -34,6 +34,9 @@ export default function CooperativeScatterPlot({ data }: Props) {
         }
     }));
 
+    // Top, Right, Bottom, Left
+    const margins: [number, number, number, number] = [20, 20, 40, 50];
+
     return (
         <div className="bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm relative">
             <div className="flex justify-between items-center mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -49,29 +52,38 @@ export default function CooperativeScatterPlot({ data }: Props) {
 
             <div className="relative" style={{ height: '500px', width: '100%' }}>
                 {/* Quadrant Backgrounds */}
-                <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 pointer-events-none opacity-10">
-                    <div className="bg-red-500 border-r border-b border-gray-300"></div> {/* Top Left: Low ODI, High BDI (Quadrant II) */}
-                    <div className="bg-green-500 border-b border-gray-300"></div>   {/* Top Right: High ODI, High BDI (Quadrant I) */}
-                    <div className="bg-yellow-500 border-r border-gray-300"></div>  {/* Bottom Left: Low ODI, Low BDI (Quadrant III) */}
-                    <div className="bg-blue-500"></div>                             {/* Bottom Right: High ODI, Low BDI (Quadrant IV) */}
+                <div
+                    className="absolute grid grid-cols-2 grid-rows-2 pointer-events-none opacity-20"
+                    style={{
+                        top: margins[0],
+                        right: margins[1],
+                        bottom: margins[2],
+                        left: margins[3]
+                    }}
+                >
+                    <div className="border-r border-b border-gray-300" style={{ backgroundColor: CHART_COLORS.QUADRANT_II }}></div>
+                    <div className="border-b border-gray-300" style={{ backgroundColor: CHART_COLORS.QUADRANT_I }}></div>
+                    <div className="border-r border-gray-300" style={{ backgroundColor: CHART_COLORS.QUADRANT_IV }}></div>
+                    <div style={{ backgroundColor: CHART_COLORS.QUADRANT_III }}></div>
                 </div>
 
                 {/* Quadrant Labels */}
-                <div className="absolute top-4 right-4 text-xs font-bold text-green-600 opacity-50 pointer-events-none bg-white/50 px-2 py-1 rounded">
+                <div className="absolute top-8 right-8 text-xs font-bold opacity-80 pointer-events-none bg-white px-2 py-1 rounded z-10" style={{ color: CHART_COLORS.QUADRANT_TEXT_I }}>
                     Kuadran I (Unggul)
                 </div>
-                <div className="absolute top-4 left-4 text-xs font-bold text-red-600 opacity-50 pointer-events-none ml-4 bg-white/50 px-2 py-1 rounded">
+                <div className="absolute top-8 left-16 text-xs font-bold opacity-80 pointer-events-none bg-white px-2 py-1 rounded z-10" style={{ color: CHART_COLORS.QUADRANT_TEXT_II }}>
                     Kuadran II (Berkembang Bisnis)
                 </div>
-                <div className="absolute bottom-12 left-4 text-xs font-bold text-yellow-600 opacity-50 pointer-events-none ml-4 bg-white/50 px-2 py-1 rounded">
-                    Kuadran III (Perlu Pembinaan)
+                <div className="absolute bottom-16 left-16 text-xs font-bold opacity-80 pointer-events-none bg-white px-2 py-1 rounded z-10" style={{ color: CHART_COLORS.QUADRANT_TEXT_IV }}>
+                    Kuadran IV (Perlu Pembinaan)
                 </div>
-                <div className="absolute bottom-12 right-4 text-xs font-bold text-blue-600 opacity-50 pointer-events-none bg-white/50 px-2 py-1 rounded">
-                    Kuadran IV (Berkembang Organisasi)
+                <div className="absolute bottom-16 right-8 text-xs font-bold opacity-80 pointer-events-none bg-white px-2 py-1 rounded z-10" style={{ color: CHART_COLORS.QUADRANT_TEXT_III }}>
+                    Kuadran III (Berkembang Organisasi)
                 </div>
 
                 <ScatterPlot
                     data={chartData}
+                    margins={margins}
                     xAxis={
                         <LinearXAxis
                             type="value"
@@ -90,8 +102,8 @@ export default function CooperativeScatterPlot({ data }: Props) {
                         <ScatterSeries
                             point={
                                 <ScatterPoint
-                                    color={CHART_COLORS.OMSET}
-                                    style={{ fillOpacity: 0.6, stroke: '#fff', strokeWidth: 1.5 }}
+                                    color={CHART_COLORS.COLOR_1}
+                                    style={{ fillOpacity: 0.6, stroke: CHART_COLORS.WHITE, strokeWidth: 1.5 }}
                                     size={(d: unknown) => {
                                         // Scale CDI (0-100) to pixel size (5-25)
                                         const point = d as ScatterPointData;
@@ -104,7 +116,7 @@ export default function CooperativeScatterPlot({ data }: Props) {
                                                 const point = d as ScatterPointData;
                                                 return (
                                                     <div className="bg-white dark:bg-gray-800 p-2 rounded shadow-lg border border-gray-200 dark:border-gray-700 text-xs">
-                                                        <div className="font-bold text-gray-900 dark:text-gray-100 mb-1">{point.metadata.name}</div>
+                                                        <div className="font-bold text-gray-900 dark:text-gray-100 mb-1 max-w-[200px] whitespace-normal leading-tight">{point.metadata.name}</div>
                                                         <div className="text-gray-600 dark:text-gray-400">CDI: <span className="font-mono font-medium text-gray-900 dark:text-gray-200">{point.metadata.cdi}</span></div>
                                                         <div className="text-gray-600 dark:text-gray-400">ODI: <span className="font-mono font-medium text-gray-900 dark:text-gray-200">{point.x}</span></div>
                                                         <div className="text-gray-600 dark:text-gray-400">BDI: <span className="font-mono font-medium text-gray-900 dark:text-gray-200">{point.y}</span></div>

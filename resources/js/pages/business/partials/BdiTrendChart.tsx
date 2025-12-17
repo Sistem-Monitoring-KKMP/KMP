@@ -64,13 +64,17 @@ export default function BdiTrendChart({ data }: Props) {
             <div style={{ height: '300px', width: '100%' }}>
                 <LineChart
                     data={chartData}
+                    margins={[20, 20, 20, 10]}
                     xAxis={
                         <LinearXAxis
                             type="time"
                             tickSeries={
                                 <LinearXAxisTickSeries
+                                    tickValues={chartData.map(d => d.key)}
                                     label={
                                         <LinearXAxisTickLabel
+                                            fontSize={12}
+                                            className="font-bold text-black text-lg"
                                             format={(d) => new Date(d).toLocaleDateString('id-ID', { month: 'short' })}
                                         />
                                     }
@@ -85,6 +89,8 @@ export default function BdiTrendChart({ data }: Props) {
                                 <LinearYAxisTickSeries
                                     label={
                                         <LinearYAxisTickLabel
+                                            fontSize={12}
+                                            className="font-bold text-black text-[18px]"
                                             format={(d) => d ? Number(d).toFixed(1) : '0'}
                                         />
                                     }
@@ -94,7 +100,7 @@ export default function BdiTrendChart({ data }: Props) {
                     }
                     series={
                         <LineSeries
-                            colorScheme={[CHART_COLORS.OMSET]}
+                            colorScheme={[CHART_COLORS.COLOR_1]}
                             line={
                                 <Line
                                     strokeWidth={3}

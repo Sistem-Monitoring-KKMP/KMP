@@ -5,7 +5,7 @@ import { type BreadcrumbItem } from '@/types';
 // Partials
 import MeetingFrequencyChart from './partials/MeetingFrequencyChart';
 import TrainingChart from './partials/TrainingChart';
-import CooperativePrinciplesChart from './partials/CooperativePrinciplesChart';
+import CooperativePrinciplesChart from '@/components/charts/CooperativePrinciplesChart';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -43,6 +43,11 @@ interface OrganizationData {
 }
 
 export default function OrganizationPage({ organizationData }: { organizationData: OrganizationData }) {
+    const principlesData = organizationData.prinsip_koperasi.map(p => ({
+        key: p.prinsip,
+        data: p.skor
+    }));
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Performa Organisasi" />
@@ -58,7 +63,10 @@ export default function OrganizationPage({ organizationData }: { organizationDat
                 {/* Charts Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Cooperative Principles (Radar/Bar) */}
-                    <CooperativePrinciplesChart data={organizationData.prinsip_koperasi} />
+                    <CooperativePrinciplesChart
+                        data={principlesData}
+                        title="Rata-rata Skor Prinsip Koperasi (Skala 1-5)"
+                    />
 
                     {/* Training Statistics */}
                     <TrainingChart data={organizationData.pelatihan} />
