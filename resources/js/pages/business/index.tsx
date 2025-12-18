@@ -5,8 +5,8 @@ import { type BreadcrumbItem } from '@/types';
 // Partials
 import FinancialSummaryCards from './partials/FinancialSummaryCards';
 import BdiTrendChart from './partials/BdiTrendChart';
-import FinancialGrowthChart from './partials/FinancialGrowthChart';
-import BalanceSheetChart from './partials/BalanceSheetChart';
+import FinancialGrowthChart from '@/components/charts/FinancialGrowthChart';
+import NeracaChart from '@/components/charts/NeracaChart';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -95,7 +95,7 @@ export default function BusinessPage({ ringkasan_finansial, neraca, bdi_trend, p
                     <BdiTrendChart data={bdi_trend} />
 
                     {/* Balance Sheet */}
-                    <BalanceSheetChart data={neraca} />
+                    <NeracaChart data={neraca} />
                 </div>
 
                 {/* Financial Growth (Full Width) */}
