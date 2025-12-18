@@ -13,13 +13,20 @@ class KecamatanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kecamatan')->insert([
+        $data = [
             ['id' => 1, 'nama' => 'Bogor Barat'],
             ['id' => 2, 'nama' => 'Bogor Selatan'],
             ['id' => 3, 'nama' => 'Bogor Tengah'],
             ['id' => 4, 'nama' => 'Bogor Timur'],
             ['id' => 5, 'nama' => 'Bogor Utara'],
             ['id' => 6, 'nama' => 'Tanah Sareal'],
-        ]);
+        ];
+
+        foreach ($data as $row) {
+            DB::table('kecamatan')->updateOrInsert(
+                ['id' => $row['id']],   
+                ['nama' => $row['nama']] 
+            );
+        }
     }
 }

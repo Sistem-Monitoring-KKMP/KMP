@@ -13,7 +13,7 @@ class KelurahanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kelurahan')->insert([
+        $data = [
             // Bogor Barat (1)
             ['id' => 1, 'nama' => 'Balungbangjaya'],
             ['id' => 2, 'nama' => 'Bubulak'],
@@ -93,6 +93,13 @@ class KelurahanSeeder extends Seeder
             ['id'=> 66,'nama' => 'Sukadamai'],
             ['id'=> 67,'nama' => 'Sukaresmi'],
             ['id'=> 68,'nama' => 'Tanahsareal'],
-        ]);
+        ];
+
+        foreach($data as $row){
+            DB::table('kelurahan')->updateOrInsert(
+                ['id' => $row['id']],
+                ['nama' => $row['nama']]
+            );
+        };
     }
 }
