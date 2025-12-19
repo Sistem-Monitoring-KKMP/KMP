@@ -13,7 +13,7 @@ import {
 import { dashboard } from '@/routes/index';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, ChartColumnIncreasing, ChartPie, Map } from 'lucide-react';
+import { Folder, LayoutGrid, ChartColumnIncreasing, ChartPie, Map } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -44,13 +44,7 @@ const mainNavItems: NavItem[] = [
     },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
-    },
-];
+const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
     return (

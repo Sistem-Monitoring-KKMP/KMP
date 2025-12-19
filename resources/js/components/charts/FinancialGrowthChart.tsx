@@ -3,7 +3,7 @@ import { formatRupiah } from '@/lib/utils';
 import { useState, useMemo, type ComponentProps } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
 
-interface FinancialGrowth {
+export interface FinancialGrowthData {
     tanggal: string;
     omset: number;
     modal_kerja: number;
@@ -16,7 +16,8 @@ interface FinancialGrowth {
 }
 
 interface Props {
-    data: FinancialGrowth[];
+    data: FinancialGrowthData[];
+    className?: string;
 }
 
 interface CustomBarProps extends ComponentProps<typeof Bar> {
@@ -58,7 +59,7 @@ const CustomBar = (props: CustomBarProps) => {
             style={{
                 ...rest.style,
                 cursor: 'pointer',
-                stroke: hovered ? 'rgba(255,255,255,0.8)' : 'none',
+                stroke: hovered ? CHART_COLORS.HOVER_STROKE : 'none',
                 strokeWidth: hovered ? 2 : 0,
                 filter: hovered ? 'brightness(1.1)' : 'none'
             }}
@@ -66,7 +67,7 @@ const CustomBar = (props: CustomBarProps) => {
     );
 };
 
-export default function FinancialGrowthChart({ data }: Props) {
+export default function FinancialGrowthChart({ data, className }: Props) {
     // Extract unique years from data
     const years = useMemo(() => {
         if (!data) return [];
@@ -98,7 +99,17 @@ export default function FinancialGrowthChart({ data }: Props) {
             });
     }, [data, selectedYear]);
 
-    // Calculate domain for stacked chart to prevent symmetric scaling
+    const colors = [
+        CHART_COLORS.COLOR_4, // Pinjaman (Red)
+        CHART_COLORS.COLOR_1, // Investasi (Blue)
+        CHART_COLORS.COLOR_6, // Modal Kerja (Cyan)
+        CHART_COLORS.COLOR_5, // Simpanan (Violet)
+        CHART_COLORS.COLOR_7, // Hibah (Pink)
+        CHART_COLORS.COLOR_2, // Omset (Emerald)
+        CHART_COLORS.COLOR_9, // Biaya Ops (Orange)
+        CHART_COLORS.COLOR_8  // SHU (Lime)
+    ];
+
     const yDomain = useMemo(() => {
         let maxStack = 0;
         let minStack = 0;
@@ -124,10 +135,9 @@ export default function FinancialGrowthChart({ data }: Props) {
         } else if (domain[0] === domain[1]) {
             domain = [domain[0] * 0.9, domain[1] * 1.1];
         }
+
         return domain;
     }, [chartData]);
-
-    if (!data || data.length === 0) return null;
 
     const getPertumbuhanDetail = (monthKey: string | null) => {
         if (!monthKey) {
@@ -136,104 +146,81 @@ export default function FinancialGrowthChart({ data }: Props) {
         return chartData.find(item => item.key === monthKey)?.data || [];
     };
 
-    const colors = [
-        CHART_COLORS.PINJAMAN,
-        CHART_COLORS.INVESTASI,
-        CHART_COLORS.MODAL_KERJA,
-        CHART_COLORS.SIMPANAN,
-        CHART_COLORS.HIBAH,
-        CHART_COLORS.OMSET,
-        CHART_COLORS.BIAYA_OPS,
-        CHART_COLORS.SHU
-    ];
-
-    const currentDetail = getPertumbuhanDetail(activeMonth);
-
     return (
-        <div className="bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm col-span-1 lg:col-span-2">
-            <div className="flex justify-between items-center mb-6 border-b border-gray-200 dark:border-gray-700 pb-4">
-                <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                        Pertumbuhan Indikator Keuangan
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        Tren bulanan indikator finansial utama (Omset, Modal, Investasi, dll).
-                    </p>
-                </div>
-                <div className="flex gap-2">
+        <div className={`bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm ${className}`}>
+            <div className="flex justify-between items-center mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    Pertumbuhan Keuangan
+                </h3>
+                <select
+                    value={selectedYear}
+                    onChange={(e) => {
+                        setSelectedYear(Number(e.target.value));
+                        setActiveMonth(null);
+                    }}
+                    className="text-sm border-gray-300 dark:border-gray-600 dark:bg-sidebar-accent dark:text-gray-200 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
                     {years.map(year => (
-                        <button
-                            key={year}
-                            onClick={() => {
-                                setSelectedYear(year);
-                                setActiveMonth(null);
-                            }}
-                            className={`px-3 py-1 text-sm rounded-md transition-colors ${selectedYear === year
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
-                                }`}
-                        >
-                            {year}
-                        </button>
+                        <option key={year} value={year}>{year}</option>
                     ))}
-                </div>
+                </select>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2" style={{ height: '400px' }}>
-                    <BarChart
-                        key={selectedYear}
-                        data={chartData}
-                        yAxis={
-                            <LinearYAxis
-                                type="value"
-                                domain={yDomain}
-                                tickSeries={
-                                    <LinearYAxisTickSeries
-                                        label={
-                                            <LinearYAxisTickLabel
-                                                format={(d) => formatRupiah(d)}
-                                            />
-                                        }
-                                    />
-                                }
-                            />
-                        }
-                        series={
-                            <BarSeries
-                                type="stacked"
-                                colorScheme={colors}
-                                tooltip={null}
-                                bar={
-                                    <CustomBar
-                                        onActiveYearChange={setActiveMonth}
-                                        chartData={chartData}
-                                    />
-                                }
-                            />
-                        }
-                    />
+            <div style={{ height: '350px', width: '100%' }}>
+                <BarChart
+                    key={selectedYear}
+                    data={chartData}
+                    margins={20}
+                    yAxis={
+                        <LinearYAxis
+                            type="value"
+                            domain={yDomain}
+                            tickSeries={
+                                <LinearYAxisTickSeries
+                                    label={
+                                        <LinearYAxisTickLabel
+                                            format={(d) => `${(d / 1000000).toLocaleString('id-ID')} Jt`}
+                                        />
+                                    }
+                                />
+                            }
+                        />
+                    }
+                    series={
+                        <BarSeries
+                            type="stacked"
+                            colorScheme={colors}
+                            tooltip={null}
+                            bar={<CustomBar onActiveYearChange={setActiveMonth} chartData={chartData} />}
+                        />
+                    }
+                />
+            </div>
+            <div className="mt-6">
+                <div className="font-bold text-gray-900 dark:text-gray-100 mb-3 border-b pb-1">
+                    Detail Bulan: {activeMonth || 'Pilih Bulan'}
                 </div>
-
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700 h-fit">
-                    <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
-                        <span className="w-2 h-6 bg-blue-600 rounded-full"></span>
-                        Detail {activeMonth || 'Bulan Terakhir'} {selectedYear}
-                    </h4>
-                    <div className="space-y-3">
-                        {currentDetail.map((item, index) => (
-                            <div key={index} className="flex justify-between items-center p-2 hover:bg-white dark:hover:bg-gray-800 rounded transition-colors">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: colors[index % colors.length] }}></div>
-                                    <span className="text-sm text-gray-600 dark:text-gray-400">{item.key}</span>
+                {activeMonth ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                        {getPertumbuhanDetail(activeMonth).map((item, index) => (
+                            <div key={index} className="flex justify-start items-center gap-8 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors">
+                                <div className="flex items-start gap-2 w-32 shrink-0">
+                                    <div
+                                        className="w-3 h-3 rounded-full mt-0.5"
+                                        style={{ backgroundColor: colors[index % colors.length] }}
+                                    />
+                                    <span className="text-xs text-gray-600 dark:text-gray-400">{item.key}</span>
                                 </div>
-                                <span className="font-mono font-medium text-gray-900 dark:text-gray-200">
+                                <span className="font-medium text-gray-900 dark:text-gray-100 text-left">
                                     {formatRupiah(item.data)}
                                 </span>
                             </div>
                         ))}
                     </div>
-                </div>
+                ) : (
+                    <div className="text-center text-gray-500 py-4 text-sm italic">
+                        Arahkan kursor atau klik pada batang grafik untuk melihat detail rincian.
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,5 +1,4 @@
-import { BarChart, BarSeries, Bar } from 'reaviz';
-import { useState, type ComponentProps } from 'react';
+import { PieChart, PieArcSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
 
 interface Meeting {
@@ -17,65 +16,38 @@ interface Props {
     data: Meeting[];
 }
 
-type CustomBarProps = ComponentProps<typeof Bar>;
-
-const CustomBar = (props: CustomBarProps) => {
-    const [hovered, setHovered] = useState(false);
-    const { ...rest } = props;
-
-    return (
-        <Bar
-            {...rest}
-            active={hovered}
-            onMouseEnter={(e) => {
-                setHovered(true);
-                rest.onMouseEnter?.(e);
-            }}
-            onMouseLeave={(e) => {
-                setHovered(false);
-                rest.onMouseLeave?.(e);
-            }}
-            style={{
-                ...rest.style,
-                cursor: 'pointer',
-                stroke: hovered ? 'rgba(255,255,255,0.8)' : 'none',
-                strokeWidth: hovered ? 2 : 0,
-                filter: hovered ? 'brightness(1.1)' : 'none'
-            }}
-        />
-    );
-};
-
 export default function MeetingFrequencyChart({ data }: Props) {
+    // Aggregate data across all meeting types
+    const totals = {
+        mingguan: 0,
+        dua_mingguan: 0,
+        bulanan: 0,
+        dua_bulanan: 0,
+        tiga_bulanan_lebih: 0
+    };
+
+    data.forEach(m => {
+        totals.mingguan += m.frekuensi.mingguan;
+        totals.dua_mingguan += m.frekuensi.dua_mingguan;
+        totals.bulanan += m.frekuensi.bulanan;
+        totals.dua_bulanan += m.frekuensi.dua_bulanan;
+        totals.tiga_bulanan_lebih += m.frekuensi.tiga_bulanan_lebih;
+    });
+
     const chartData = [
-        {
-            key: 'Mingguan',
-            data: data.map(d => ({ key: d.jenis_rapat, data: d.frekuensi.mingguan }))
-        },
-        {
-            key: '2 Mingguan',
-            data: data.map(d => ({ key: d.jenis_rapat, data: d.frekuensi.dua_mingguan }))
-        },
-        {
-            key: 'Bulanan',
-            data: data.map(d => ({ key: d.jenis_rapat, data: d.frekuensi.bulanan }))
-        },
-        {
-            key: '2 Bulanan',
-            data: data.map(d => ({ key: d.jenis_rapat, data: d.frekuensi.dua_bulanan }))
-        },
-        {
-            key: '> 3 Bulanan',
-            data: data.map(d => ({ key: d.jenis_rapat, data: d.frekuensi.tiga_bulanan_lebih }))
-        }
-    ];
+        { key: 'Mingguan', data: totals.mingguan },
+        { key: '2 Mingguan', data: totals.dua_mingguan },
+        { key: 'Bulanan', data: totals.bulanan },
+        { key: '2 Bulanan', data: totals.dua_bulanan },
+        { key: '> 3 Bulanan', data: totals.tiga_bulanan_lebih }
+    ].filter(d => d.data > 0);
 
     const colors = [
-        CHART_COLORS.OMSET,
-        CHART_COLORS.MODAL_KERJA,
-        CHART_COLORS.INVESTASI,
-        CHART_COLORS.SIMPANAN,
-        CHART_COLORS.PINJAMAN
+        CHART_COLORS.COLOR_1, // Mingguan
+        CHART_COLORS.COLOR_2, // 2 Mingguan
+        CHART_COLORS.COLOR_3, // Bulanan
+        CHART_COLORS.COLOR_4, // 2 Bulanan
+        CHART_COLORS.COLOR_5  // > 3 Bulanan
     ];
 
     return (
@@ -83,17 +55,28 @@ export default function MeetingFrequencyChart({ data }: Props) {
             <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
                 Frekuensi Rapat
             </h3>
-            <div style={{ height: '400px', width: '100%' }}>
-                <BarChart
+            <div style={{ height: '400px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <PieChart
                     data={chartData}
                     series={
-                        <BarSeries
-                            type="stacked"
-                            bar={<CustomBar />}
+                        <PieArcSeries
                             colorScheme={colors}
                         />
                     }
                 />
+            </div>
+            <div className="mt-4 flex flex-wrap justify-center gap-4">
+                {chartData.map((item, index) => (
+                    <div key={item.key} className="flex items-center gap-2">
+                        <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: colors[index % colors.length] }}
+                        />
+                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                            {item.key}: <span className="font-semibold text-gray-900 dark:text-gray-100">{item.data}</span>
+                        </span>
+                    </div>
+                ))}
             </div>
         </div>
     );

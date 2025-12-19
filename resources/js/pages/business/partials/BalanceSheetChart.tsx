@@ -51,7 +51,7 @@ const CustomBar = (props: CustomBarProps) => {
             style={{
                 ...rest.style,
                 cursor: 'pointer',
-                stroke: hovered ? 'rgba(255,255,255,0.8)' : 'none',
+                stroke: hovered ? CHART_COLORS.HOVER_STROKE : 'none',
                 strokeWidth: hovered ? 2 : 0,
                 filter: hovered ? 'brightness(1.1)' : 'none'
             }}
@@ -91,17 +91,15 @@ export default function BalanceSheetChart({ data }: Props) {
     if (!data) return null;
 
     const colors = [
-        CHART_COLORS.KAS,
-        CHART_COLORS.PIUTANG,
-        CHART_COLORS.TANAH,
-        CHART_COLORS.BANGUNAN,
-        CHART_COLORS.KENDARAAN,
-        CHART_COLORS.HUTANG_LANCAR,
-        CHART_COLORS.HUTANG_JP,
-        CHART_COLORS.MODAL,
-    ];
-
-    return (
+        CHART_COLORS.COLOR_1, // Kas
+        CHART_COLORS.COLOR_2, // Piutang
+        CHART_COLORS.COLOR_3, // Tanah
+        CHART_COLORS.COLOR_4, // Bangunan
+        CHART_COLORS.COLOR_5, // Kendaraan
+        CHART_COLORS.COLOR_6, // Hutang Lancar
+        CHART_COLORS.COLOR_7, // Hutang JP
+        CHART_COLORS.COLOR_8, // Modal
+    ]; return (
         <div className="bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm">
             <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 border-b pb-2 border-gray-200 dark:border-gray-700">
                 Komposisi Neraca (Agregat)

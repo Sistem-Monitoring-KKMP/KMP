@@ -1,26 +1,30 @@
 export const CHART_COLORS = {
-    // Financial Growth / Pertumbuhan
-    OMSET: '#3b82f6',       // Bright Blue
-    MODAL_KERJA: '#10b981', // Bright Emerald
-    INVESTASI: '#f97316',   // Bright Orange
-    SIMPANAN: '#a855f7',    // Bright Purple
-    PINJAMAN: '#ef4444',    // Bright Red
-    HIBAH: '#06b6d4',       // Bright Cyan
-    BIAYA_OPS: '#ec4899',   // Bright Pink
-    SHU: '#84cc16',         // Bright Lime
+    // Main Palette (10 Colors)
+    COLOR_1: '#3b82f6', // Blue (Primary)
+    COLOR_2: '#10b981', // Emerald (Success)
+    COLOR_3: '#f59e0b', // Amber (Warning)
+    COLOR_4: '#ef4444', // Red (Danger)
+    COLOR_5: '#8b5cf6', // Violet
+    COLOR_6: '#06b6d4', // Cyan
+    COLOR_7: '#ec4899', // Pink
+    COLOR_8: '#84cc16', // Lime
+    COLOR_9: '#f97316', // Orange
+    COLOR_10: '#6366f1', // Indigo
 
-    // Balance Sheet / Neraca
-    KAS: '#3b82f6',         // Bright Blue
-    PIUTANG: '#22c55e',     // Bright Green
-    PERSEDIAAN: '#f59e0b',  // Bright Amber
-    TANAH: '#8b5cf6',       // Bright Violet
-    BANGUNAN: '#ec4899',    // Bright Pink
-    KENDARAAN: '#06b6d4',   // Bright Cyan
-    PERALATAN: '#6366f1',   // Bright Indigo
-    HUTANG_LANCAR: '#ef4444', // Bright Red
-    HUTANG_JP: '#be123c',   // Rose
-    HUTANG_JANGKA_PANJANG: '#be123c', // Alias for HUTANG_JP
-    SIMPANAN_NERACA: '#eab308', // Bright Yellow
-    SHU_NERACA: '#14b8a6',  // Teal
-    MODAL: '#8b5cf6',       // Bright Violet (reusing or new color)
+    // Common
+    WHITE: '#ffffff',
+    TRANSPARENT: 'transparent',
+    HOVER_STROKE: 'rgba(255,255,255,0.8)',
+
+    // Quadrants (Scatter Plot) - Mapped to Palette
+    QUADRANT_I: '#10b981',      // COLOR_2 (Green)
+    QUADRANT_II: '#3b82f6',     // COLOR_1 (Blue)
+    QUADRANT_III: '#f59e0b',    // COLOR_3 (Amber/Yellow)
+    QUADRANT_IV: '#ef4444',     // COLOR_4 (Red)
+
+    // Quadrant Text (Darker versions for readability)
+    QUADRANT_TEXT_I: '#065f46',   // Dark Green
+    QUADRANT_TEXT_II: '#1e3a8a',  // Dark Blue
+    QUADRANT_TEXT_III: '#78350f', // Dark Amber
+    QUADRANT_TEXT_IV: '#991b1b',  // Dark Red
 };
