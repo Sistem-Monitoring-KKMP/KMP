@@ -1,5 +1,4 @@
 <?php
-// filepath: c:\Users\mrizk\Desktop\Code\KMP\KMP-Backend\app\Http\Controllers\ManajemenKMP\PerformaController.php
 
 namespace App\Http\Controllers\ManajemenKMP;
 
@@ -28,6 +27,9 @@ class PerformaController extends Controller
                         'id' => $performa->id,
                         'periode' => $performa->periode,
                         'year' => date('Y', strtotime($performa->periode)),
+                        'month' => date('m', strtotime($performa->periode)),
+                        'month_year' => date('Y-m', strtotime($performa->periode)),
+                        'formatted' => date('F Y', strtotime($performa->periode)),
                         'cdi' => $performa->cdi,
                         'bdi' => $performa->bdi,
                         'odi' => $performa->odi,
@@ -50,13 +52,15 @@ class PerformaController extends Controller
     }
 
     /**
-     * Get performa by koperasi and period
+     * Get performa by koperasi and period (YYYY-MM format)
      */
     public function getByPeriod($koperasiId, $period)
     {
         try {
+            // Period format: YYYY-MM
             $performa = Performa::where('koperasi_id', $koperasiId)
-                ->whereYear('periode', $period)
+                ->whereYear('periode', substr($period, 0, 4))
+                ->whereMonth('periode', substr($period, 5, 2))
                 ->with([
                     'performaBisnis.hubunganLembaga',
                     'performaBisnis.unitUsaha',
@@ -98,10 +102,10 @@ class PerformaController extends Controller
     public function savePerforma(Request $request, $koperasiId)
     {
         $validator = Validator::make($request->all(), [
-            'periode' => 'required|date_format:Y',
-            'cdi' => 'nullable|integer',
-            'bdi' => 'nullable|integer',
-            'odi' => 'nullable|integer',
+            'periode' => 'required|date_format:Y-m', // Format: YYYY-MM
+            'cdi' => 'nullable|numeric',
+            'bdi' => 'nullable|numeric',
+            'odi' => 'nullable|numeric',
             'kuadrant' => 'nullable|integer|between:1,4',
         ]);
 
@@ -117,12 +121,13 @@ class PerformaController extends Controller
         try {
             $koperasi = Koperasi::findOrFail($koperasiId);
 
-            // Convert year to date (first day of year)
-            $periodeDate = $request->periode . '-01-01';
+            // Convert YYYY-MM to date (first day of month)
+            $periodeDate = $request->periode . '-01';
 
             // Check if performa exists for this period
             $performa = Performa::where('koperasi_id', $koperasiId)
-                ->whereYear('periode', $request->periode)
+                ->whereYear('periode', substr($request->periode, 0, 4))
+                ->whereMonth('periode', substr($request->periode, 5, 2))
                 ->first();
 
             if ($performa) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -9,11 +10,11 @@ class Performa extends Model
     use HasFactory;
     protected $table = 'performa';
     protected $primaryKey = 'id';
-    protected $fillable = ['koperasi_id','cdi','bdi','odi','kuadrant','periode'];
+    protected $fillable = ['koperasi_id', 'cdi', 'bdi', 'odi', 'kuadrant', 'periode'];
     protected $casts = [
-        'cdi' => 'integer',
-        'bdi' => 'integer',
-        'odi' => 'integer',
+        'cdi' => 'decimal:2',
+        'bdi' => 'decimal:2',
+        'odi' => 'decimal:2',
         'kuadrant' => 'integer',
         'periode' => 'date'
     ];
