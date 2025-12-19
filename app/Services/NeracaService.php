@@ -22,7 +22,7 @@ class NeracaService
                 $join->on('lp.koperasi_id', '=', 'm.koperasi_id')
                     ->on('lp.periode', '=', 'm.max_periode');
             })
-    ->select('lp.id', 'lp.koperasi_id', 'lp.periode');
+            ->select('lp.id', 'lp.koperasi_id', 'lp.periode');
 
         $result = DB::table('performa_bisnis as pb')
             ->joinSub($latest, 'lp', function ($join) {

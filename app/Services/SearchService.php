@@ -14,6 +14,7 @@ class SearchService {
                       'koperasi.id',
                       'koperasi.nama',
                       'koperasi.tahun',
+                      'kec.nama as kecamatan',
                       'po.status',
                       'p.cdi',
                       'p.bdi',
