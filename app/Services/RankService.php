@@ -13,11 +13,22 @@ class RankService {
       protected LatestPerformaService $performa
   ) {}
 
-  public function rankCooperatives() {
+  public function rankUpCooperatives($limit = 10)
+  {
+    return $this->getCooperativeRankings('desc', $limit);
+  }
+
+  public function rankDownCooperatives($limit = 10)
+  {
+    return $this->getCooperativeRankings('asc', $limit);
+  }
+
   
+  private function getCooperativeRankings($direction = 'desc', $limit = 10)
+  {
     $latestPerforma = $this->performa->latestPerKoperasi();
 
-    $rank = Koperasi::query()
+    $query = Koperasi::query()
       ->select('koperasi.id', 'koperasi.nama', 'p.cdi', 'p.bdi', 'p.odi')
       ->leftJoinSub($latestPerforma, 'lp', function ($join) {
           $join->on('lp.koperasi_id', '=', 'koperasi.id');
@@ -25,11 +36,17 @@ class RankService {
       ->leftJoin('performa as p', function ($join) {
           $join->on('p.koperasi_id', '=', 'koperasi.id')
               ->on('p.periode', '=', 'lp.max_periode');
-      })
-      ->orderByDesc('p.cdi')
-      ->limit(10)
-      ->get();
-      
+      });
+
+    
+    if ($direction === 'desc') {
+        $query->orderByDesc('p.cdi');
+    } else {
+        $query->orderBy('p.cdi');
+    }
+
+    $rank = $query->limit($limit)->get();
+
     return $rank->toArray();
-}
+  }
 }

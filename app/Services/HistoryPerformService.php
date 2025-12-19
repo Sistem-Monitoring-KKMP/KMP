@@ -42,4 +42,26 @@ class HistoryPerformService
             ])
             ->toArray();
     }
+
+    public function getAllAnggota(): array
+    {
+        $rows = DB::table('performa_organisasi as po')
+            ->join('performa as p', 'p.id', '=', 'po.performa_id')
+            ->selectRaw('
+                DATE(p.periode) as periode,
+                SUM(po.total_anggota) as total_anggota,
+                SUM(po.anggota_aktif) as anggota_aktif,
+                SUM(po.total_anggota - po.anggota_aktif) as anggota_pasif
+            ')
+            ->groupBy(DB::raw('DATE(p.periode)'))
+            ->orderBy(DB::raw('DATE(p.periode)'), 'asc')
+            ->get();
+
+        return $rows->map(fn ($row) => [
+            'periode' => $row->periode,
+            'total_anggota' => (int) $row->total_anggota,
+            'anggota_aktif' => (int) $row->anggota_aktif,
+            'anggota_pasif' => (int) $row->anggota_pasif,
+        ])->toArray();
+    }
 }
