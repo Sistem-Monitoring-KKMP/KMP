@@ -134,60 +134,60 @@ export default function NeracaChart({ data, className }: Props) {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
                 <div>
-                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Detail Aktiva</div>
+                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1 text-sm">Detail Aktiva</div>
                     <div className="space-y-1">
                         {aktivaChartData.map((item, index) => (
                             <div
                                 key={item.key}
-                                className="flex justify-start items-center gap-4 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
+                                className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
                             >
-                                <div className="flex items-start gap-2 w-40 shrink-0">
+                                <div className="flex items-center gap-2 min-w-0">
                                     <div
-                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
+                                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                                         style={{ backgroundColor: aktivaColors[index] }}
                                     />
-                                    <span className="text-xs text-gray-600 dark:text-gray-400 flex-1 min-w-0 break-words leading-tight">
+                                    <span className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 leading-tight truncate">
                                         {item.key}
                                     </span>
                                 </div>
-                                <span className="font-medium text-gray-900 dark:text-gray-100">
+                                <span className="font-medium text-gray-900 dark:text-gray-100 pl-4.5 sm:pl-0 text-[10px] sm:text-xs whitespace-nowrap">
                                     {formatRupiah(item.data)}
                                 </span>
                             </div>
                         ))}
-                        <div className="flex justify-start items-center gap-4 font-bold pt-2 border-t mt-2">
-                            <span className="w-40 shrink-0 pl-5">Total</span>
-                            <span>{formatRupiah(data.aktiva.total_aktiva)}</span>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2 font-bold pt-2 border-t mt-2">
+                            <span className="pl-4.5 text-[10px] sm:text-xs">Total</span>
+                            <span className="pl-4.5 sm:pl-0 text-[10px] sm:text-xs whitespace-nowrap">{formatRupiah(data.aktiva.total_aktiva)}</span>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1">Detail Passiva</div>
+                    <div className="font-bold text-gray-900 dark:text-gray-100 mb-2 border-b pb-1 text-sm">Detail Passiva</div>
                     <div className="space-y-1">
                         {passivaChartData.map((item, index) => (
                             <div
                                 key={item.key}
-                                className="flex justify-start items-center gap-4 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
+                                className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2 p-1 rounded hover:bg-gray-50 dark:hover:bg-sidebar-accent/10 transition-colors"
                             >
-                                <div className="flex items-start gap-2 w-40 shrink-0">
+                                <div className="flex items-center gap-2 min-w-0">
                                     <div
-                                        className="w-3 h-3 rounded-full flex-shrink-0 mt-1"
+                                        className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                                         style={{ backgroundColor: passivaColors[index] }}
                                     />
-                                    <span className="text-xs text-gray-600 dark:text-gray-400 flex-1 min-w-0 break-words leading-tight">
+                                    <span className="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 leading-tight truncate">
                                         {item.key}
                                     </span>
                                 </div>
-                                <span className="font-medium text-gray-900 dark:text-gray-100">
+                                <span className="font-medium text-gray-900 dark:text-gray-100 pl-4.5 sm:pl-0 text-[10px] sm:text-xs whitespace-nowrap">
                                     {formatRupiah(item.data)}
                                 </span>
                             </div>
                         ))}
-                        <div className="flex justify-start items-center gap-4 font-bold pt-2 border-t mt-2">
-                            <span className="w-40 shrink-0 pl-5">Total</span>
-                            <span>{formatRupiah(data.passiva.total_passiva)}</span>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2 font-bold pt-2 border-t mt-2">
+                            <span className="pl-4.5 text-[10px] sm:text-xs">Total</span>
+                            <span className="pl-4.5 sm:pl-0 text-[10px] sm:text-xs whitespace-nowrap">{formatRupiah(data.passiva.total_passiva)}</span>
                         </div>
                     </div>
                 </div>

@@ -90,7 +90,7 @@ export default function BusinessPage({ ringkasan_finansial, neraca, bdi_trend, p
                 <FinancialSummaryCards data={ringkasan_finansial} />
 
                 {/* Charts Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     {/* BDI Trend */}
                     <BdiTrendChart data={bdi_trend} />
 
