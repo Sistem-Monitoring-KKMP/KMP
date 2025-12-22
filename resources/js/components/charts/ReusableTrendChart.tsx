@@ -8,15 +8,10 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { CHART_COLORS } from '@/lib/chart-colors';
-
-interface SeriesConfig {
-    key: string;
-    label: string;
-    color?: string;
-}
+import type { SeriesConfig } from '@/types/charts';
 
 interface Props {
-    data: any[];
+    data: object[];
     dateKey: string;
     series: SeriesConfig[];
     title: string;
@@ -25,37 +20,68 @@ interface Props {
 }
 
 export default function ReusableTrendChart({ data, dateKey, series, title, className, height = 300 }: Props) {
-    // Sort years descending
+    const getValue = (obj: object, key: string) => {
+        return (obj as Record<string, unknown>)[key];
+    };
+
     const years = useMemo(() => {
         if (!data || data.length === 0) return [];
-        const uniqueYears = Array.from(new Set(data.map(d => new Date(d[dateKey]).getFullYear())));
+        const uniqueYears = Array.from(new Set(data.map(d => {
+            const val = getValue(d, dateKey);
+            const date = new Date(val as string | number | Date);
+            return isNaN(date.getTime()) ? null : date.getFullYear();
+        }).filter((y): y is number => y !== null)));
         return uniqueYears.sort((a, b) => b - a).map(y => ({ tahun: y.toString() }));
     }, [data, dateKey]);
 
-    const [selectedYear, setSelectedYear] = useState<string>(years[0]?.tahun || new Date().getFullYear().toString());
+    const [userSelectedYear, setUserSelectedYear] = useState<string | null>(null);
+
+    const selectedYear = useMemo(() => {
+        if (userSelectedYear && years.some(y => y.tahun === userSelectedYear)) {
+            return userSelectedYear;
+        }
+        return years[0]?.tahun || new Date().getFullYear().toString();
+    }, [userSelectedYear, years]);
 
     const chartData = useMemo(() => {
         if (!data) return [];
         
         const filtered = data
-            .filter(d => new Date(d[dateKey]).getFullYear().toString() === selectedYear)
-            .sort((a, b) => new Date(a[dateKey]).getTime() - new Date(b[dateKey]).getTime());
+            .filter(d => {
+                const val = getValue(d, dateKey);
+                const date = new Date(val as string | number | Date);
+                return !isNaN(date.getTime()) && date.getFullYear().toString() === selectedYear;
+            })
+            .sort((a, b) => {
+                const valA = getValue(a, dateKey);
+                const valB = getValue(b, dateKey);
+                return new Date(valA as string | number | Date).getTime() - new Date(valB as string | number | Date).getTime();
+            });
 
         // If single series, use simple format
         if (series.length === 1) {
-            return filtered.map(d => ({
-                key: new Date(d[dateKey]),
-                data: Number(d[series[0].key])
-            }));
+            return filtered.map(d => {
+                const dateVal = getValue(d, dateKey);
+                const dataVal = getValue(d, series[0].key);
+                return {
+                    key: new Date(dateVal as string | number | Date),
+                    data: Number(dataVal)
+                };
+            });
         }
 
         // If multiple series, use grouped format
         return series.map(s => ({
             key: s.label,
-            data: filtered.map(d => ({
-                key: new Date(d[dateKey]),
-                data: Number(d[s.key])
-            }))
+            id: s.label,
+            data: filtered.map(d => {
+                const dateVal = getValue(d, dateKey);
+                const dataVal = getValue(d, s.key);
+                return {
+                    key: new Date(dateVal as string | number | Date),
+                    data: Number(dataVal)
+                };
+            })
         }));
 
     }, [selectedYear, data, dateKey, series]);
@@ -70,7 +96,7 @@ export default function ReusableTrendChart({ data, dateKey, series, title, class
                     {title}
                 </h3>
                 <div className="w-32">
-                    <Select value={selectedYear} onValueChange={setSelectedYear}>
+                    <Select value={selectedYear} onValueChange={setUserSelectedYear}>
                         <SelectTrigger>
                             <SelectValue placeholder="Pilih Tahun" />
                         </SelectTrigger>
@@ -85,8 +111,9 @@ export default function ReusableTrendChart({ data, dateKey, series, title, class
                 </div>
             </div>
 
-            <div className="flex-1 w-full" style={{ minHeight: `${height}px` }}>
+            <div className="flex-1 w-full" style={{ height: `${height}px` }}>
                 <LineChart
+                    height={height}
                     data={chartData}
                     margins={[20, 20, 20, 10]}
                     series={
@@ -106,11 +133,6 @@ export default function ReusableTrendChart({ data, dateKey, series, title, class
                             type="time"
                             tickSeries={
                                 <LinearXAxisTickSeries
-                                    // For grouped data, we need to extract dates from the first series
-                                    tickValues={series.length > 1 
-                                        ? (chartData[0]?.data?.map((d: any) => d.key) || [])
-                                        : chartData.map((d: any) => d.key)
-                                    }
                                     label={
                                         <LinearXAxisTickLabel
                                             fontSize={12}

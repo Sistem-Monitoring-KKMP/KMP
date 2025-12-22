@@ -3,8 +3,8 @@ import MyMap from '@/components/common/map';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes/index';
 import { type BreadcrumbItem } from '@/types';
+import type { DashboardData, MapItem } from '@/types/dashboard';
 import { Head } from '@inertiajs/react';
-import { useMemo, useState } from 'react';
 import { BarChart } from 'reaviz';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -14,54 +14,28 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type Kpi = {
-    total_koperasi: number;
-    odi: number;
-    bdi: number;
-    cdi: number;
-};
-
-interface TrendItem {
-    tanggal: string;
-    cdi: number;
-    bdi: number;
-    odi: number;
-}
-
-interface TopCdiItem {
-    nama: string;
-    cdi: number;
-}
-
-interface DashboardData {
-    kpi: Kpi;
-    tren: TrendItem[];
-    top_cdi: TopCdiItem[];
-}
-
-interface MapItem {
-    id: number;
-    nama: string;
-    lat: number;
-    lng: number;
-    cdi: number;
-    bdi: number;
-    odi: number;
-    alamat: string;
-    status: string;
-}
-
 interface Props {
     dashboardData: DashboardData;
     mapData: MapItem[];
 }
 
+/**
+ * Dashboard Page
+ * 
+ * Displays key performance indicators (KPIs), top/bottom performing cooperatives,
+ * trend charts, and a geographical map of cooperatives.
+ */
 export default function Dashboard({ dashboardData, mapData }: Props) {
 
 
     const kpiData = dashboardData.kpi;
 
     const topCdiData = dashboardData.top_cdi.map((item) => ({
+        key: item.nama,
+        data: item.cdi,
+    }));
+
+    const lowCdiData = dashboardData.low_cdi.map((item) => ({
         key: item.nama,
         data: item.cdi,
     }));
@@ -128,11 +102,19 @@ export default function Dashboard({ dashboardData, mapData }: Props) {
                     </div>
                 </div>
 
-                <div className="my-8 rounded-lg bg-white p-4 shadow-md">
-                    <h2 className="mb-8 text-3xl font-semibold">
-                        Top 10 Koperasi
-                    </h2>
-                    <BarChart height={300} data={topCdiData} />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+                    <div className="rounded-lg bg-white p-4 shadow-md">
+                        <h2 className="mb-8 text-3xl font-semibold">
+                            Top 10 Koperasi
+                        </h2>
+                        <BarChart height={300} data={topCdiData} />
+                    </div>
+                    <div className="rounded-lg bg-white p-4 shadow-md">
+                        <h2 className="mb-8 text-3xl font-semibold">
+                            Bottom 10 Koperasi
+                        </h2>
+                        <BarChart height={300} data={lowCdiData} />
+                    </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">

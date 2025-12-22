@@ -4,6 +4,12 @@ interface Props {
     cooperative: Cooperative;
 }
 
+/**
+ * Header Section
+ * 
+ * Displays the cooperative's name, location, and key status indicators
+ * (Year, Status, Legal Entity Number, GM availability).
+ */
 export default function HeaderSection({ cooperative }: Props) {
     return (
         <div className="bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm">

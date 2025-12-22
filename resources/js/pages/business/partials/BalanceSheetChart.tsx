@@ -2,29 +2,7 @@ import { BarChart, BarSeries, Bar, LinearYAxis, LinearYAxisTickSeries, LinearYAx
 import { formatRupiah } from '@/lib/utils';
 import { useState, useMemo, type ComponentProps } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
-
-interface Neraca {
-    aktiva: {
-        aktiva_lancar: {
-            kas: number;
-            piutang: number;
-            total: number;
-        };
-        aktiva_tetap: {
-            tanah: number;
-            bangunan: number;
-            kendaraan: number;
-            total: number;
-        };
-        total_aktiva: number;
-    };
-    passiva: {
-        hutang_lancar: number;
-        hutang_jangka_panjang: number;
-        modal: number;
-        total_passiva: number;
-    };
-}
+import type { Neraca } from '@/types/cooperative';
 
 interface Props {
     data: Neraca;
@@ -32,6 +10,11 @@ interface Props {
 
 type CustomBarProps = ComponentProps<typeof Bar>;
 
+/**
+ * Custom Bar Component
+ * 
+ * Enhances the standard Bar component with hover effects and styling.
+ */
 const CustomBar = (props: CustomBarProps) => {
     const [hovered, setHovered] = useState(false);
     const { ...rest } = props;
@@ -59,6 +42,12 @@ const CustomBar = (props: CustomBarProps) => {
     );
 };
 
+/**
+ * Balance Sheet Chart
+ * 
+ * Visualizes the cooperative's balance sheet (Neraca) using a grouped bar chart.
+ * Compares Assets (Aktiva) vs Liabilities & Equity (Passiva).
+ */
 export default function BalanceSheetChart({ data }: Props) {
     const chartData = useMemo(() => {
         if (!data) return [];

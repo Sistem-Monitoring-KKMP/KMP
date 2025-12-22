@@ -3,7 +3,6 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import type { Cooperative } from '@/types/cooperative';
 
-// Partials
 import HeaderSection from './partials/HeaderSection';
 import PerformanceCards from './partials/PerformanceCards';
 import HumanCapitalSection from './partials/HumanCapitalSection';
@@ -11,11 +10,21 @@ import UnitUsahaSection from './partials/UnitUsahaSection';
 import CooperativePrinciplesChart from '@/components/charts/CooperativePrinciplesChart';
 import NeracaChart from '@/components/charts/NeracaChart';
 import FinancialGrowthChart from '@/components/charts/FinancialGrowthChart';
+import MemberGrowthChart from '@/components/charts/MemberGrowthChart';
 
 interface Props {
     data: Cooperative[];
 }
 
+/**
+ * Cooperative Detail Page
+ * 
+ * Displays comprehensive information about a specific cooperative, including:
+ * - General information and performance cards
+ * - Human capital and unit usaha details
+ * - Member growth trends and cooperative principles scores
+ * - Financial performance (Balance Sheet & Growth)
+ */
 export default function CooperativeShow({ data }: Props) {
     const cooperative = data[0];
 
@@ -40,10 +49,21 @@ export default function CooperativeShow({ data }: Props) {
         { key: 'Kepedulian Komunitas', data: cooperative.prinsip_koperasi.kepedulian },
     ] : [];
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const neracaData = cooperative?.performa.bisnis.neraca as any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const pertumbuhanData = cooperative?.performa.bisnis.pertumbuhan?.akumulasi as any[] || [];
+    const latestPerforma = cooperative?.performa?.[0];
+    const neracaData = latestPerforma?.bisnis?.neraca;
+    
+    const pertumbuhanData = cooperative?.performa?.map(p => ({
+        ...(p.bisnis?.pertumbuhan || {}),
+        tanggal: p.periode 
+    })).filter(item => item.omset !== undefined) 
+    .sort((a, b) => new Date(a.tanggal).getTime() - new Date(b.tanggal).getTime()) || [];
+
+    const memberGrowthData = cooperative?.performa?.map(p => ({
+        periode: p.periode,
+        total: p.organisasi?.anggota?.total || 0,
+        aktif: p.organisasi?.anggota?.aktif || 0,
+        tidak_aktif: p.organisasi?.anggota?.tidak_aktif || 0
+    })).sort((a, b) => new Date(a.periode).getTime() - new Date(b.periode).getTime()) || [];
 
     if (!cooperative) {
         return (
@@ -63,30 +83,28 @@ export default function CooperativeShow({ data }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={cooperative.nama} />
             <div className="p-6 space-y-6">
-                {/* Header Section */}
                 <HeaderSection cooperative={cooperative} />
 
-                {/* Performance Cards */}
                 <PerformanceCards cooperative={cooperative} />
 
-                {/* Human Capital Section */}
                 <HumanCapitalSection cooperative={cooperative} />
 
-                {/* Prinsip Koperasi Section */}
-                <CooperativePrinciplesChart
-                    data={prinsipList}
-                    title="Skor Prinsip Koperasi"
-                />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {memberGrowthData.length > 0 && (
+                        <MemberGrowthChart data={memberGrowthData} />
+                    )}
 
-                {/* Unit Usaha Section */}
+                    <CooperativePrinciplesChart
+                        data={prinsipList}
+                        title="Skor Prinsip Koperasi"
+                    />
+                </div>
+
                 <UnitUsahaSection cooperative={cooperative} />
 
-                {/* Financial Stats & Charts */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Neraca Chart */}
+                <div className="space-y-6">
                     <NeracaChart data={neracaData} />
 
-                    {/* Pertumbuhan Chart */}
                     <FinancialGrowthChart data={pertumbuhanData} />
                 </div>
             </div>

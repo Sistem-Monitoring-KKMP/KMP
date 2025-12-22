@@ -1,21 +1,20 @@
 import { TrendingUp, Wallet, PiggyBank, Building2 } from 'lucide-react';
 import { formatRupiah } from '@/lib/utils';
-
-interface FinancialSummary {
-    pinjaman_bank: number;
-    investasi: number;
-    modal_kerja: number;
-    simpanan_anggota: number;
-    hibah: number;
-    omset: number;
-    biaya_operasional: number;
-    shu: number;
-}
+import type { FinancialSummary } from '@/types/cooperative';
 
 interface Props {
     data: FinancialSummary;
 }
 
+/**
+ * Financial Summary Cards
+ * 
+ * Displays key financial metrics in a card layout:
+ * - Average Revenue (Omset)
+ * - Average Net Income (SHU)
+ * - Average Savings (Simpanan)
+ * - Average Assets (Aset)
+ */
 export default function FinancialSummaryCards({ data }: Props) {
     if (!data) return null;
 

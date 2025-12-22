@@ -1,15 +1,17 @@
 import { RadarChart, RadialAreaSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
-
-interface Principle {
-    prinsip: string;
-    skor: number;
-}
+import type { Principle } from '@/types/organization';
 
 interface Props {
     data: Principle[];
 }
 
+/**
+ * Cooperative Principles Radar Chart
+ * 
+ * Visualizes the adherence to cooperative principles using a radar chart.
+ * Compares the actual score against the maximum possible score (5).
+ */
 export default function CooperativePrinciplesChart({ data }: Props) {
     const chartData = [
         {

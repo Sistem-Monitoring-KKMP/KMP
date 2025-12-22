@@ -59,8 +59,7 @@ export interface Neraca {
     passiva: Passiva;
 }
 
-export interface KeuanganItem {
-    tanggal: string;
+export interface FinancialSummary {
     omset: number;
     modal_kerja: number;
     investasi: number;
@@ -71,11 +70,18 @@ export interface KeuanganItem {
     shu: number;
 }
 
+export interface KeuanganItem extends FinancialSummary {
+    tanggal: string;
+}
+
 export interface Bisnis {
     neraca: Neraca;
-    pertumbuhan: {
-        akumulasi: KeuanganItem[];
-    };
+    pertumbuhan: KeuanganItem;
+}
+
+export interface BdiTrend {
+    periode: string;
+    avg_bdi: number;
 }
 
 export interface Performa {
@@ -96,6 +102,13 @@ export interface Lokasi {
     longitude: number;
 }
 
+export interface MemberTrend {
+    periode: string;
+    total: number;
+    aktif: number;
+    tidak_aktif: number;
+}
+
 export interface Cooperative {
     id: number;
     nama: string;
@@ -105,7 +118,7 @@ export interface Cooperative {
     status: string;
     has_gm: boolean;
     lokasi: Lokasi;
-    performa: Performa;
+    performa: Performa[];
     unit_usaha: UnitUsaha[];
     prinsip_koperasi: PrinsipKoperasi;
 }

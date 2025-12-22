@@ -3,7 +3,6 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import type { CooperativeList } from '@/types/cooperative';
 
-// Partials
 import CooperativeScatterPlot from './partials/CooperativeScatterPlot';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -13,12 +12,17 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+/**
+ * Distribution Page
+ * 
+ * Visualizes the distribution of cooperatives using a scatter plot.
+ * Helps identify clusters of cooperatives based on their BDI and ODI scores.
+ */
 export default function DistributionPage({ cooperativesData }: { cooperativesData: CooperativeList[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Sebaran Koperasi" />
             <div className="p-6 space-y-6">
-                {/* Header */}
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Peta Sebaran Koperasi</h1>
                     <p className="text-gray-500 dark:text-gray-400 mt-1">
@@ -26,7 +30,6 @@ export default function DistributionPage({ cooperativesData }: { cooperativesDat
                     </p>
                 </div>
 
-                {/* Scatter Plot */}
                 <CooperativeScatterPlot data={cooperativesData} />
             </div>
         </AppLayout>

@@ -24,6 +24,12 @@ interface ScatterPointData {
     y?: number;
 }
 
+/**
+ * Cooperative Scatter Plot
+ * 
+ * Visualizes cooperatives on a 2D plane based on their ODI (X-axis) and BDI (Y-axis).
+ * Allows for identifying high-performing (high BDI/ODI) and low-performing clusters.
+ */
 export default function CooperativeScatterPlot({ data }: Props) {
     const chartData = data.map(item => ({
         key: item.odi, // X-Axis: ODI

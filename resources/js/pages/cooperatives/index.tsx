@@ -16,6 +16,12 @@ interface Props {
     cooperatives: CooperativeList[];
 }
 
+/**
+ * Cooperative List Page
+ * 
+ * Displays a searchable and filterable list of all cooperatives.
+ * Includes status indicators and key performance metrics (CDI, BDI, ODI).
+ */
 export default function KoperasiList({ cooperatives }: Props) {
     const [search, setSearch] = useState('');
 
