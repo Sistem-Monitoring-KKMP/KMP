@@ -72,7 +72,7 @@ private function d($value): string
         ->select('id', 'bdi', 'odi', 'cdi', 'kuadrant', 'periode')
         ->get();
 
-    $neraca      = $this->neracaService->getNeraca($koperasiId);
+    $allNeraca   = $this->neracaService->getNeraca($koperasiId);
     $unitUsaha   = $this->unitUsahaService->getUnitUsaha($koperasiId);
     $prinsip     = $this->prinsipService->GetPrinsipKoperasi($koperasiId);
 
@@ -105,7 +105,7 @@ private function d($value): string
             'longitude' => is_null($koperasi->longitude) ? 0 : (float) $koperasi->longitude,
         ],
 
-        'performa' => $allPerforma->map(function ($item) use ($koperasiId, $neraca, $allKeuangan) {
+        'performa' => $allPerforma->map(function ($item) use ($koperasiId, $allNeraca, $allKeuangan) {
             $organisasi = DB::table('performa_organisasi as po')
                 ->where('po.performa_id', $item->id)
                 ->first();
@@ -113,6 +113,11 @@ private function d($value): string
             // Find the financial data that corresponds to this specific performance period
             $periodSpecificKeuangan = collect($allKeuangan)->first(function ($keu) use ($item) {
                 return $keu['tanggal'] == $item->periode;
+            });
+
+            // Find the neraca data that corresponds to this specific performance period
+            $periodSpecificNeraca = collect($allNeraca)->first(function ($n) use ($item) {
+                return $n['periode'] == $item->periode;
             });
 
             return [
@@ -139,7 +144,7 @@ private function d($value): string
                 ],
 
                 'bisnis' => [
-                    'neraca' => $neraca ?: [],
+                    'neraca' => $periodSpecificNeraca ?: [],
                     'pertumbuhan' => $periodSpecificKeuangan ?: []
                 ]
             ];

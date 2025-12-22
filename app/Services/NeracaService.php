@@ -78,65 +78,71 @@ class NeracaService
 
     public function getNeraca(int $koperasiId): array
 {
-    // Ambil performa TERBARU untuk koperasi tertentu
-    $latest = $this->latestPerformaService->latestByKoperasi($koperasiId);
+    // Ambil semua performa untuk koperasi tertentu, diurutkan secara DESC berdasarkan periode
+    $allPerforma = DB::table('performa')
+        ->where('koperasi_id', $koperasiId)
+        ->orderByDesc('periode')
+        ->select('id', 'koperasi_id', 'periode')
+        ->get();
 
-    $result = DB::table('performa_bisnis as pb')
-        ->joinSub($latest, 'lp', function ($join) {
-            $join->on('pb.performa_id', '=', 'lp.id');
-                 
-        })
+    $results = [];
 
-        ->leftJoin('neraca_aktiva as na', 'na.performa_bisnis_id', '=', 'pb.id')
-        ->leftJoin('neraca_passiva as np', 'np.performa_bisnis_id', '=', 'pb.id')
+    foreach ($allPerforma as $performa) {
+        $result = DB::table('performa_bisnis as pb')
+            ->join('performa as p', 'pb.performa_id', '=', 'p.id')
+            ->leftJoin('neraca_aktiva as na', 'na.performa_bisnis_id', '=', 'pb.id')
+            ->leftJoin('neraca_passiva as np', 'np.performa_bisnis_id', '=', 'pb.id')
+            ->where('p.id', $performa->id)
+            ->selectRaw('
+                na.kas,
+                na.piutang,
+                na.aktiva_lancar,
 
-        ->selectRaw('
-            na.kas,
-            na.piutang,
-            na.aktiva_lancar,
+                na.tanah,
+                na.bangunan,
+                na.kendaraan,
+                na.aktiva_tetap,
+                na.total_aktiva,
 
-            na.tanah,
-            na.bangunan,
-            na.kendaraan,
-            na.aktiva_tetap,
-            na.total_aktiva,
+                np.hutang_lancar,
+                np.hutang_jangka_panjang,
+                np.modal,
+                np.total_passiva,
 
-            np.hutang_lancar,
-            np.hutang_jangka_panjang,
-            np.modal,
-            np.total_passiva
-        ')
-        ->first();
+                p.periode
+            ')
+            ->first();
 
-    if (! $result) {
-        return [
-            'aktiva' => [],
-            'passiva' => []
-        ];
+        if ($result) {
+            $neracaData = [
+                'periode' => $result->periode,
+                'aktiva' => [
+                    'aktiva_lancar' => [
+                        'kas'     => (int) ($result->kas ?? 0),
+                        'piutang' => (int) ($result->piutang ?? 0),
+                        'total'   => (int) ($result->aktiva_lancar ?? 0),
+                    ],
+                    'aktiva_tetap' => [
+                        'tanah'     => (int) ($result->tanah ?? 0),
+                        'bangunan'  => (int) ($result->bangunan ?? 0),
+                        'kendaraan' => (int) ($result->kendaraan ?? 0),
+                        'total'     => (int) ($result->aktiva_tetap ?? 0),
+                    ],
+                    'total_aktiva' => (int) ($result->total_aktiva ?? 0),
+                ],
+                'passiva' => [
+                    'hutang_lancar'          => (int) ($result->hutang_lancar ?? 0),
+                    'hutang_jangka_panjang' => (int) ($result->hutang_jangka_panjang ?? 0),
+                    'modal'                 => (int) ($result->modal ?? 0),
+                    'total_passiva'         => (int) ($result->total_passiva ?? 0),
+                ],
+            ];
+
+            $results[] = $neracaData;
+        }
     }
 
-    return [
-        'aktiva' => [
-            'aktiva_lancar' => [
-                'kas'     => (int) $result->kas,
-                'piutang' => (int) $result->piutang,
-                'total'   => (int) $result->aktiva_lancar,
-            ],
-            'aktiva_tetap' => [
-                'tanah'     => (int) $result->tanah,
-                'bangunan'  => (int) $result->bangunan,
-                'kendaraan' => (int) $result->kendaraan,
-                'total'     => (int) $result->aktiva_tetap,
-            ],
-            'total_aktiva' => (int) $result->total_aktiva,
-        ],
-        'passiva' => [
-            'hutang_lancar'          => (int) $result->hutang_lancar,
-            'hutang_jangka_panjang' => (int) $result->hutang_jangka_panjang,
-            'modal'                 => (int) $result->modal,
-            'total_passiva'         => (int) $result->total_passiva,
-        ],
-    ];
+    return $results;
 }
 
 }

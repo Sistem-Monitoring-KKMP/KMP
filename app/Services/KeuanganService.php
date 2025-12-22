@@ -29,7 +29,7 @@ class KeuanganService
 
         return $rows->map(function ($row) {
             return [
-                'tanggal'             => $row->periode, // bisa date atau ganti YEAR()
+                'tanggal'             => $row->periode, 
                 'omset'             => (int) $row->omset,
                 'modal_kerja'       => (int) $row->modal_kerja,
                 'investasi'         => (int) $row->investasi,
@@ -48,7 +48,7 @@ class KeuanganService
             ->join('performa_bisnis as pb', 'pb.id', '=', 'k.performa_bisnis_id')
             ->join('performa as p', 'p.id', '=', 'pb.performa_id')
 
-            // 🔹 Filter hanya 1 koperasi
+            //  Filter hanya 1 koperasi
             ->where('p.koperasi_id', $koperasiId)
 
             ->selectRaw('
@@ -69,7 +69,7 @@ class KeuanganService
 
         return $rows->map(function ($row) {
             return [
-                'tanggal'             => (string) $row->periode, // boleh tetap "tahun"
+                'tanggal'             => (string) $row->periode, 
                 'omset'             => (int) $row->omset,
                 'modal_kerja'       => (int) $row->modal_kerja,
                 'investasi'         => (int) $row->investasi,

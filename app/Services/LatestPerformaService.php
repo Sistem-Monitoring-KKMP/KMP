@@ -12,14 +12,14 @@ class LatestPerformaService
         ->groupBy('koperasi_id');
   }
 
-  public function latestByKoperasi(int $koperasiId)
-{
-    return DB::table('performa')
-        ->where('koperasi_id', $koperasiId)
-        ->orderByDesc('periode')
-        ->select('id', 'koperasi_id', 'periode')
-        ->limit(1);
-}
+//   public function latestByKoperasi(int $koperasiId)
+// {
+//     return DB::table('performa')
+//         ->where('koperasi_id', $koperasiId)
+//         ->orderByDesc('periode')
+//         ->select('id', 'koperasi_id', 'periode')
+//         ->limit(1);
+// }
 
 
 }
