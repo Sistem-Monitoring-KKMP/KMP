@@ -65,6 +65,8 @@ export default function CooperativeShow({ data }: Props) {
         tidak_aktif: p.organisasi?.anggota?.tidak_aktif || 0
     })).sort((a, b) => new Date(a.periode).getTime() - new Date(b.periode).getTime()) || [];
 
+
+    
     if (!cooperative) {
         return (
             <AppLayout breadcrumbs={breadcrumbs}>

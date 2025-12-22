@@ -1,4 +1,4 @@
-import { RadarChart, RadialAreaSeries } from 'reaviz';
+import { RadarChart, RadialAreaSeries, RadialPointSeries, RadialScatterSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
 import type { Principle } from '@/types/organization';
 
@@ -16,11 +16,19 @@ export default function CooperativePrinciplesChart({ data }: Props) {
     const chartData = [
         {
             key: 'Maksimal',
-            data: data.map((p) => ({ key: p.prinsip, data: 5 })),
+            data: data.map((p, i) => ({ 
+                key: p.prinsip, 
+                data: 5, 
+                id: `max-${i}` 
+            })),
         },
         {
             key: 'Skor',
-            data: data.map((p) => ({ key: p.prinsip, data: p.skor })),
+            data: data.map((p, i) => ({ 
+                key: p.prinsip, 
+                data: p.skor, 
+                id: `score-${i}` 
+            })),
         },
     ];
 
@@ -35,6 +43,13 @@ export default function CooperativePrinciplesChart({ data }: Props) {
                     series={
                         <RadialAreaSeries
                             colorScheme={[CHART_COLORS.TRANSPARENT, CHART_COLORS.COLOR_1]}
+                            symbols={
+                                <RadialPointSeries
+                                    point={
+                                        <RadialScatterSeries />
+                                    }
+                                />
+                            }
                         />
                     }
                 />
