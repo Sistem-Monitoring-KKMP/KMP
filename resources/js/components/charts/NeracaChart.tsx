@@ -1,31 +1,9 @@
 import { PieChart, PieArcSeries, PieArc } from 'reaviz';
 import { formatRupiah } from '@/lib/utils';
 import { useMemo } from 'react';
-import { CHART_COLORS } from '@/lib/chart-colors';
 
-export interface NeracaData {
-    aktiva: {
-        aktiva_lancar: {
-            kas: number;
-            piutang: number;
-            persediaan?: number;
-            total?: number;
-        };
-        aktiva_tetap: {
-            tanah: number;
-            bangunan: number;
-            kendaraan: number;
-            total?: number;
-        };
-        total_aktiva: number;
-    };
-    passiva: {
-        hutang_lancar: number;
-        hutang_jangka_panjang: number;
-        modal: number;
-        total_passiva: number;
-    };
-}
+import { CHART_COLORS } from '@/lib/chart-colors';
+import type { NeracaData } from '@/types/neraca';
 
 interface Props {
     data: NeracaData;

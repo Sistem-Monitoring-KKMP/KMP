@@ -32,32 +32,7 @@ export interface Organisasi {
     anggota: Anggota;
 }
 
-export interface Aktiva {
-    aktiva_lancar: {
-        kas: number;
-        piutang: number;
-        total: number;
-    };
-    aktiva_tetap: {
-        tanah: number;
-        bangunan: number;
-        kendaraan: number;
-        total: number;
-    };
-    total_aktiva: number;
-}
-
-export interface Passiva {
-    hutang_lancar: number;
-    hutang_jangka_panjang: number;
-    modal: number;
-    total_passiva: number;
-}
-
-export interface Neraca {
-    aktiva: Aktiva;
-    passiva: Passiva;
-}
+import type { Neraca } from './neraca';
 
 export interface FinancialSummary {
     omset: number;
@@ -123,15 +98,4 @@ export interface Cooperative {
     prinsip_koperasi: PrinsipKoperasi;
 }
 
-export interface CooperativeList {
-    id: number;
-    nama: string;
-    tahun: number;
-    status: string;
-    cdi: number;
-    bdi: number;
-    odi: number;
-    kuadrant: number;
-    alamat: string;
-    kecamatan: string;
-}
+

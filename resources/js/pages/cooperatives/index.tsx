@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link } from '@inertiajs/react';
 import { type BreadcrumbItem } from '@/types';
-import type { CooperativeList } from '@/types/cooperative';
+import type { CooperativeList } from '@/types/cooperative-list';
 import { Input } from '@/components/ui/input';
 
 const breadcrumbs: BreadcrumbItem[] = [

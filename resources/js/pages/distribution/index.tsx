@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import type { CooperativeList } from '@/types/cooperative';
+import type { CooperativeList } from '@/types/cooperative-list';
 
 import CooperativeScatterPlot from './partials/CooperativeScatterPlot';
 
