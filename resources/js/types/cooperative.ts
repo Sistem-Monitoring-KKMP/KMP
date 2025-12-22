@@ -133,4 +133,5 @@ export interface CooperativeList {
     odi: number;
     kuadrant: number;
     alamat: string;
+    kecamatan: string;
 }

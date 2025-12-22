@@ -77,6 +77,7 @@ export default function KoperasiList({ cooperatives }: Props) {
                                 <tr>
                                     <th className="px-6 py-3 font-medium">Nama Koperasi</th>
                                     <th className="px-6 py-3 font-medium">Alamat</th>
+                                    <th className="px-6 py-3 font-medium">Kecamatan</th>
                                     <th className="px-6 py-3 font-medium">Tahun</th>
                                     <th className="px-6 py-3 font-medium">Status</th>
                                     <th className="px-6 py-3 font-medium text-center">CDI</th>
@@ -94,6 +95,9 @@ export default function KoperasiList({ cooperatives }: Props) {
                                             </td>
                                             <td className="px-6 py-4 text-gray-500 dark:text-gray-400 max-w-xs truncate">
                                                 {koperasi.alamat}
+                                            </td>
+                                            <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
+                                                {koperasi.kecamatan}
                                             </td>
                                             <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
                                                 {koperasi.tahun}
