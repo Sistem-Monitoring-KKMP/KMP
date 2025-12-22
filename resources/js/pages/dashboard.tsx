@@ -107,13 +107,23 @@ export default function Dashboard({ dashboardData, mapData }: Props) {
                         <h2 className="mb-8 text-3xl font-semibold">
                             Top 10 Koperasi
                         </h2>
-                        <BarChart height={300} data={topCdiData} />
+                        <div className="relative mt-10">
+                            <div className="absolute -top-8 left-0 text-xs font-bold text-gray-500 dark:text-gray-400">
+                                CDI
+                            </div>
+                            <BarChart height={300} data={topCdiData} />
+                        </div>
                     </div>
                     <div className="rounded-lg bg-white p-4 shadow-md">
                         <h2 className="mb-8 text-3xl font-semibold">
                             Bottom 10 Koperasi
                         </h2>
-                        <BarChart height={300} data={lowCdiData} />
+                        <div className="relative mt-10">
+                            <div className="absolute -top-8 left-0 text-xs font-bold text-gray-500 dark:text-gray-400">
+                                CDI
+                            </div>
+                            <BarChart height={300} data={lowCdiData} />
+                        </div>
                     </div>
                 </div>
 
