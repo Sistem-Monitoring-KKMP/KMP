@@ -20,21 +20,6 @@ interface Props {
 
 export default function CooperativeShow({ data }: Props) {
     const cooperative = data[0];
-    // Early return if not found
-    if (!cooperative) {
-        return (
-            <AppLayout breadcrumbs={[]}>
-                <Head title="Koperasi Tidak Ditemukan" />
-                <div className="p-6 text-center">
-                    <h1 className="text-2xl font-bold text-red-600">Koperasi tidak ditemukan</h1>
-                    <Link href="/cooperatives" className="text-blue-600 hover:underline mt-4 block">
-                        Kembali ke Daftar
-                    </Link>
-                </div>
-            </AppLayout>
-        );
-    }
-
     // --- Data Preparation ---
     const rawNeracaData = useMemo(() =>
         (cooperative?.performa || [])
@@ -91,6 +76,21 @@ export default function CooperativeShow({ data }: Props) {
             tidak_aktif: p.organisasi?.anggota?.tidak_aktif || 0
         }))
         .sort((a, b) => new Date(a.periode).getTime() - new Date(b.periode).getTime());
+    if (!cooperative) {
+        return (
+            <AppLayout breadcrumbs={[]}>
+                <Head title="Koperasi Tidak Ditemukan" />
+                <div className="p-6 text-center">
+                    <h1 className="text-2xl font-bold text-red-600">Koperasi tidak ditemukan</h1>
+                    <Link href="/cooperatives" className="text-blue-600 hover:underline mt-4 block">
+                        Kembali ke Daftar
+                    </Link>
+                </div>
+            </AppLayout>
+        );
+    }
+
+
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
