@@ -1,21 +1,20 @@
 import { TrendingUp, Wallet, PiggyBank, Building2 } from 'lucide-react';
 import { formatRupiah } from '@/lib/utils';
-
-interface FinancialSummary {
-    pinjaman_bank: number;
-    investasi: number;
-    modal_kerja: number;
-    simpanan_anggota: number;
-    hibah: number;
-    omset: number;
-    biaya_operasional: number;
-    shu: number;
-}
+import type { FinancialSummary } from '@/types/cooperative';
 
 interface Props {
     data: FinancialSummary;
 }
 
+/**
+ * Financial Summary Cards
+ * 
+ * Displays key financial metrics in a card layout:
+ * - Average Revenue (Omset)
+ * - Average Net Income (SHU)
+ * - Average Savings (Simpanan)
+ * - Average Assets (Aset)
+ */
 export default function FinancialSummaryCards({ data }: Props) {
     if (!data) return null;
 
@@ -51,15 +50,15 @@ export default function FinancialSummaryCards({ data }: Props) {
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6">
             {cards.map((card, index) => (
-                <div key={index} className="bg-white dark:bg-sidebar-accent/10 p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm flex items-center gap-4">
-                    <div className={`p-3 rounded-lg ${card.bg}`}>
-                        <card.icon className={`w-6 h-6 ${card.color}`} />
+                <div key={index} className="bg-white dark:bg-sidebar-accent/10 p-4 lg:p-6 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border shadow-sm flex items-center gap-3 lg:gap-4">
+                    <div className={`p-2 lg:p-3 rounded-lg ${card.bg} shrink-0`}>
+                        <card.icon className={`w-5 h-5 lg:w-6 lg:h-6 ${card.color}`} />
                     </div>
-                    <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{card.title}</p>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    <div className="min-w-0 flex-1">
+                        <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 truncate" title={card.title}>{card.title}</p>
+                        <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 truncate" title={formatRupiah(card.value)}>
                             {formatRupiah(card.value)}
                         </h3>
                     </div>

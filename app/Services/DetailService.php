@@ -65,23 +65,28 @@ private function d($value): string
         ])
         ->firstOrFail();
 
-    $latestPerforma = $this->latestPerformaService->latestByKoperasi($koperasiId)->first();
+    // Get all performance records for the cooperative ordered by period descending
+    $allPerforma = DB::table('performa')
+        ->where('koperasi_id', $koperasiId)
+        ->orderBy('periode', 'desc')
+        ->select('id', 'bdi', 'odi', 'cdi', 'kuadrant', 'periode')
+        ->get();
 
-    $performaId = DB::table('performa')
-    ->where('koperasi_id', $latestPerforma->koperasi_id)
-    ->where('periode', $latestPerforma->periode)
-    ->select('id', 'bdi', 'odi', 'cdi', 'kuadrant', 'periode')
-    ->first();
-
-
-    $organisasi = DB::table('performa_organisasi as po')
-        ->where('po.performa_id', $performaId->id)
-        ->first();
-
-    $neraca      = $this->neracaService->getNeraca($koperasiId);
-    $pertumbuhan = $this->keuanganService->getKeuangan($koperasiId);
+    $allNeraca   = $this->neracaService->getNeraca($koperasiId);
     $unitUsaha   = $this->unitUsahaService->getUnitUsaha($koperasiId);
     $prinsip     = $this->prinsipService->GetPrinsipKoperasi($koperasiId);
+
+    // Get all financial data for the cooperative
+    $allKeuangan = $this->keuanganService->getKeuangan($koperasiId);
+
+    // Get the latest organizational data
+    $latestOrganisasi = null;
+    if ($allPerforma->count() > 0) {
+        $latestPerforma = $allPerforma->first();
+        $latestOrganisasi = DB::table('performa_organisasi as po')
+            ->where('po.performa_id', $latestPerforma->id)
+            ->first();
+    }
 
     return [
         'id'             => $this->i($koperasi->id),
@@ -89,8 +94,8 @@ private function d($value): string
         'kontak'         => $this->s($koperasi->kontak),
         'no_badan_hukum' => $this->s($koperasi->no_badan_hukum),
         'tahun'          => $this->i($koperasi->tahun),
-        'status'         => $this->s($organisasi->status),
-        'has_gm'         => $this->b($organisasi->general_manager),
+        'status'         => $this->s($latestOrganisasi->status ?? '-'),
+        'has_gm'         => $this->b($latestOrganisasi->general_manager ?? false),
 
         'lokasi' => [
             'alamat'    => $this->s($koperasi->alamat),
@@ -100,39 +105,50 @@ private function d($value): string
             'longitude' => is_null($koperasi->longitude) ? 0 : (float) $koperasi->longitude,
         ],
 
-        'performa' => [
-            'periode'  => $this->d($performaId->periode ?? null),
-            'cdi'      => $this->f($performaId->cdi ?? null),
-            'bdi'      => $this->f($performaId->bdi ?? null),
-            'odi'      => $this->f($performaId->odi ?? null),
-            'kuadrant' => $this->i($performaId->kuadrant ?? null),
+        'performa' => $allPerforma->map(function ($item) use ($koperasiId, $allNeraca, $allKeuangan) {
+            $organisasi = DB::table('performa_organisasi as po')
+                ->where('po.performa_id', $item->id)
+                ->first();
 
-            'organisasi' => [
-                'jumlah_pengurus' => $this->i($organisasi->jumlah_pengurus ?? null),
-                'jumlah_pengawas' => $this->i($organisasi->jumlah_pengawas ?? null),
-                'jumlah_karyawan' => $this->i($organisasi->jumlah_karyawan ?? null),
+            // Find the financial data that corresponds to this specific performance period
+            $periodSpecificKeuangan = collect($allKeuangan)->first(function ($keu) use ($item) {
+                return $keu['tanggal'] == $item->periode;
+            });
 
-                'anggota' => [
-                    'total'       => $this->i($organisasi->total_anggota ?? null),
-                    'aktif'       => $this->i($organisasi->anggota_aktif ?? null),
-                    'tidak_aktif' => max(
-                        0,
-                        $this->i($organisasi->total_anggota ?? null) -
-                        $this->i($organisasi->anggota_aktif ?? null)
-                    ),
-                ]
-            ],
+            // Find the neraca data that corresponds to this specific performance period
+            $periodSpecificNeraca = collect($allNeraca)->first(function ($n) use ($item) {
+                return $n['periode'] == $item->periode;
+            });
 
-            'bisnis' => [
-                'neraca' => $neraca ?: [
-                    'aktiva'  => [],
-                    'passiva' => []
+            return [
+                'periode'  => $this->d($item->periode),
+                'cdi'      => $this->f($item->cdi),
+                'bdi'      => $this->f($item->bdi),
+                'odi'      => $this->f($item->odi),
+                'kuadrant' => $this->i($item->kuadrant),
+
+                'organisasi' => [
+                    'jumlah_pengurus' => $this->i($organisasi->jumlah_pengurus ?? null),
+                    'jumlah_pengawas' => $this->i($organisasi->jumlah_pengawas ?? null),
+                    'jumlah_karyawan' => $this->i($organisasi->jumlah_karyawan ?? null),
+
+                    'anggota' => [
+                        'total'       => $this->i($organisasi->total_anggota ?? null),
+                        'aktif'       => $this->i($organisasi->anggota_aktif ?? null),
+                        'tidak_aktif' => max(
+                            0,
+                            $this->i($organisasi->total_anggota ?? null) -
+                            $this->i($organisasi->anggota_aktif ?? null)
+                        ),
+                    ]
                 ],
-                'pertumbuhan' => [
-                    'akumulasi' => $pertumbuhan ?: []
+
+                'bisnis' => [
+                    'neraca' => $periodSpecificNeraca ?: [],
+                    'pertumbuhan' => $periodSpecificKeuangan ?: []
                 ]
-            ]
-        ],
+            ];
+        })->toArray(),
 
         'unit_usaha' => $unitUsaha ?: [],
 

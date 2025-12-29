@@ -1,21 +1,17 @@
 import { PieChart, PieArcSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
-
-interface Meeting {
-    jenis_rapat: string;
-    frekuensi: {
-        mingguan: number;
-        dua_mingguan: number;
-        bulanan: number;
-        dua_bulanan: number;
-        tiga_bulanan_lebih: number;
-    };
-}
+import type { Meeting } from '@/types/organization';
 
 interface Props {
     data: Meeting[];
 }
 
+/**
+ * Meeting Frequency Chart
+ * 
+ * Displays a pie chart showing the distribution of meeting frequencies
+ * (Weekly, Bi-weekly, Monthly, etc.) across the organization.
+ */
 export default function MeetingFrequencyChart({ data }: Props) {
     // Aggregate data across all meeting types
     const totals = {

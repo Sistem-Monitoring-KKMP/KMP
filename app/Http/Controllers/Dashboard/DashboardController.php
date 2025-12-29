@@ -13,13 +13,16 @@ class DashboardController extends Controller
 {
   public function index(RankService $rank, LocationService $location, AllPerformService $perform, HistoryPerformService $history)
   {
-    $rankData = $rank->rankCooperatives();
+    $rankTopData = $rank->rankUpCooperatives();
+    $rankLowData = $rank->rankDownCooperatives();
     $locationData = $location->getAllLocations();
     $kpi = $perform->averagePerforma();
     $Tren = $history->TrenBulanan();
+
     return Inertia::render('dashboard', [
       'dashboardData'=> [
-        'top_cdi' => $rankData,
+        'top_cdi' => $rankTopData,
+        'low_cdi' => $rankLowData,
         'tren' => $Tren,
         'kpi' => $kpi
       ],

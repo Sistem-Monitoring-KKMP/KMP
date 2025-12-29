@@ -1,10 +1,10 @@
-import { TrendLineChart } from '@/components/charts/line-chart';
+import ReusableTrendChart from '@/components/charts/ReusableTrendChart';
 import MyMap from '@/components/common/map';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes/index';
 import { type BreadcrumbItem } from '@/types';
+import type { DashboardData, MapItem } from '@/types/dashboard';
 import { Head } from '@inertiajs/react';
-import { useMemo, useState } from 'react';
 import { BarChart } from 'reaviz';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -14,84 +14,31 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type Kpi = {
-    total_koperasi: number;
-    odi: number;
-    bdi: number;
-    cdi: number;
-};
-
-interface TrendItem {
-    tanggal: string;
-    cdi: number;
-    bdi: number;
-    odi: number;
-}
-
-interface TopCdiItem {
-    nama: string;
-    cdi: number;
-}
-
-interface DashboardData {
-    kpi: Kpi;
-    tren: TrendItem[];
-    top_cdi: TopCdiItem[];
-}
-
-interface MapItem {
-    id: number;
-    nama: string;
-    lat: number;
-    lng: number;
-    cdi: number;
-    bdi: number;
-    odi: number;
-    alamat: string;
-    status: string;
-}
-
 interface Props {
     dashboardData: DashboardData;
     mapData: MapItem[];
 }
 
+/**
+ * Dashboard Page
+ * 
+ * Displays key performance indicators (KPIs), top/bottom performing cooperatives,
+ * trend charts, and a geographical map of cooperatives.
+ */
 export default function Dashboard({ dashboardData, mapData }: Props) {
 
 
     const kpiData = dashboardData.kpi;
-
-    // Prepare trend data with Date objects
-    const allTrendData = useMemo(() => dashboardData.tren.map((item) => ({
-        ...item,
-        dateObj: new Date(item.tanggal),
-    })), [dashboardData]);
 
     const topCdiData = dashboardData.top_cdi.map((item) => ({
         key: item.nama,
         data: item.cdi,
     }));
 
-    // Extract unique years
-    const years = useMemo(() => Array.from(
-        new Set(allTrendData.map((d) => d.dateObj.getFullYear())),
-    ).sort((a: number, b: number) => b - a), [allTrendData]);
-
-
-    const [filterYear, setFilterYear] = useState<number>(
-        years[0] || new Date().getFullYear(),
-    );
-
-    const filteredTrend = useMemo(() => {
-        return allTrendData
-            .filter((d) => d.dateObj.getFullYear() === filterYear)
-            .map((d) => ({
-                date: d.dateObj,
-                cdi: d.cdi,
-                bdi: d.bdi,
-                odi: d.odi,
-            }));
-    }, [filterYear, allTrendData]);
+    const lowCdiData = dashboardData.low_cdi.map((item) => ({
+        key: item.nama,
+        data: item.cdi,
+    }));
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -155,40 +102,42 @@ export default function Dashboard({ dashboardData, mapData }: Props) {
                     </div>
                 </div>
 
-                <div className="my-8 rounded-lg bg-white p-4 shadow-md">
-                    <h2 className="mb-8 text-3xl font-semibold">
-                        Top 10 Koperasi
-                    </h2>
-                    <BarChart height={300} data={topCdiData} />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
+                    <div className="rounded-lg bg-white p-4 shadow-md">
+                        <h2 className="mb-8 text-3xl font-semibold">
+                            Top 10 Koperasi
+                        </h2>
+                        <div className="relative mt-10">
+                            <div className="absolute -top-8 left-0 text-xs font-bold text-gray-500 dark:text-gray-400">
+                                CDI
+                            </div>
+                            <BarChart height={300} data={topCdiData} />
+                        </div>
+                    </div>
+                    <div className="rounded-lg bg-white p-4 shadow-md">
+                        <h2 className="mb-8 text-3xl font-semibold">
+                            Bottom 10 Koperasi
+                        </h2>
+                        <div className="relative mt-10">
+                            <div className="absolute -top-8 left-0 text-xs font-bold text-gray-500 dark:text-gray-400">
+                                CDI
+                            </div>
+                            <BarChart height={300} data={lowCdiData} />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                    <div className="relative flex min-h-[400px] flex-col overflow-hidden rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border">
-                        <div className="mb-4 flex items-center justify-between">
-                            <h3 className="font-semibold">
-                                Tren Pertumbuhan Indeks
-                            </h3>
-                            <select
-                                value={filterYear}
-                                onChange={(e) =>
-                                    setFilterYear(Number(e.target.value))
-                                }
-                                className="rounded border border-gray-300 px-2 py-1 text-sm dark:border-sidebar-border dark:bg-sidebar-accent"
-                            >
-                                {years.map((yr) => (
-                                    <option key={yr} value={yr}>
-                                        {yr}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div
-                            className="w-full flex-1"
-                            style={{ minHeight: '300px' }}
-                        >
-                            <TrendLineChart trend={filteredTrend} />
-                        </div>
-                    </div>
+                    <ReusableTrendChart
+                        data={dashboardData.tren}
+                        dateKey="tanggal"
+                        title="Tren Pertumbuhan Indeks"
+                        series={[
+                            { key: 'cdi', label: 'CDI', color: '#2563eb' },
+                            { key: 'bdi', label: 'BDI', color: '#16a34a' },
+                            { key: 'odi', label: 'ODI', color: '#9333ea' },
+                        ]}
+                    />
                     <div className="relative min-h-[400px] overflow-hidden rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border">
                         <h3 className="mb-4 font-semibold">
                             Peta Sebaran Koperasi

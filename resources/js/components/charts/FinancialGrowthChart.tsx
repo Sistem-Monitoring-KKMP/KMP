@@ -2,21 +2,10 @@ import { BarChart, BarSeries, Bar, LinearYAxis, LinearYAxisTickSeries, LinearYAx
 import { formatRupiah } from '@/lib/utils';
 import { useState, useMemo, type ComponentProps } from 'react';
 import { CHART_COLORS } from '@/lib/chart-colors';
-
-export interface FinancialGrowthData {
-    tanggal: string;
-    omset: number;
-    modal_kerja: number;
-    investasi: number;
-    simpanan_anggota: number;
-    pinjaman_bank: number;
-    hibah: number;
-    biaya_operasional: number;
-    shu: number;
-}
+import type { KeuanganItem } from '@/types/cooperative';
 
 interface Props {
-    data: FinancialGrowthData[];
+    data: KeuanganItem[];
     className?: string;
 }
 

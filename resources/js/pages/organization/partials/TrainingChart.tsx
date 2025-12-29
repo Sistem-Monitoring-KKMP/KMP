@@ -1,17 +1,18 @@
 import { BarChart, BarSeries } from 'reaviz';
 import { CHART_COLORS } from '@/lib/chart-colors';
 import { CustomBar } from '@/components/charts/CustomBar';
-
-interface Training {
-    sasaran: string;
-    jumlah_terlaksana: number;
-    total_sesi: number;
-}
+import type { Training } from '@/types/organization';
 
 interface Props {
     data: Training[];
 }
 
+/**
+ * Training Statistics Chart
+ * 
+ * Displays a grouped bar chart comparing the number of executed trainings
+ * versus the total planned sessions for different target audiences.
+ */
 export default function TrainingChart({ data }: Props) {
     const chartData = data.map(d => ({
         key: d.sasaran,

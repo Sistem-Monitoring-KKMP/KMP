@@ -16,11 +16,21 @@ export default function CooperativePrinciplesChart({ data, title = "Skor Prinsip
     const chartData = [
         {
             key: 'Maksimal',
-            data: data.map((p) => ({ key: p.key, data: 5 })),
+            id: 'Maksimal',
+            data: data.map((p, i) => ({ 
+                key: p.key, 
+                data: 5, 
+                id: `max-${i}` 
+            })),
         },
         {
             key: 'Skor',
-            data: data,
+            id: 'Skor',
+            data: data.map((p, i) => ({ 
+                key: p.key, 
+                data: p.data, 
+                id: `score-${i}` 
+            })),
         },
     ];
 
@@ -35,6 +45,7 @@ export default function CooperativePrinciplesChart({ data, title = "Skor Prinsip
                     series={
                         <RadialAreaSeries
                             colorScheme={[CHART_COLORS.TRANSPARENT, CHART_COLORS.COLOR_1]}
+                            symbols={null}
                         />
                     }
                 />

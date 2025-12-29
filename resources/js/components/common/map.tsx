@@ -2,7 +2,8 @@ import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from 'react-leaflet';
+import { useState, useEffect } from 'react';
 
 const DefaultIcon = L.icon({
     iconUrl: icon,
@@ -29,6 +30,14 @@ export default function MyMap({ data }: { data: mapData[] }) {
     const center: [number, number] = data.length
         ? [data[0].lat, data[0].lng]
         : [-6.595038, 106.816635]; // Pusat Kota BBogor
+
+    const [kelurahan, setKelurahan] = useState(null);
+    useEffect(() => {
+        fetch("geo/kel-desa-kotabogor.geojson")
+            .then((res) => res.json())
+            .then((geoData) => setKelurahan(geoData))
+            .catch((err) => console.error("Error loading GeoJSON:", err));
+    }, []);
     return (
         <MapContainer
             center={center}
@@ -39,7 +48,23 @@ export default function MyMap({ data }: { data: mapData[] }) {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-
+            {kelurahan && (
+                <GeoJSON
+                    data={kelurahan}
+                    style={{
+                        color: "#2563eb",
+                        weight: 1,
+                        fillOpacity: 0.25,
+                    }}
+                    onEachFeature={(feature, layer) => {
+                        const nama =
+                            feature.properties.NAMOBJ ||
+                            feature.properties.nama ||
+                            "Kelurahan";
+                        layer.bindPopup(nama);
+                    }}
+                />
+            )}
             {data.map((item) => (
                 <Marker key={item.id} position={[item.lat, item.lng]}>
                     <Popup>
@@ -72,13 +97,12 @@ export default function MyMap({ data }: { data: mapData[] }) {
                             </div>
                             <div className="mt-2 text-xs">
                                 <span
-                                    className={`rounded-full px-2 py-0.5 ${
-                                        item.status === 'Aktif'
+                                    className={`rounded-full px-2 py-0.5 ${item.status === 'Aktif'
                                             ? 'bg-green-100 text-green-800'
                                             : item.status === 'TidakAktif'
-                                              ? 'bg-red-100 text-red-800'
-                                              : 'bg-yellow-100 text-yellow-800'
-                                    }`}
+                                                ? 'bg-red-100 text-red-800'
+                                                : 'bg-yellow-100 text-yellow-800'
+                                        }`}
                                 >
                                     {item.status}
                                 </span>

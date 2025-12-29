@@ -4,6 +4,12 @@ interface Props {
     cooperative: Cooperative;
 }
 
+/**
+ * Unit Usaha Section
+ * 
+ * Displays a table of business units (Unit Usaha) associated with the cooperative.
+ * Shows details like volume, investment, working capital, and surplus/loss.
+ */
 export default function UnitUsahaSection({ cooperative }: Props) {
     return (
         <div className="grid grid-cols-1 gap-6">
