@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManajemenKMP\AuthController;
+use App\Http\Controllers\ManajemenKMP\RegisterController;
 use App\Http\Controllers\ManajemenKMP\UserController;
 use App\Http\Controllers\ManajemenKMP\AnggotaController;
 use App\Http\Controllers\ManajemenKMP\KoperasiController;
@@ -18,6 +19,15 @@ use App\Http\Controllers\ManajemenKMP\PerformaOrganisasiController;
 
 // Public routes
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+// Registration routes (public)
+Route::prefix('register')->group(function () {
+    Route::get('/koperasi', [RegisterController::class, 'getActiveKoperasi']);
+    Route::post('/', [RegisterController::class, 'register']);
+    Route::post('/check-email', [RegisterController::class, 'checkEmail']);
+    Route::post('/check-username', [RegisterController::class, 'checkUsername']);
+    Route::post('/check-nik', [RegisterController::class, 'checkNik']);
+});
 
 // Protected routes
 Route::middleware('jwt.auth')->group(function () {

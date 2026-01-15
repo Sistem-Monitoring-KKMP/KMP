@@ -31,8 +31,8 @@ class AuthController extends Controller
                 ], 422);
             }
 
-            // Find user by email
-            $user = User::where('email', $request->email)->first();
+            // Find user by email with anggota relation
+            $user = User::with('anggota')->where('email', $request->email)->first();
 
             // Check if user exists and password is correct
             if (!$user || !Hash::check($request->password, $user->password)) {
@@ -40,6 +40,12 @@ class AuthController extends Controller
                     'success' => false,
                     'message' => 'Invalid email or password'
                 ], 401);
+            }
+
+            // Get koperasi_id from anggota
+            $koperasiId = null;
+            if ($user->anggota) {
+                $koperasiId = $user->anggota->koperasi_id;
             }
 
             // Generate JWT token
@@ -55,6 +61,7 @@ class AuthController extends Controller
                     'username' => $user->username,
                     'role' => $user->role,
                     'anggota_id' => $user->anggota_id,
+                    'koperasi_id' => $koperasiId,
                 ]
             ], 200);
         } catch (\Exception $e) {
@@ -95,6 +102,15 @@ class AuthController extends Controller
         try {
             $user = JWTAuth::parseToken()->authenticate();
 
+            // Load anggota relation
+            $user->load('anggota');
+
+            // Get koperasi_id from anggota
+            $koperasiId = null;
+            if ($user->anggota) {
+                $koperasiId = $user->anggota->koperasi_id;
+            }
+
             return response()->json([
                 'success' => true,
                 'message' => 'Get user successfully',
@@ -104,6 +120,7 @@ class AuthController extends Controller
                     'username' => $user->username,
                     'role' => $user->role,
                     'anggota_id' => $user->anggota_id,
+                    'koperasi_id' => $koperasiId,
                 ]
             ], 200);
         } catch (\Exception $e) {
