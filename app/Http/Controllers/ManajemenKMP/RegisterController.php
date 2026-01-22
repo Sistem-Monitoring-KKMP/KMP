@@ -205,14 +205,11 @@ class RegisterController extends Controller
             }
         }
 
-        // Create koperasi code (first 3 letters, uppercase)
-        $koperasiCode = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $koperasi->nama), 0, 3));
-        if (strlen($koperasiCode) < 3) {
-            $koperasiCode = str_pad($koperasiCode, 3, 'X');
-        }
+        // Create koperasi code (by koperasi's ID)
+        $koperasiCode = $koperasiId;
 
         // Format: KOP-XXX-0001
-        return sprintf('KOP-%s-%04d', $koperasiCode, $sequence);
+        return sprintf('KOP-%d-%04d', $koperasiCode, $sequence);
     }
 
     /**
